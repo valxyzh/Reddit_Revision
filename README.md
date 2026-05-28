@@ -32,7 +32,7 @@ This design separates influence (a comment shifting repliers' expressed sentimen
 
 ---
 
-## Tentative PVAR Results
+## Tentative PVAR Results *(preliminary — to be updated)*
 
 All results are from a 6-variable Panel VAR (Fanatic tone, Rational tone, Naive tone, Return, Retail flow, Short flow), estimated with one lag, two-way clustered standard errors, and time dummies. Full sample N = 710,378 stock-week observations across 3,066 stocks.
 
