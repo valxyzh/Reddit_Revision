@@ -41,7 +41,9 @@ SV is a type-agnostic stock-week measure of thread structural virality, standard
 - **SV × L.Fanatic tone:** not significant in full sample
 - **SV × L.Naive tone:** not significant
 
-In **active weeks only** (N=81k), the pattern shifts: **SV × L.Fanatic tone → Return: +0.0006 (p=0.008)** — when discussion is more viral, Fanatic tone becomes more return-predictive.
+In **active weeks only** (N=81k), the pattern shifts:
+
+- **SV × L.Fanatic tone → Return: +0.0006 (p=0.008) ✓** — when discussion is more viral, Fanatic tone becomes more return-predictive
 
 ### SSS Interaction Results (full sample)
 
