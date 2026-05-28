@@ -128,20 +128,25 @@ print(f"  Rows: {len(df):,}", flush=True)
 df["datetime"] = pd.to_datetime(df["datetime"], utc=True)
 df["date"]     = pd.to_datetime(df["date"])
 df["tone"]     = pd.to_numeric(df["tone"], errors="coerce")
-
-# Prior tone: most recent prior week with posts, per author × ticker
-print("Computing per-author-ticker prior week tone...", flush=True)
 df["week_start"] = df["date"] - pd.to_timedelta(df["date"].dt.dayofweek, unit="D")
 
+# Explode ticker (stored as array in parquet) into clean scalar strings
+df["ticker_list"] = df["ticker"].apply(lambda t: re.findall(r"[A-Z]{1,5}", str(t)))
+df_exploded = df.explode("ticker_list").dropna(subset=["ticker_list"])
+df_exploded = df_exploded.rename(columns={"ticker_list": "ticker_clean"})
+
+# Prior tone: most recent prior week with posts, per author × ticker_clean
+print("Computing per-author-ticker prior week tone...", flush=True)
+
 weekly_tone = (
-    df.groupby(["author_id", "ticker", "week_start"])["tone"]
+    df_exploded.groupby(["author_id", "ticker_clean", "week_start"])["tone"]
     .mean()
     .reset_index()
     .rename(columns={"tone": "week_tone"})
 )
 
-df_weeks = df[["id", "author_id", "ticker", "week_start"]].merge(
-    weekly_tone, on=["author_id", "ticker"], suffixes=("", "_hist")
+df_weeks = df_exploded[["id", "author_id", "ticker_clean", "week_start"]].merge(
+    weekly_tone, on=["author_id", "ticker_clean"], suffixes=("", "_hist")
 )
 df_weeks = df_weeks[df_weeks["week_start_hist"] < df_weeks["week_start"]]
 df_weeks = (
@@ -152,24 +157,25 @@ df_weeks = (
     .rename(columns={"week_tone": "prior_tone"})
 )
 
-df = df.merge(df_weeks, on="id", how="left")
-print(f"  Prior tone valid for {df['prior_tone'].notna().sum():,} rows", flush=True)
+df_exploded = df_exploded.merge(df_weeks, on="id", how="left")
+print(f"  Prior tone valid for {df_exploded['prior_tone'].notna().sum():,} rows", flush=True)
 
 print("Computing tone shift per reply...", flush=True)
-replies = df[["id", "parent_id", "tone", "prior_tone", "date", "ticker"]].copy()
+replies = df_exploded[["id", "parent_id", "tone", "prior_tone", "date", "ticker_clean"]].copy()
 replies = replies.rename(columns={
-    "id":          "reply_id",
-    "tone":        "reply_tone",
-    "prior_tone":  "reply_prior_tone",
-    "date":        "reply_date",
-    "ticker":      "reply_ticker",
+    "id":           "reply_id",
+    "tone":         "reply_tone",
+    "prior_tone":   "reply_prior_tone",
+    "date":         "reply_date",
+    "ticker_clean": "reply_ticker",
 })
 
-parents = df[["id", "date", "ticker"]].copy()
+# Parents: use original df (pre-explode) — ticker_clean from exploded df_exploded
+parents = df_exploded[["id", "date", "ticker_clean"]].drop_duplicates("id").copy()
 parents = parents.rename(columns={
-    "id":     "parent_id",
-    "date":   "parent_date",
-    "ticker": "parent_ticker",
+    "id":           "parent_id",
+    "date":         "parent_date",
+    "ticker_clean": "parent_ticker",
 })
 
 print("  Merging replies with parent info...", flush=True)
@@ -181,8 +187,6 @@ merged = merged.dropna(subset=["tone_shift"])
 print(f"  Valid tone shifts: {len(merged):,}", flush=True)
 
 print("Aggregating per parent comment...", flush=True)
-merged["parent_ticker"] = merged["parent_ticker"].astype(str)
-
 sss_comment = (
     merged.groupby(["parent_id", "parent_date", "parent_ticker"])
           .agg(
@@ -193,13 +197,8 @@ sss_comment = (
           .reset_index()
 )
 
-def extract_tickers(t):
-    if pd.isna(t):
-        return []
-    return re.findall(r"[A-Z]{1,5}", str(t))
-
-sss_comment["ticker_list"] = sss_comment["parent_ticker"].apply(extract_tickers)
-sss_comment = sss_comment.explode("ticker_list").dropna(subset=["ticker_list"])
+# ticker_clean is already a scalar string — no need to re-explode
+sss_comment = sss_comment.rename(columns={"parent_ticker": "ticker_list"})
 
 sss_comment["week_start"] = (
     sss_comment["parent_date"] -
