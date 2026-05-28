@@ -1,6 +1,6 @@
 # Reddit Revision
 
-## Why We Added Structural Virality (SV) and Sentiment Shift Score (SSS)
+## Why Structural Virality (SV)
 
 **Editor's letter, Comment 2:** *"Would it be possible to differentiate the type of social media interactions? It makes a huge difference seeing an anonymous post versus seeing Trump's tweets. You would need to uncover deeper insights and more interesting patterns from the data to provide sufficient contribution to the literature."*
 
@@ -12,7 +12,7 @@ The editor is asking us to go beyond simple tone measures and capture *how* info
 
 ---
 
-## Why SSS Measures Genuine Influence (Not Just Participation Intensity)
+## Why Sentiment Shift Score (SSS)
 
 **Reviewer 1, Comment 4:** *"While the authors argue that this variable reflects social influence, this claim requires further validation. This variable primarily captures the intensity of investors' subsequent participation and does not immediately indicate whether these follow-up commenters are genuinely 'influenced' by the original poster."*
 
