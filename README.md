@@ -20,11 +20,11 @@ SSS is constructed to address this directly. For each replier, we compute the **
 
 Formally, for reply $r$ to parent comment $c$:
 
-$$\text{tone\_shift}(r) = \text{tone}(r) - \overline{\text{tone}}_{\text{prior week}}(\text{author}(r), \text{ticker})$$
+$$\Delta\text{tone}(r) = \text{tone}(r) - \overline{\text{tone}}_{\text{prior week}}(\text{author}(r), \text{ticker})$$
 
 where the prior baseline is the author's mean tone on that ticker in the most recent week (strictly before the current week) in which they posted. SSS of comment $c$ is then:
 
-$$SSS(c) = \frac{1}{|R_c|} \sum_{r \in R_c} \text{tone\_shift}(r)$$
+$$SSS(c) = \frac{1}{|R_c|} \sum_{r \in R_c} \Delta\text{tone}(r)$$
 
 and `sss_overall` for a stock-week is the mean SSS across all parent comments in that stock-week.
 
