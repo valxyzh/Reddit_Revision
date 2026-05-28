@@ -54,4 +54,9 @@ SSS is a type-agnostic stock-week measure of sentiment-shifting power, standardi
 - **SSS × L.Naive tone → Return:** +0.0004 (p=0.010) ✓
 - **SSS × L.Fanatic tone → Return:** marginal (p=0.071)
 
-Higher SSS **amplifies** the return predictability of both Rational and Naive tone — robust across full sample and active weeks. When comments have stronger sentiment-shifting power that week, Rational and Naive tone are more predictive of future returns.
+Higher SSS **amplifies** the return predictability of both Rational and Naive tone. In **active weeks only** (N=89k), results hold:
+
+- **SSS × L.Rational tone → Return: +0.0005 (p=0.022) ✓**
+- **SSS × L.Naive tone → Return: +0.0007 (p=0.025) ✓**
+
+When comments have stronger sentiment-shifting power that week, Rational and Naive tone are more predictive of future returns — robust across both samples.
