@@ -7,6 +7,7 @@
 The editor is asking us to go beyond simple tone measures and capture *how* information spreads and *whose* voice drives sentiment — not just what is said, but how far it reaches and how much it moves others.
 
 **Structural Virality (SV)** addresses this directly. Rather than treating all posts equally, SV measures whether a discussion cascades through a chain of users (viral, high SV) or simply broadcasts from one source to many passive readers (star-shaped, low SV). A high-SV thread is more like a Trump tweet that gets retweeted and debated across many users — it has structural reach. A low-SV thread is more like an anonymous post that gets a few direct replies and dies. By interacting SV with investor type tone in the PVAR, we can ask: does the *way* Fanatic/Rational/Naive sentiment spreads — not just its content — affect stock returns and order flows?
+
 ---
 
 ## Why Sentiment Shift Score (SSS)
