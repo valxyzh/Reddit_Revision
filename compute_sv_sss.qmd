@@ -232,23 +232,34 @@ df["datetime"] = pd.to_datetime(df["datetime"], utc=True)
 df["date"]     = pd.to_datetime(df["date"])
 df["tone"]     = pd.to_numeric(df["tone"], errors="coerce")
 
-# ── Prior cumulative mean tone per author ─────────────────────────────────────
-# Sort all posts by author and time. For each post, the prior tone is the
-# author's mean tone across all their previous posts (requires >= 3 prior posts).
-print("Computing per-author prior cumulative mean tone...", flush=True)
-df = df.sort_values(["author_id", "datetime"]).reset_index(drop=True)
+# ── Prior tone: most recent prior week with posts, per author × ticker ────────
+# For each post, prior_tone = mean tone of the author on that ticker in the
+# most recent week (strictly before this post's week) where they posted.
+print("Computing per-author-ticker prior week tone...", flush=True)
 
-df["cum_sum"]   = df.groupby("author_id")["tone"].cumsum()
-df["cum_count"] = df.groupby("author_id").cumcount()   # 0-indexed = # posts before this one
+df["week_start"] = df["date"] - pd.to_timedelta(df["date"].dt.dayofweek, unit="D")
 
-df["prior_sum"]   = df.groupby("author_id")["cum_sum"].shift(1).fillna(0)
-df["prior_count"] = df["cum_count"]
-
-df["prior_tone"] = np.where(
-    df["prior_count"] >= 3,
-    df["prior_sum"] / df["prior_count"],
-    np.nan
+weekly_tone = (
+    df.groupby(["author_id", "ticker", "week_start"])["tone"]
+    .mean()
+    .reset_index()
+    .rename(columns={"tone": "week_tone"})
 )
+
+# For each post, merge all prior weekly tones for that author×ticker, then pick the most recent
+df_weeks = df[["id", "author_id", "ticker", "week_start"]].merge(
+    weekly_tone, on=["author_id", "ticker"], suffixes=("", "_hist")
+)
+df_weeks = df_weeks[df_weeks["week_start_hist"] < df_weeks["week_start"]]
+df_weeks = (
+    df_weeks.sort_values("week_start_hist")
+    .groupby("id")
+    .last()
+    .reset_index()[["id", "week_tone"]]
+    .rename(columns={"week_tone": "prior_tone"})
+)
+
+df = df.merge(df_weeks, on="id", how="left")
 print(f"  Prior tone valid for {df['prior_tone'].notna().sum():,} rows", flush=True)
 
 # ── Merge replies with their parent comment ───────────────────────────────────
