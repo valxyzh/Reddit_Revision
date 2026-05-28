@@ -70,3 +70,10 @@ Higher SSS **amplifies** the return predictability of both Rational and Naive to
 - **SSS × L.Naive tone → Return: +0.0007 (p=0.025) ✓**
 
 When comments have stronger sentiment-shifting power that week, Rational and Naive tone are more predictive of future returns — robust across both samples.
+
+---
+
+## What Else To Do
+
+- [ ] Compute **SV by type × stock × week** — separate `sv_mean_fanatic`, `sv_mean_rational`, `sv_mean_naive` at the stock-week level (already partially in `sv_by_week.csv`; need to verify and use in PVAR with type-specific interactions)
+- [ ] Compute **SSS by type × stock × week** — currently `sss_overall` is type-agnostic; need to break out SSS for Fanatic, Rational, and Naive parent comments separately, so each type's sentiment-shifting power can be interacted with its own lagged tone in the PVAR
