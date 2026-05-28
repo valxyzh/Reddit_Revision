@@ -16,19 +16,19 @@ The editor is asking us to go beyond simple tone measures and capture *how* info
 
 The reviewer's concern is that follow-up commenting could reflect engagement intensity rather than true opinion change — someone might reply simply because they are active, not because the original post moved them.
 
-SSS is constructed to address this directly. For each replier, we compute the **deviation of their reply tone from their own stock-specific prior baseline** — specifically, the author's mean tone on that same ticker in the most recent prior week where they posted about it. This means SSS does not measure whether someone replied (participation), but whether their tone in that reply is *different from what they were saying about this stock most recently*. A replier who consistently posts positively about a stock and continues to do so contributes nothing to SSS. Only repliers who deviate from their own recent, stock-specific tone pattern contribute.
+SSS is constructed to address this directly. SSS is defined at the **parent comment level**: it measures how much a given comment shifts the tone of its direct repliers, relative to each replier's own recent baseline for that stock. A comment with high SSS is one that genuinely moves people — its repliers express themselves differently about the stock than they have been doing. A comment with SSS near zero simply attracts replies that are consistent with how those users already talk about the stock.
 
-Formally, for reply $r$ to parent comment $c$:
+Formally, for each reply $r$ to parent comment $c$, we compute the tone deviation from that replier's stock-specific prior:
 
 $$\Delta\text{tone}(r) = \text{tone}(r) - \overline{\text{tone}}_{\text{prior week}}(\text{author}(r), \text{ticker})$$
 
-where the prior baseline is the author's mean tone on that ticker in the most recent week (strictly before the current week) in which they posted. SSS of comment $c$ is then:
+where the prior baseline is the replier's mean tone on that ticker in the most recent week (strictly before the current week) in which they posted about it. SSS of parent comment $c$ is then the mean tone deviation it induces:
 
 $$SSS(c) = \frac{1}{|R_c|} \sum_{r \in R_c} \Delta\text{tone}(r)$$
 
 and `sss_overall` for a stock-week is the mean SSS across all parent comments in that stock-week.
 
-This design separates influence (shifting someone's expressed sentiment relative to their own recent stock-specific prior) from participation intensity (how many people replied or how actively they engage). A high-SSS comment is one that causes repliers to express themselves differently than they have been about this stock — which is a closer operationalisation of genuine opinion influence than simple reply counts or engagement volume.
+This design separates influence (a comment shifting repliers' expressed sentiment away from their own recent stock-specific prior) from participation intensity (how many people replied or how actively they engage). A replier who consistently posts positively about a stock and continues to do so after reading the parent contributes nothing to SSS — only repliers who deviate from their own established tone pattern are counted as influenced.
 
 ---
 
