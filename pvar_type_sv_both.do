@@ -127,8 +127,8 @@ pvar Fanatic_tone Rational_tone Naive_tone Return Retail_flow Short_flow ///
     td vce(cluster stock_id week_id)
 pvargranger
 
-* PVAR 4: Type-specific SV + SSS jointly (active weeks)
-di "=== PVAR 4: Type-specific SV + SSS — Active Weeks ==="
+* PVAR 4: Type-specific SV + SSS firm-specific jointly (active weeks)
+di "=== PVAR 4: Type-specific SV + SSS (firm-specific) — Active Weeks ==="
 pvar Fanatic_tone Rational_tone Naive_tone Return Retail_flow Short_flow ///
     if num_commentors > 0, ///
     lags(1) ///
@@ -137,6 +137,49 @@ pvar Fanatic_tone Rational_tone Naive_tone Return Retail_flow Short_flow ///
          sv_fanatic_std_1 sv_rational_std_1 sv_naive_std_1 sss_std_1 ///
          sv_X_fan sv_X_rat sv_X_nai ///
          sss_X_fan sss_X_rat sss_X_nai) ///
+    td vce(cluster stock_id week_id)
+pvargranger
+
+* ═══════════════════════════════════════════════════════════════════════════════
+* FIRM-AGNOSTIC SSS (cross-stock cumulative author baseline, >= 3 prior posts)
+* ═══════════════════════════════════════════════════════════════════════════════
+
+* Merge firm-agnostic SSS
+preserve
+import delimited using output/sss_firm_agnostic_by_week.csv, clear varnames(1)
+rename ticker sym_root
+gen week_start2 = date(week_start, "YMD")
+format week_start2 %td
+drop week_start
+rename week_start2 week_start
+keep sym_root week_start sss_mean_tone_shift
+tempfile sss_ag
+save `sss_ag'
+restore
+merge m:1 sym_root week_start using `sss_ag', keep(master match) nogen
+rename sss_mean_tone_shift sss_agnostic
+
+gen sss_ag_missing = missing(sss_agnostic)
+replace sss_agnostic = 0 if missing(sss_agnostic)
+sum sss_agnostic
+gen sss_ag_std = (sss_agnostic - r(mean)) / r(sd)
+bysort stock_id (week_id): gen sss_ag_std_1    = sss_ag_std[_n-1]
+bysort stock_id (week_id): gen sss_ag_missing_1 = sss_ag_missing[_n-1]
+
+gen sss_ag_X_fan = sss_ag_std_1 * L_Fanatic
+gen sss_ag_X_rat = sss_ag_std_1 * L_Rational
+gen sss_ag_X_nai = sss_ag_std_1 * L_Naive
+
+* PVAR 5: Type-specific SV + SSS firm-agnostic jointly (active weeks)
+di "=== PVAR 5: Type-specific SV + SSS (firm-agnostic) — Active Weeks ==="
+pvar Fanatic_tone Rational_tone Naive_tone Return Retail_flow Short_flow ///
+    if num_commentors > 0, ///
+    lags(1) ///
+    exog(tone_3_missing_1 sss_ag_missing_1 ///
+         sv_fanatic_missing_1 sv_rational_missing_1 sv_naive_missing_1 ///
+         sv_fanatic_std_1 sv_rational_std_1 sv_naive_std_1 sss_ag_std_1 ///
+         sv_X_fan sv_X_rat sv_X_nai ///
+         sss_ag_X_fan sss_ag_X_rat sss_ag_X_nai) ///
     td vce(cluster stock_id week_id)
 pvargranger
 

@@ -13,7 +13,8 @@ warnings.filterwarnings("ignore")
 PARQUET     = "reddit_2020_2025_with_type_tone.parquet"
 OUT_THREADS = "output/sv_threads.csv"
 OUT_WEEK    = "output/sv_by_week.csv"
-OUT_SSS     = "output/sss_overall_by_week.csv"
+OUT_SSS         = "output/sss_overall_by_week.csv"
+OUT_SSS_AGNOSTIC = "output/sss_firm_agnostic_by_week.csv"
 Path("output").mkdir(exist_ok=True)
 
 # ══════════════════════════════════════════════════════════════════════════════
@@ -224,3 +225,96 @@ print(f"\nSaved: {OUT_SSS}  ({len(agg):,} rows)", flush=True)
 print(agg.head(3).to_string())
 print("\nSummary:")
 print(agg[["sss_mean_tone_shift","sss_abs_tone_shift","n_comments"]].describe().round(4).to_string())
+
+# ══════════════════════════════════════════════════════════════════════════════
+# PART 3: SSS — firm-agnostic prior tone (cross-stock cumulative author baseline)
+# prior_tone = cumulative mean tone across all posts by this author (any stock),
+# requires >= 3 prior posts. Type-agnostic and firm-agnostic.
+# ══════════════════════════════════════════════════════════════════════════════
+print("\n=== PART 3: SSS — Firm-Agnostic ===", flush=True)
+print("Loading parquet...", flush=True)
+df2 = pd.read_parquet(PARQUET, columns=["datetime", "author_id", "id", "ticker", "parent_id", "date", "tone"])
+print(f"  Rows: {len(df2):,}", flush=True)
+
+df2["datetime"] = pd.to_datetime(df2["datetime"], utc=True)
+df2["date"]     = pd.to_datetime(df2["date"])
+df2["tone"]     = pd.to_numeric(df2["tone"], errors="coerce")
+
+print("Computing cumulative cross-stock prior tone per author...", flush=True)
+df2 = df2.sort_values(["author_id", "datetime"]).reset_index(drop=True)
+
+df2["cum_sum"]   = df2.groupby("author_id")["tone"].cumsum()
+df2["cum_count"] = df2.groupby("author_id").cumcount()  # posts BEFORE this one
+
+df2["prior_sum"]   = df2.groupby("author_id")["cum_sum"].shift(1).fillna(0)
+df2["prior_count"] = df2["cum_count"]
+
+df2["prior_tone"] = np.where(
+    df2["prior_count"] >= 3,
+    df2["prior_sum"] / df2["prior_count"],
+    np.nan
+)
+print(f"  Prior tone valid for {df2['prior_tone'].notna().sum():,} rows", flush=True)
+
+# Explode tickers
+df2["ticker_list"] = df2["ticker"].apply(lambda t: re.findall(r"[A-Z]{1,5}", str(t)))
+df2_exp = df2.explode("ticker_list").dropna(subset=["ticker_list"])
+df2_exp = df2_exp.rename(columns={"ticker_list": "ticker_clean"})
+
+print("Computing tone shift per reply...", flush=True)
+replies2 = df2_exp[["id", "parent_id", "tone", "prior_tone", "date", "ticker_clean"]].copy()
+replies2 = replies2.rename(columns={
+    "id":           "reply_id",
+    "tone":         "reply_tone",
+    "prior_tone":   "reply_prior_tone",
+    "date":         "reply_date",
+    "ticker_clean": "reply_ticker",
+})
+
+parents2 = df2_exp[["id", "date", "ticker_clean"]].drop_duplicates("id").copy()
+parents2 = parents2.rename(columns={
+    "id":           "parent_id",
+    "date":         "parent_date",
+    "ticker_clean": "parent_ticker",
+})
+
+merged2 = replies2.merge(parents2, on="parent_id", how="inner")
+print(f"  Matched replies: {len(merged2):,}", flush=True)
+
+merged2["tone_shift"] = merged2["reply_tone"] - merged2["reply_prior_tone"]
+merged2 = merged2.dropna(subset=["tone_shift"])
+print(f"  Valid tone shifts: {len(merged2):,}", flush=True)
+
+sss_comment2 = (
+    merged2.groupby(["parent_id", "parent_date", "parent_ticker"])
+           .agg(
+               sss_mean=("tone_shift", "mean"),
+               sss_abs=("tone_shift", lambda x: x.abs().mean()),
+               n_replies=("reply_id", "count"),
+           )
+           .reset_index()
+)
+sss_comment2 = sss_comment2.rename(columns={"parent_ticker": "ticker_list"})
+sss_comment2["week_start"] = (
+    sss_comment2["parent_date"] -
+    pd.to_timedelta(sss_comment2["parent_date"].dt.dayofweek, unit="D")
+)
+
+agg2 = (
+    sss_comment2
+    .groupby(["ticker_list", "week_start"])
+    .agg(
+        sss_mean_tone_shift=("sss_mean",  "mean"),
+        sss_abs_tone_shift =("sss_abs",   "mean"),
+        n_comments         =("parent_id", "count"),
+    )
+    .reset_index()
+    .rename(columns={"ticker_list": "ticker"})
+)
+print(f"  Rows: {len(agg2):,}", flush=True)
+
+agg2.to_csv(OUT_SSS_AGNOSTIC, index=False)
+print(f"\nSaved: {OUT_SSS_AGNOSTIC}  ({len(agg2):,} rows)", flush=True)
+print(agg2.head(3).to_string())
+print("\nSummary:")
+print(agg2[["sss_mean_tone_shift","sss_abs_tone_shift","n_comments"]].describe().round(4).to_string())
