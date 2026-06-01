@@ -32,9 +32,11 @@ This design separates influence (a comment shifting repliers' expressed sentimen
 
 ---
 
-## Tentative PVAR Results *(preliminary — to be updated)*
+## PVAR Results
 
-All results are from a 6-variable Panel VAR (Fanatic tone, Rational tone, Naive tone, Return, Retail flow, Short flow), estimated with one lag, two-way clustered standard errors, and time dummies. Full sample N = 710,378 stock-week observations across 3,066 stocks.
+All results are from a 6-variable Panel VAR (Fanatic tone, Rational tone, Naive tone, Return, Retail flow, Short flow), estimated with one lag, two-way clustered standard errors, and time dummies. Full sample N = 710,378 stock-week observations across 3,066 stocks; active weeks N ≈ 81k (weeks with at least one commenter).
+
+Script: `pvar_type_sv_both.do` — type-specific SV (each type's own SV interacted with its own lagged tone) + firm-specific SSS. Key spec is **PVAR 4: active weeks, joint model**.
 
 ### Baseline PVAR (no interactions)
 
@@ -42,38 +44,29 @@ All results are from a 6-variable Panel VAR (Fanatic tone, Rational tone, Naive 
 - **All three tone types → Retail flow:** significant (Fanatic p=0.009, Rational p<0.001, Naive p<0.001)
 - **No tone type → Short flow:** none significant
 - **Return → all three tone types:** significant — returns feed back into sentiment for all types
-- **High-influence users (top 10% by commenter count):** much stronger own-persistence in tone and larger spillovers; Naive tone coefficient on Naive tone = 0.291 (high) vs 0.032 (low)
 
-### SV Interaction Results (full sample)
+### Main Result: Type-specific SV + SSS, Active Weeks (PVAR 4)
 
-SV is a type-agnostic stock-week measure of thread structural virality, standardised and lagged one period. Interacted with each lagged tone type in the Return equation:
+SV is computed separately for each investor type (`sv_mean_fanatic`, `sv_mean_rational`, `sv_mean_naive`), standardised and lagged one period. Each type's SV is interacted only with its own lagged tone. SSS uses the firm-specific prior tone baseline (author's mean tone on that ticker in the most recent prior week).
 
-- **SV × L.Rational tone → Return:** −0.0005 (p=0.026) — higher overall virality *dampens* Rational tone's return predictability
-- **SV × L.Fanatic tone:** not significant in full sample
-- **SV × L.Naive tone:** not significant
+**Return equation:**
 
-In **active weeks only** (N=81k), the pattern shifts:
+- **SV_Fanatic × L.Fanatic tone → Return: +0.0027 (p=0.049) ✓** — when Fanatic threads spread more virally, Fanatic tone is more return-predictive
+- **SSS × L.Rational tone → Return: +0.0007 (p<0.001) ✓** — stronger sentiment-shifting power amplifies Rational tone's return predictability
+- **SSS × L.Naive tone → Return: +0.0014 (p<0.001) ✓** — stronger sentiment-shifting power amplifies Naive tone's return predictability
+- SV_Rational × L.Rational: NS &nbsp;|&nbsp; SV_Naive × L.Naive: NS
 
-- **SV × L.Fanatic tone → Return: +0.0006 (p=0.008) ✓** — when discussion is more viral, Fanatic tone becomes more return-predictive
+**Additional effects:**
+- **SSS × L.Naive → Retail flow: +0.0025 (p<0.001) ✓** — high-SSS weeks see Naive tone drive more retail order flow
+- **SSS × L.Rational → Retail flow:** significant — same channel for Rational tone
 
-### SSS Interaction Results (full sample)
+### Robustness: Full Sample (PVAR 2)
 
-SSS is a type-agnostic stock-week measure of sentiment-shifting power, standardised and lagged one period:
-
-- **SSS × L.Rational tone → Return:** +0.0002 (p=0.008) ✓
-- **SSS × L.Naive tone → Return:** +0.0004 (p=0.010) ✓
-- **SSS × L.Fanatic tone → Return:** marginal (p=0.071)
-
-Higher SSS **amplifies** the return predictability of both Rational and Naive tone. In **active weeks only** (N=89k), results hold:
-
-- **SSS × L.Rational tone → Return: +0.0005 (p=0.022) ✓**
-- **SSS × L.Naive tone → Return: +0.0007 (p=0.025) ✓**
-
-When comments have stronger sentiment-shifting power that week, Rational and Naive tone are more predictive of future returns — robust across both samples.
+With the full sample (including inactive weeks), type-specific SV interactions are all NS. SSS × L.Naive → Return is marginal (p=0.054). The active-weeks result is the cleaner test — the amplification effects concentrate in weeks when discussion is actually happening.
 
 ---
 
 ## What Else To Do
 
-- [ ] Compute **SV by type × stock × week** — separate `sv_mean_fanatic`, `sv_mean_rational`, `sv_mean_naive` at the stock-week level (already partially in `sv_by_week.csv`; need to verify and use in PVAR with type-specific interactions)
-- [ ] Compute **SSS by type × stock × week** — currently `sss_overall` is type-agnostic; need to break out SSS for Fanatic, Rational, and Naive parent comments separately, so each type's sentiment-shifting power can be interacted with its own lagged tone in the PVAR
+- [x] Compute **SV by type × stock × week** — done; `sv_mean_fanatic`, `sv_mean_rational`, `sv_mean_naive` in `sv_by_week.csv`, used in `pvar_type_sv_both.do`
+- [ ] Compute **SSS by type × stock × week** — `sss_overall` is still type-agnostic; could break out SSS for Fanatic, Rational, Naive parent comments separately
