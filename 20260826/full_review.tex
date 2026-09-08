@@ -50,14 +50,11 @@
 
 \begin{enumerate}
 
-  \item \textbf{Add an appendix with precise variable definitions and a timing diagram.}
-    Several key constructs --- celebrity user status, PageRank computation,
-    tone aggregation --- are fairly complex and defined across different sections.
-    A dedicated appendix collecting all variable definitions in one place would
-    help readers. A simple timeline diagram showing when each variable is
-    measured (when tone is aggregated, when PageRank is computed, when the
-    influence measure is calculated relative to the outcome variables) would
-    also make the identification strategy much clearer.
+  \item \textbf{Main influence measure is contemporaneous --- already addressed.}
+    The main influence measure ($\mathit{Influence}_{ilt}$) uses week $t$
+    commenters and is therefore contemporaneous. However, Sections~5.1--5.2
+    run robustness using lagged and pre-period measures respectively, and
+    results hold. So this concern is already addressed in the paper.
 
 \end{enumerate}
 
@@ -376,8 +373,6 @@ lighter lift.}
 \part{Issues to Fix}
 %======================================================================
 
-\section*{Must-Fix Before Resubmission}
-
 \begin{enumerate}
 
   \item \textbf{Check footnote sequencing in the draft.} Footnotes jump
@@ -433,6 +428,15 @@ lighter lift.}
     Appendix~A (classification prompt) and Appendix~B (earnings surprise
     validation) are currently attached to the response letter. Make sure both
     appear in the paper's appendix, not only in the response letter.
+
+  \item \textbf{Add an appendix with precise variable definitions and a timing diagram.}
+    Several key constructs --- celebrity user status, PageRank computation,
+    tone aggregation --- are fairly complex and defined across different sections.
+    A dedicated appendix collecting all variable definitions in one place would
+    help readers. A simple timeline diagram showing when each variable is
+    measured (when tone is aggregated, when PageRank is computed, when the
+    influence measure is calculated relative to the outcome variables) would
+    also make the identification strategy much clearer.
 
   \item \textbf{Several references may be unused in the main text.}
     Anderson et al.\ (2001), Blume and Stambaugh (1983), Box et al.\ (2021),
