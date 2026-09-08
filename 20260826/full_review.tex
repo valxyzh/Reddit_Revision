@@ -135,20 +135,23 @@ This definition is unclear. A few specific questions:
     a celebrity for the entire sample if their time-averaged PageRank exceeds
     the 90th percentile of the cross-sectional distribution)?
   \item \textit{Tone construction}: ``Rational, fanatic, and na\"{i}ve tone for
-    celebrity users'' is ambiguous. Does it mean (a) each celebrity is assigned
-    a single type, and we average tone across celebrities of that type? Or
-    (b) each celebrity's individual posts are classified as rational, fanatic,
-    or na\"{i}ve, and we average tone separately across each post type for
-    celebrity users? These are different constructions and should be stated
-    clearly.
-  \item \textit{Short flow results in Table~9}: The text discusses returns and
-    retail trading but is silent on short flow. In the main results (Table~4),
-    tone negatively predicts short flow, especially in the high-influence
-    subsample. If celebrity-user tone does not predict short flow at all, that
-    is a notable break from the main finding and reviewers will ask about it.
-    The paper should acknowledge this explicitly and offer an explanation ---
-    e.g., that the celebrity split is not conditioned on high influence, so
-    the short-flow mechanism may not activate at average influence levels.
+    celebrity users'' is ambiguous. Does it mean (a) celebrity rational tone is
+    the average tone of a celebrity who is also classified as a rational user?
+    Or (b) each celebrity's individual posts are classified as rational,
+    fanatic, or na\"{i}ve, and tone is averaged separately by post type across
+    all celebrity users?  \item \textit{Short flow results in Table~9}: The text is silent on short
+    flow, even though tone negatively predicts short flow in the main results.
+    One sentence acknowledging that the short-flow relation does not carry over
+    to the celebrity split, with a brief explanation, would preempt reviewer
+    questions.
+
+  \item \textit{Relationship to influence tests}: The celebrity split operates
+    at the user level --- a user is a celebrity if their own PageRank is above
+    the 90th percentile. The influence tests in Sections~5.1--5.3 split at the
+    stock-week level --- a stock-week is ``high influence'' if the aggregate
+    influence of all posting users that week is above the 90th percentile.
+    These are conceptually different, and it is interesting that they both
+    matter. But I need to think through how they relate to each other.
 
   \item \textit{Descriptive statistics}: The table is interesting, but readers
     will want to know more about who these celebrities are. What fraction of
