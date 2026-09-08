@@ -40,6 +40,71 @@ assessment.
 \newpage
 
 %======================================================================
+\part{Minor Mistakes}
+%======================================================================
+
+\noindent These are straightforward errors in the current draft that should
+be fixed before resubmission. Items 1--10 are must-fix. Items 11--12 are
+additional formatting artifacts found in the close reading of Sections~5.2
+and~5.3.
+
+\bigskip
+
+\begin{enumerate}
+
+  \item \textbf{Footnote [8] is blank.} There is a footnote marker in
+    Section~3.1 but no footnote content. Restore the missing text.
+
+  \item \textbf{``P.\ Gal'' $\to$ ``P.\ Gao.''} The Da, Engelberg, Gao
+    (2011) reference has the third author's name misspelled in the
+    bibliography.
+
+  \item \textbf{Atmaz (2024) missing from reference list.} Cited in
+    Section~4.4 but absent from the reference list.
+
+  \item \textbf{Engelberg, Reed, and Ringgenberg (2018) missing from
+    reference list.} Cited in Section~4.4; the 2012 paper by the same
+    authors is present but 2018 is a separate paper and needs its own entry.
+
+  \item \textbf{Formatting artifact in Section~6 header.} Garbled
+    characters appear immediately before ``6.1 Technological Progress.''
+    This is likely a Word-to-PDF conversion artifact.
+
+  \item \textbf{Text--table inconsistency in Section~4.1.} The text says
+    the RationalTone coefficient in the low-influence subsample (Panel~C) is
+    $-0.004$; Table~2 Panel~C shows $-0.0004$. The text is off by one
+    decimal place.
+
+  \item \textbf{Table~9 note: ``other uses'' $\to$ ``other users.''}
+    Typo in the table note.
+
+  \item \textbf{``Commentors'' $\to$ ``commenters'' in Tables~6 and~8
+    notes.} Appears in both table notes.
+
+  \item \textbf{Section~4.3 mis-numbered ``3.'' in the text.} The section
+    heading reads ``3.\ Social Network and Trading Dynamics of Retail
+    investors'' but should be ``4.3.''
+
+  \item \textbf{``Both'' $\to$ ``all three'' in Section~4.4.} The text
+    states ``The corresponding p-values for the Granger causality tests are
+    \textit{both} lower than 1\%'' when referring to rational, fanatic, and
+    na\"{i}ve tone --- three variables. Table~5 Panel~A high-influence
+    Granger $p$-values are all 0.00\%.
+
+  \item \textbf{Garbled math formula in Section~5.2 (before Equation~7).}
+    The formula for the fixed-effect decomposition renders as a string of
+    empty subscript/superscript delimiters (``\verb|$_{}\sum_{}^{_{}}_{}|''
+    and similar). Same type of Word-to-PDF artifact as the Section~6 header.
+    Verify the formula renders correctly in the final PDF.
+
+  \item \textbf{Spurious capital ``F'' in Section~5.3.} The text reads
+    ``For each component, \textbf{F}irms are divided\ldots'' with an
+    erroneous capital letter mid-sentence. Should be lowercase ``firms.''
+
+\end{enumerate}
+
+\newpage
+%======================================================================
 \part{Editor's Letter}
 %======================================================================
 
@@ -424,26 +489,6 @@ Section~4.3.}
 
 \begin{enumerate}
 
-  \item \textbf{Section~4.3 is mis-numbered ``3.'' in the text.}
-    The heading reads ``3.\ Social Network and Trading Dynamics of
-    Retail investors'' but it should be ``4.3.'' This is a formatting
-    error in the Word document.
-
-  \item \textbf{``Both lower than 1\%'' in Section~4.4 should be
-    ``all three.''} The text states ``The corresponding p-values for
-    the Granger causality tests are \textit{both} lower than 1\%''
-    when referring to rational, fanatic, and na\"{i}ve tone --- three
-    variables, not two. Table~5 Panel~A high-influence Granger
-    $p$-values are all 0.00\%.
-
-  \item \textbf{Bidirectional tone--flow Granger causality is in the
-    response letter only, not the paper.} The R2 response reports
-    that na\"{i}ve tone Granger-causes retail flow ($\chi^2=42.0$,
-    $p=0.000$) and retail flow Granger-causes na\"{i}ve tone
-    ($\chi^2=47.7$, $p=0.000$). This result does not appear anywhere
-    in the main text or tables. If the reviewer reads the paper looking
-    for this, they will not find it.
-
   \item \textbf{Text says ``p-values of less than 5\%'' for whole-sample
     return Granger causality (Section~4.2) but actual values are much
     lower.} Table~3 whole-sample Granger $p$-values: rational 1.10\%,
@@ -489,8 +534,23 @@ directly answers the reviewer's suggestion.}
 \ok{Figure~6 (Section~4.5): rational tone portfolio accumulates to $+4\%$
 over 52 weeks (consistent with gradual price discovery); na\"{i}ve tone
 reverses to $-1.6\%$ (consistent with transitory sentiment); fanatic tone
-dissipates near zero. This pattern matches the model's predictions and
-directly addresses the momentum-reversal critique.}
+dissipates near zero ($+0.7\%$). This pattern matches the model's
+predictions and directly addresses the momentum-reversal critique.}
+
+\paragraph{Connection to Pedersen's bubble mechanism not made.}
+In Pedersen (2022), fanatic agents do not update indefinitely --- their
+bubble eventually unwinds as rational agents reassert influence. The
+long-horizon result (fanatic tone dissipates toward $+0.7\%$) is consistent
+with this theoretical prediction, but the paper never draws this connection
+explicitly. The discussion treats fanatic dissipation as an afterthought
+relative to the na\"{i}ve reversal and rational continuation.
+
+\concern{Add one sentence in Section~4.5 connecting the fanatic tone
+dissipation in Figure~6 to Pedersen's model mechanism for bubble
+unwinding. This would make the theoretical narrative complete: rational
+investors update efficiently (persistence), na\"{i}ve investors create
+transitory pressure (reversal), and fanatic investors drive a short-lived
+bubble that unwinds (dissipation).}
 
 %----------------------------------------------------------------------
 \section{R2 Comment C2: Endogenous Influence Measure}
@@ -556,15 +616,13 @@ bidirectional Granger causality between tone and flow.
 should not be interpreted as a direct proxy for na\"{i}ve investors'
 trading.'' The four concerns raised by R2 are addressed one by one.}
 
-\ok{Bidirectional Granger causality is reported in the response letter:
-retail flow $\to$ na\"{i}ve tone ($\chi^2=47.72$, $p=0.000$) and na\"{i}ve
-tone $\to$ retail flow ($\chi^2=42.00$, $p=0.000$). Note: this result is
-in the \textbf{response letter only} and does not appear in the main text
-or tables.}
-
-\concern{The bidirectional Granger causality result (tone $\leftrightarrow$
-flow) is only in the response letter, not in the paper. Reviewers may ask
-to see it in a table or footnote in the manuscript itself.}
+\concern{Bidirectional Granger causality is reported in the \textbf{response
+letter only} and does not appear in the main text or tables. The response
+letter states: retail flow $\to$ na\"{i}ve tone ($\chi^2=47.72$, $p=0.000$)
+and na\"{i}ve tone $\to$ retail flow ($\chi^2=42.00$, $p=0.000$). Reviewers
+who check whether the paper contains this result will not find it. These
+numbers should appear in a table or at minimum in a footnote in the
+manuscript itself.}
 
 %----------------------------------------------------------------------
 \section{R2 Comment C4: Absence of Momentum-Reversal Pattern}
@@ -590,91 +648,92 @@ fanatic tone dissipation ($+0.7\%$). This directly addresses the
 momentum-reversal critique and is one of the strongest additions in the
 revision.}
 
+\paragraph{Causal chain not established.}
+The reviewer originally asked for evidence that \textit{short sellers}
+exert corrective influence at longer horizons and for the full causal chain:
+tone $\to$ retail flow $\to$ price drift $\to$ short flow $\to$ reversal.
+Section~4.5 shows tone-sorted portfolio returns, which documents the
+reversal but does not isolate the short-selling mechanism. The text never
+acknowledges this gap, and there are no short-flow-sorted long-horizon
+portfolios.
+
+\concern{The response does not close the loop on short sellers as the
+corrective force at long horizons. Consider either (a) adding a brief
+acknowledgment that Figure~6 shows the \textit{aggregate} outcome of all
+corrective forces (including but not limited to short selling), or (b)
+showing portfolio returns conditional on high vs.\ low subsequent short flow
+to demonstrate the short-selling channel. Option (a) is the lighter lift.}
+
 \newpage
 %======================================================================
-\part{Errors and Fixes Summary}
+\part{Substantive Issues for Coauthors}
 %======================================================================
 
-\section{Must Fix Before Resubmission}
+\noindent The following issues require a judgment call or additional analysis
+rather than a simple text fix. They are organized by priority.
 
-\begin{enumerate}
-
-  \item \textbf{Footnote [8] is blank.} Marker in Section~3.1 but no
-    content. Restore missing footnote text.
-
-  \item \textbf{``P.\ Gal'' $\to$ ``P.\ Gao.''} Da, Engelberg, Gao
-    (2011) reference has author name misspelled.
-
-  \item \textbf{Atmaz (2024) missing from reference list.} Cited in
-    Section~4.4 but not in references.
-
-  \item \textbf{Engelberg, Reed, and Ringgenberg (2018) missing from
-    reference list.} Cited in Section~4.4; the 2012 paper is present
-    but 2018 is a different paper.
-
-  \item \textbf{Formatting artifact in Section~6 header.} Garbled
-    characters before ``6.1 Technological Progress.''
-
-  \item \textbf{Text--table inconsistency in Section~4.1.} Text says
-    RationalTone coefficient in low-influence Panel~C is $-0.004$;
-    Table~2 shows $-0.0004$. Off by one decimal place.
-
-  \item \textbf{Table~9 note: ``other uses'' $\to$ ``other users.''}
-
-  \item \textbf{``Commentors'' $\to$ ``commenters'' in Tables~6 and~8
-    notes.}
-
-  \item \textbf{Section~4.3 mis-numbered ``3.'' in the text.} Should
-    be ``4.3.'' (R1 close reading)
-
-  \item \textbf{``Both'' $\to$ ``all three'' in Section~4.4.} Refers to
-    three Granger causality $p$-values as ``both lower than 1\%.''
-    (R1 close reading)
-
-\end{enumerate}
-
-\section{Substantive Issues to Discuss with Coauthors}
+\bigskip
 
 \begin{enumerate}
 
   \item \textbf{Hypothesis framing still proposition-by-proposition.}
-    H1--H6 each cite a specific Pedersen proposition. Consider
-    loosening to generic social-network motivation. (Editor Comment~1)
+    H1--H6 each cite a specific Pedersen proposition. The editor explicitly
+    asked to downplay the direct-test framing. Consider loosening to generic
+    social-network motivation with Pedersen cited as one formalization.
+    (Editor Comment~1)
 
   \item \textbf{Null short-flow result for celebrity users unreported.}
-    Table~9 short-flow Granger $p$-values all $>57\%$. Needs at least
-    one sentence of acknowledgment or explanation. (Editor Comment~2)
+    Table~9 short-flow Granger $p$-values all $>57\%$ for both celebrity
+    and other users. Needs at least one sentence of acknowledgment or an
+    explanation (e.g., celebrity split uses whole sample, not
+    high-influence subsample). (Editor Comment~2)
 
   \item \textbf{ChatGPT short-flow sign flip underemphasized.}
-    A strong, significant result. Consider elevating in the abstract or
-    introduction. (Editor Comment~3)
+    Pre/post-ChatGPT short-flow coefficients all significant and flip sign.
+    This is one of the strongest results in the paper. Consider elevating
+    in the abstract or introduction. (Editor Comment~3)
 
   \item \textbf{Text overstates retail-flow attenuation in Table~11.}
-    Rational and na\"{i}ve tone still predict retail flow during
-    platform-emergence periods. Qualify the claim. (Editor Comment~3)
+    Rational and na\"{i}ve tone still significantly predict retail flow
+    during platform-emergence periods. The claim of broad attenuation should
+    be qualified. (Editor Comment~3)
 
   \item \textbf{Common-shocks alternative not discussed for belief
     spillover.} Cross-group PVAR predictability could reflect lagged
     responses to common news rather than social learning. The
-    high-influence concentration helps but is not explicitly used as
-    the counter-argument. (R1 Comment~1)
+    high-influence concentration (Panel~B vs.\ Panel~C of Table~2) helps
+    but is not explicitly deployed as the counter-argument. (R1 Comment~1)
 
   \item \textbf{Conceptual critique of type definitions not addressed.}
     R1 noted that ``na\"{i}ve'' (flexible updaters) could be viewed as
-    more sophisticated than ``rational'' (stubborn) investors. This is
-    never engaged with in the paper. Needs at least one sentence.
-    (R1 Comment~2)
+    more sophisticated than ``rational'' (stubborn) investors. This tension
+    is acknowledged only in the response letter footnote, not in the paper.
+    Needs at least one sentence in Section~2 or~3.1. (R1 Comment~2)
 
   \item \textbf{Correlation type and significance for centrality vs.\
-    attention (0.25) not specified.} Pearson or Spearman? Significant?
+    attention (0.25) not specified.} Pearson or Spearman? Is it
+    statistically significant? Add a parenthetical in Section~5.2.
     (R1 Comment~4)
 
   \item \textbf{Bidirectional tone--flow Granger causality in response
-    letter only.} Should appear in the paper. (R2 Comment~C3)
+    letter only.} Should appear in the paper as a table or footnote.
+    (R2 Comment~C3)
 
   \item \textbf{Table~8 Panel~B: low-residual return predictability.}
-    All three tones still significant in low-residual subsample;
-    text does not acknowledge this. (R2 Comment~C2)
+    All three tones remain significant in the low-residual subsample.
+    The text does not acknowledge this. Add a qualifying sentence.
+    (R2 Comment~C2)
+
+  \item \textbf{Fanatic tone dissipation connection to Pedersen bubble
+    mechanism not made.} The $+0.7\%$ long-horizon result for fanatic
+    tone is consistent with the model's bubble-unwind prediction but the
+    connection is never drawn. Add one sentence in Section~4.5.
+    (R2 Comment~C1)
+
+  \item \textbf{Short sellers as corrective force at long horizons not
+    demonstrated.} Figure~6 shows aggregate reversal but does not isolate
+    the short-selling channel. Acknowledge the gap or add short-flow-sorted
+    long-horizon portfolios. (R2 Comment~C4)
 
 \end{enumerate}
 
