@@ -52,18 +52,13 @@
 
   \item \textbf{Add an appendix with precise variable definitions.}
     Several key constructs --- celebrity user status, PageRank computation,
-    tone aggregation, retail flow, short flow --- are currently defined
-    informally and scattered across sections. Add a dedicated appendix that
+    tone aggregation --- are all fairly complex. Should we add a dedicated appendix that
     collects all variable definitions in one place with precise, unambiguous
-    language (e.g., clarify whether celebrity status is static or dynamic,
-    and whether PageRank is lagged).
+    language. Related, we could also put together a simple diagram that shows the timing: when tone is aggregated, when PageRank is computed, when influence measure is calculated. This will make the identification strategy
+    much clearer.
 
-  \item \textbf{Add a timeline figure showing when each variable is measured.}
-    The paper uses tone, returns, retail flow, and short flow measured over
-    different windows relative to each week $t$. A simple diagram showing the
-    timing --- when tone is aggregated, when PageRank is computed, when
-    returns and flows are observed --- would make the identification strategy
-    much clearer and preempt look-ahead bias concerns.
+  \item \textbf{Influence measure is contemporanoues .}
+I just want to make sure influence is the current period measure. Whereas... 
 
 \end{enumerate}
 
