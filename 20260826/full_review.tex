@@ -252,15 +252,25 @@ assignment. Section~4.1 is reframed to clarify group-level interpretation.
 \subsection*{What Is Actually in the Text}
 
 \ok{The LLM classification (Section~3.1) uses the full posting history of
-each user, not a rolling window. This directly addresses the
-dynamic-reshuffling concern: type is now a fixed user-level label. The
+each user, not a rolling window. Type is now a fixed user-level label. The
 distribution (2.96\% rational, 5.86\% fanatic, 91.18\% na\"{i}ve) and the
-Keith Gill validation are present. The Appendix~A prompt is fully
-documented.}
+Keith Gill validation are present. Appendix~A prompt is fully documented.}
 
-\ok{Section~4.1 now explicitly states: ``we interpret these patterns as
-group-level belief spillovers'' and clarifies that the PVAR examines
-innovations in aggregate group beliefs, not individual transitions.}
+\ok{Section~4.1 states: ``we interpret these patterns as group-level belief
+spillovers'' and clarifies that the PVAR examines innovations in aggregate
+group beliefs, not individual transitions.}
+
+\concern{The \textbf{common-shocks alternative} is never discussed or
+ruled out. Even with stable type labels, the cross-group predictive
+pattern in the PVAR could arise if all investor types respond to the same
+news but rational investors react one week earlier than na\"{i}ve
+investors --- with no social learning involved at all. The text reframes
+the results as ``group-level belief spillovers'' but offers no test that
+distinguishes this from a lagged common-factor story. A reviewer who reads
+carefully may raise this. Consider adding a sentence acknowledging this
+alternative and explaining why the high-influence concentration of the
+effect (Panel~B vs.\ Panel~C of Table~2) argues against a pure
+common-shocks interpretation.}
 
 %----------------------------------------------------------------------
 \section{R1 Comment 2: Investor Classification Ignores Fundamentals}
@@ -271,27 +281,44 @@ innovations in aggregate group beliefs, not individual transitions.}
 \textit{``One major concern is that this paper defines rational investors
 solely based on view dynamics, without considering how these dynamics align
 with the firm's fundamentals\ldots whether an investor is na\"{i}ve should
-not only depend on what her view dynamics look like. Instead, it should also
-depend on how her view dynamics align with the firm's fundamental
-dynamics.''}
+not only depend on what her view dynamics look like\ldots
+\medskip
+
+[Also:] the article defines na\"{i}ve investors as those who demonstrate
+greater flexibility in adjusting their views, responding more promptly to
+new information\ldots behavior that could indicate a higher level of
+sophistication. This approach to classification diverges from the
+traditional definitions of rational and na\"{i}ve investors in classical
+asset pricing theory.''}
 \end{mdframed}
 
 \subsection*{What the Authors Claim to Have Done}
-(1) The LLM is given the full Pedersen (2022) model description (which
-grounds types in fundamental-aligned reasoning) as the classification
-prompt. (2) Earnings surprise validation in Section~3.1 and Appendix~B:
-only rational tone positively predicts earnings surprises ($t=2.12$).
+(1) The LLM is given the full Pedersen (2022) model description as the
+classification prompt. (2) Earnings surprise validation in Section~3.1
+and Appendix~B: only rational tone positively predicts earnings surprises
+($t=2.12$).
 
 \subsection*{What Is Actually in the Text}
 
 \ok{Appendix~A includes the full Pedersen model description in the prompt,
 and the rational investor example (Encore Wire EBITDA analysis) shows the
-LLM is rewarding fundamental-based reasoning.}
+LLM rewards fundamental-based reasoning.}
 
-\ok{Appendix~B confirms: RationalTone $0.006^{**}$ ($t=2.12$), FanaticTone
+\ok{Appendix~B: RationalTone $0.006^{**}$ ($t=2.12$), FanaticTone
 $-0.002$ ($t=-0.80$), Na\"{i}veTone $-0.006^{**}$ ($t=-2.60$). Only
-rational tone aligns with fundamentals, consistent with the theoretical
-definition.}
+rational tone aligns with fundamentals.}
+
+\concern{The \textbf{conceptual critique} --- that ``na\"{i}ve'' investors
+(flexible updaters) could actually be \textit{more} sophisticated than
+``rational'' investors (stubborn) in real markets --- is not addressed
+anywhere in the text. The LLM classification changes the measurement but
+does not engage with this definitional tension. The footnote in the
+response letter acknowledges it: ``In Pedersen (2022), the definition of
+investors also depends on how they update their beliefs in response to firm
+fundamentals'' --- but this footnote is in the response letter, not the
+paper. Consider adding a sentence in Section~3.1 or Section~2
+acknowledging why the Pedersen definitions, though counterintuitive, are
+used as-is.}
 
 %----------------------------------------------------------------------
 \section{R1 Comment 3: What Is Being Transmitted --- Information or Noise?}
@@ -317,12 +344,11 @@ attention/sentiment channel (Section~4.2).
 
 \ok{Table~3 whole sample: RationalTone $0.0012^{**}$ ($t=2.53$),
 FanaticTone $0.0018^{***}$ ($t=2.80$), Na\"{i}veTone $0.0012^{***}$
-($t=3.94$). All three are significant and similar in magnitude. This
-directly resolves the original concern.}
+($t=3.94$). All significant and comparable in magnitude.}
 
 \ok{Section~4.2 explains na\"{i}ve tone's predictability via attention-
-and sentiment-driven price pressure (citing Da, Engelberg, and Gao (2011);
-Chen et al.\ (2014); Cookson et al.\ (2024)). The narrative is coherent.}
+and sentiment-driven price pressure (Da, Engelberg, and Gao (2011);
+Chen et al.\ (2014); Cookson et al.\ (2024)). Narrative is coherent.}
 
 %----------------------------------------------------------------------
 \section{R1 Comment 4: Influence or Attention?}
@@ -344,13 +370,16 @@ PageRank-based centrality measure as an alternative in Section~5.2.
 
 \subsection*{What Is Actually in the Text and Tables}
 
-\ok{Section~3.1 now explicitly states: ``We note that this measure may
-capture investor attention as well as social influence.'' The limitation is
-acknowledged.}
+\ok{Section~3.1 now states: ``We note that this measure may capture
+investor attention as well as social influence.'' Acknowledged.}
 
-\ok{Table~7 (PageRank centrality) replicates the main findings. The
-correlation of 0.25 between centrality and attention (log posts) provides
-reasonable empirical separation.}
+\ok{Table~7 (PageRank centrality) replicates the main findings.}
+
+\concern{The correlation of 0.25 between centrality and attention is
+reported as a bare number with no standard error, $p$-value, or
+specification (Pearson vs.\ Spearman). A reviewer may ask for
+clarification. Consider adding a parenthetical, e.g.: ``The Pearson
+(Spearman) correlation\ldots is 0.25 ($p < 0.01$).''}
 
 %----------------------------------------------------------------------
 \section{R1 Comment 5: Rational Investors Do Not Predict Trading Flows}
@@ -372,7 +401,7 @@ predict retail flows (Table~4).
 
 \ok{Table~4 Panel~A whole sample: RationalTone $0.0142^{***}$ ($t=6.80$),
 FanaticTone $0.0195^{***}$ ($t=6.24$), Na\"{i}veTone $0.0087^{***}$
-($t=6.48$). All three now significant. Concern is resolved.}
+($t=6.48$). All three significant. Resolved.}
 
 %----------------------------------------------------------------------
 \section{R1 Minor Comments}
@@ -382,12 +411,47 @@ FanaticTone $0.0195^{***}$ ($t=6.24$), Na\"{i}veTone $0.0087^{***}$
 in Section~4.4.}
 
 \paragraph{Short sellers ``detecting influence'' claim.} \ok{Toned down in
-abstract to: ``Short sellers may account for agent influence when deciding
-whether to ride or burst bubbles by responding to the observable attention
-and trading consequences\ldots''}
+abstract: ``Short sellers \textit{may} account for agent influence\ldots
+This \textit{may} enhance their ability to predict subsequent negative
+returns.''}
 
-\paragraph{Reddit users / retail investors overlap.} \ok{Explicitly
-acknowledged in Section~4.3.}
+\paragraph{Reddit users / retail investors overlap.} \ok{Acknowledged in
+Section~4.3.}
+
+%----------------------------------------------------------------------
+\section{Additional Issues Found in Close Reading of R1 Sections}
+%----------------------------------------------------------------------
+
+\begin{enumerate}
+
+  \item \textbf{Section~4.3 is mis-numbered ``3.'' in the text.}
+    The heading reads ``3.\ Social Network and Trading Dynamics of
+    Retail investors'' but it should be ``4.3.'' This is a formatting
+    error in the Word document.
+
+  \item \textbf{``Both lower than 1\%'' in Section~4.4 should be
+    ``all three.''} The text states ``The corresponding p-values for
+    the Granger causality tests are \textit{both} lower than 1\%''
+    when referring to rational, fanatic, and na\"{i}ve tone --- three
+    variables, not two. Table~5 Panel~A high-influence Granger
+    $p$-values are all 0.00\%.
+
+  \item \textbf{Bidirectional tone--flow Granger causality is in the
+    response letter only, not the paper.} The R2 response reports
+    that na\"{i}ve tone Granger-causes retail flow ($\chi^2=42.0$,
+    $p=0.000$) and retail flow Granger-causes na\"{i}ve tone
+    ($\chi^2=47.7$, $p=0.000$). This result does not appear anywhere
+    in the main text or tables. If the reviewer reads the paper looking
+    for this, they will not find it.
+
+  \item \textbf{Text says ``p-values of less than 5\%'' for whole-sample
+    return Granger causality (Section~4.2) but actual values are much
+    lower.} Table~3 whole-sample Granger $p$-values: rational 1.10\%,
+    fanatic 0.50\%, na\"{i}ve 0.00\%. The text is technically correct
+    but understates the strength of the results. Consider ``less than
+    2\%'' or listing the values directly.
+
+\end{enumerate}
 
 \newpage
 %======================================================================
@@ -560,6 +624,13 @@ revision.}
   \item \textbf{``Commentors'' $\to$ ``commenters'' in Tables~6 and~8
     notes.}
 
+  \item \textbf{Section~4.3 mis-numbered ``3.'' in the text.} Should
+    be ``4.3.'' (R1 close reading)
+
+  \item \textbf{``Both'' $\to$ ``all three'' in Section~4.4.} Refers to
+    three Granger causality $p$-values as ``both lower than 1\%.''
+    (R1 close reading)
+
 \end{enumerate}
 
 \section{Substantive Issues to Discuss with Coauthors}
@@ -575,12 +646,28 @@ revision.}
     one sentence of acknowledgment or explanation. (Editor Comment~2)
 
   \item \textbf{ChatGPT short-flow sign flip underemphasized.}
-    A strong, significant, and economically interesting result.
-    Consider elevating in abstract or introduction. (Editor Comment~3)
+    A strong, significant result. Consider elevating in the abstract or
+    introduction. (Editor Comment~3)
 
   \item \textbf{Text overstates retail-flow attenuation in Table~11.}
     Rational and na\"{i}ve tone still predict retail flow during
     platform-emergence periods. Qualify the claim. (Editor Comment~3)
+
+  \item \textbf{Common-shocks alternative not discussed for belief
+    spillover.} Cross-group PVAR predictability could reflect lagged
+    responses to common news rather than social learning. The
+    high-influence concentration helps but is not explicitly used as
+    the counter-argument. (R1 Comment~1)
+
+  \item \textbf{Conceptual critique of type definitions not addressed.}
+    R1 noted that ``na\"{i}ve'' (flexible updaters) could be viewed as
+    more sophisticated than ``rational'' (stubborn) investors. This is
+    never engaged with in the paper. Needs at least one sentence.
+    (R1 Comment~2)
+
+  \item \textbf{Correlation type and significance for centrality vs.\
+    attention (0.25) not specified.} Pearson or Spearman? Significant?
+    (R1 Comment~4)
 
   \item \textbf{Bidirectional tone--flow Granger causality in response
     letter only.} Should appear in the paper. (R2 Comment~C3)
