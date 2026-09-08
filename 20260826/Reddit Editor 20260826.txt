@@ -1,0 +1,297 @@
+Dear Will,
+
+Thank you for the opportunity to resubmit our paper, “The Rise of
+Reddit: How Social Media Affects Belief Formation and Price Discovery”
+to the Management Science. We appreciate the time and effort you and the
+referees have put into evaluating our work, and we are grateful for the
+insightful and constructive comments. Following these comments, we
+substantially revised our paper, and we are confident that the current
+version is significantly improved.
+
+Below, we present our detailed responses to your comments. For your
+convenience, your original comments are in italics, and our responses
+are in normal font.
+
+I sent your paper to a leading economist as the AE who solicited reviews
+from two experts on retail investor research, one focusing on theory and
+the other on empirics. Unfortunately, while both referees appreciate the
+theoretical grounding, the use of novel Reddit data, and the unified VAR
+framework, they raise overlapping concerns. R1 explicitly recommends
+rejection, and R2's assessment similarly implies rejection. Their
+reports are thorough and highlight key issues regarding the
+model-empirics disconnect: the weak return predictability of rational
+investors in the data; ambiguities in the classification of investor
+types; the unconvincing evidence of network spillovers; the absence of a
+momentum-reversal pattern; and several alternative interpretations.
+Note that both reviewers offer constructive suggestions, but the AE deem
+them insufficient to fully resolve the core concerns. The AE worries
+that the uncertainty about the paper’s ability to converge in the next
+round is simply too large to warrant a revision request, and followed
+the referees to recommend a rejection of the paper.
+
+ 
+
+Response: Thanks for your valuable feedback. We have substantially
+revised our draft to address the issues:
+
+First, for weak return predictability, we address this issue in Section
+4.2 and find that rational tone now significantly predicts future
+returns, with predictive power comparable to that of naïve tone. Second,
+for classification of investor types, by adopting the LLM which
+incorporates users’ broader posting histories, we substantially improve
+on the original classification. Empirical results discussed in Section
+3.1 show that the revised classification better distinguishes investor
+types and yields more consistent empirical patterns. Third, we present
+evidence of network spillovers in Section 4.1, and show significant
+group-level belief spillovers across different investor groups. Fourth,
+for momentum-reversal patterns, our results in Section 4.5 illustrate
+that returns associated with rational tone continue to accumulate over
+longer horizons, whereas the initially positive return predictability
+associated with naïve tone eventually reverses. Finally, we examine
+alternative explanations in Section 5, and our main findings remain
+robust across these alternative measures.
+
+Detailed discussions of these revisions are also provided in our
+point-by-point responses to the referees.
+
+I have read the paper myself and find many aspects of it to like. I find
+the findings plausible. More importantly, how social media shapes
+beliefs constitute a core issue in asset pricing these days. I have
+several thoughts/suggestions:
+
+1. The AE communicated to me that unless you are prepared to engage more
+deeply with the model, it may be more effective to use Pedersen (2022)
+as a conceptual motivation for empirical tests, rather than positioning
+the paper as a direct test of the model. I completely agree. I think you
+should emphasize more the empirical aspects of your study.
+
+Response: Thank you for your constructive comment. Following your
+suggestion of “use Pedersen (2022) as a conceptual motivation for
+empirical tests”, we revise the paper in abstract, Section 1, Section 2,
+and Section 7 accordingly.
+
+For abstract:
+
+  “Motivated by Pedersen (2022), we use submission-level data from
+  Reddit to examine how social interactions and user influence shape
+  belief formation, price discovery, and trading dynamics.”
+
+For the Section 1:
+
+  “A useful organizing framework for our analysis is Pedersen (2022),
+  who develops a model of belief formation, trading, and price dynamics
+  in social networks.” (page 1)
+
+  “Drawing on the conceptual foundation in Pedersen (2022), we begin our
+  empirical investigation by collecting data from the social media
+  platform Reddit from January 2020 through December 2025.” (page 2)
+
+  “First, we identify distinct agent types in the social network by
+  mapping the theoretical definitions in Pedersen (2022) to observed
+  posting behavior using a large language model.” (page 6)
+
+  “Second, inspired by the guiding framework in Pedersen (2022), we
+  thoroughly examine the joint dynamics of investor beliefs, price
+  formation, and trading behaviors of retail investors and short sellers
+  in the social network.” (page 6)
+
+Section 2 is currently renamed as “Conceptual Framework and Empirical
+Implications”, and is revised as follows:
+
+  “Pedersen (2022) provides a comprehensive theoretical foundation for
+  understanding how social interactions shape investor beliefs, trading,
+  and asset prices. We briefly summarize the features of the model most
+  relevant to our setting and draw on its underlying economic mechanisms
+  to motivate and organize our empirical analysis.” (page 6)
+
+Section 7 is also revised:
+
+  “Drawing on the theoretical insights in Pedersen (2022), we use data
+  from Reddit to systematically examine how social network interactions
+  relate to belief formation, asset prices, and trading behavior.” (page
+  37)
+
+ 
+
+2. Would it be possible to differentiate the type of social media
+interactions? It makes a huge difference seeing an anonymous post versus
+seeing Trump's tweets. You would need to uncover deeper insights and
+more interesting patterns from the data to provide sufficient
+contribution to the literature.
+
+Response: Thanks very much for your very insightful comments.
+
+Regarding your question of “a huge difference seeing an anonymous post
+versus seeing Trump's tweets”, our take is that “anonymous posts” and
+“Trump’s tweets” differ the most in their identity and celebrity status.
+Therefore, we separate Reddit users into “celebrity group” and “other
+group” and conduct empirical analysis to address your inspiring
+question. We discuss this in section 5.4 on pages 33-34 and present the
+results in Table 9:
+
+  “Social media platforms often feature a small number of well-known
+  posters whose content attracts disproportionate attention. Do the
+  beliefs expressed by these prominent users have the same impact as
+  those expressed by ordinary users, or do they play a disproportionate
+  role in shaping subsequent market outcomes? To capture this
+  heterogeneity, we separate Reddit users into celebrity users and
+  others. As discussed in Section 5.2, PageRank captures a user’s
+  centrality in the interaction network, thus we use it to identify the
+  most prominent participants on the platform. Specifically, we define
+  celebrity users as those whose average PageRank ranks above the weekly
+  90th percentile. We then separately construct rational, fanatic, and
+  naïve tone measures for celebrity users and all other users. We
+  re-estimate the PVAR system with the separation of celebrity and other
+  users, and report the results in Table 9. If network prominence
+  amplifies the transmission and market impact of expressed beliefs, we
+  expect celebrity-user tone to exhibit stronger predictive relations
+  with subsequent market outcomes.
+
+  The results suggest that the distinctive influence of celebrity users
+  is most pronounced in returns and retail trading. A
+  one-standard-deviation increase in celebrity rational, fanatic, and
+  naïve tone predicts increases of 2 bps, 6 bps, and 3 bps in subsequent
+  returns, compared with 1 bp, 2 bps, and 2 bps for other users. This
+  implies that celebrity-user tone has stronger effects on market
+  outcomes. The difference is even more pronounced for retail trading,
+  where the corresponding effects are 0.19%, 0.66%, and 0.27% for
+  celebrity rational, fanatic, and naïve users, compared with 0.16%,
+  0.24%, and 0.15% for other users. These patterns suggest that network
+  prominence primarily strengthens the extent to which expressed beliefs
+  translate into subsequent prices and retail trading, especially for
+  fanatic investors. One possible explanation is that more prominent
+  users attract greater investor attention, which may amplify the
+  salience of sentiment-driven fanatic views and make them more likely
+  to trigger retail trading and be reflected in prices.[1]”
+
+3. Can you relate the discussion to technological progress? Would the
+emergence of competing platforms affect the results? I am just trying to
+suggest something that would lend a good angle for contribution to the
+literature, in addition to the prediction results. 
+
+Response: Thank you very much for your helpful suggestions. Your comment
+raises two important issues: “technological progress” and “the emergence
+of competing platforms”.
+
+For “technological progress”, our discussion is in Section 6.1 on pages
+35-36 and the results are presented in Table 10:
+
+  “Technological advances can fundamentally reshape the information
+  environment by changing how information is produced, disseminated, and
+  processed by investors. As reported by United Nations in 2025, there
+  are several technological advances, such as AI, the Internet of things
+  (IoT), big data, and blockchain over our sample period.[2] In
+  particular, AI represents a salient technological shift: by late 2024,
+  45% of U.S. adults had used generative AI (Bick, Blandin, and Deming,
+  2026). Moreover, by reducing writing time by 40%, AI substantially
+  lowers content-production costs, makes it especially relevant for
+  social media platforms (Noy and Zhang, 2023). We therefore examine
+  whether the predictive role of social-media communication changes with
+  the emergence of generative AI. To capture this technological shift,
+  we use November 30, 2022, the date of ChatGPT’s public release as a
+  cutoff, and separately estimate the PVAR before and after this cutoff.
+  We expect tone to become less predictive of returns after ChatGPT, as
+  lower content-production costs may increase low-informativeness posts,
+  while retail investors continue to respond to tone and short sellers
+  trade against the resulting sentiment-driven demand.
+
+  In Table 10, we find significant differences before and after release
+  of ChatGPT for price discovery and short flows...For price discovery,
+  agent tones predict future returns only before ChatGPT. For example,
+  the coefficient on RationalTone (t-1) declines from 0.0014
+  (t-stat=4.48) in the pre-ChatGPT period to 0.0009 (t-stat=1.02) in the
+  post-ChatGPT period. Fanatic tone and naïve tone exhibit similar
+  patterns. One possible explanation is that the lower cost of content
+  production after ChatGPT increases the supply of less informative
+  posts, thereby diluting the price-relevant information contained in
+  agent tone. For trading dynamics, agent tones continue to positively
+  predict retail flow in both periods, while their relation with short
+  flow switches from negative before ChatGPT to positive afterward. For
+  example, the coefficient on RationalTone (t-1) changes from -0.0260
+  (t-stat=-3.17) in the pre-ChatGPT period to 0.0190 (t-stat=2.80) in
+  the post-ChatGPT period. Similar changes are observed for fanatic tone
+  and naïve tone. Intuitively, as the informational value of
+  social-media content for asset prices weakens after ChatGPT, more
+  sophisticated investors increasingly trade against the sentiment
+  conveyed by online discussions.”
+
+For “the emergence of competing platforms”, the detailed discussion is
+in Section 6.2 on page 36-37 and the results are reported in Table 11:
+
+  “Social-media platforms compete for investors’ limited attention, and
+  the growing prominence of alternative platforms can reallocate where
+  investors seek, produce, and exchange investment-related information.
+  As competing platforms become more active, does Reddit become less
+  influential in the transmission of investor beliefs? To capture this
+  variation, we use the scaled monthly message series (maximum equals
+  100) reported by Cookson et al. (2024) for StockTwits, X, and Seeking
+  Alpha. Because the public data series are only available up to 2023,
+  this analysis is restricted to the period from 2020 to 2023...We
+  construct relative competing-platform activity as the sum of the
+  scaled message measures for StockTwits, X, and Seeking Alpha divided
+  by the corresponding sum for these three platforms and Reddit. We
+  define periods of competing-platform emergence as periods in which
+  this measure exceeds its 90th percentile...We then re-estimate the
+  PVAR separately for emergence and other periods. If competing
+  platforms divert investor attention away from Reddit, we expect the
+  predictive relations between Reddit user tone and subsequent beliefs,
+  returns, and trading to be weaker during emergence periods.
+
+  Table 11 shows that the predictive relations of Reddit tone are
+  substantially weaker during periods when competing platforms are more
+  prominent. In the emergence periods, rational and fanatic tone exhibit
+  little evidence of predicting subsequent naïve tone...This attenuation
+  also extends to subsequent return and trading dynamics, with the
+  weakening particularly pronounced for fanatic tone, suggesting that
+  the market influence of fanatic beliefs depends more heavily on
+  concentrated investor attention and interaction within Reddit. In
+  contrast, during other periods, agent tones significantly predict
+  subsequent naïve tone, returns, and retail trading and are strongly
+  negatively related to future short selling. Overall, these results
+  indicate that greater activity on competing platforms fragments
+  investor attention across social media venues, thereby weakening the
+  role of Reddit beliefs in subsequent belief formation and market
+  outcomes.”
+
+Overall, I think the concerns raised by the review team are substantial.
+I encourage you to address them to your best effort. I am still
+optimistic about the topic and would like to make an exception to invite
+the paper for a reject-and-resubmit. What it means is that you would
+need to thoroughly address the concerns, which probably makes the paper
+almost a new paper, and then submit the paper as a fresh submission.
+Please note that the journal does not offer reject-and-resubmit anymore
+and this is an exception. So you would need to mention this in your
+cover letter in the next submission. I can only promise to treat the
+resubmitted paper as a fresh submission, but its conditional probability
+of getting an R&R is no higher than any other new submissions. I would
+totally understand should you decide to try alternative outlets. 
+
+This is not the ideal outcome. But please note that we receive over
+1,300 submissions a year and have to turn down many great papers, some
+even without being sent to an AE. I hope the feedback is useful
+nonetheless.
+
+Response: We are grateful that you provide us the opportunity to
+resubmit the draft. We also carefully go through all other specific
+comments and suggestions from the two referees and have prepared
+point-by-point responses to both referees. Please refer to the response
+letters for more details.
+
+Thanks so much for providing the opportunity for us to resubmit the
+draft. We believe with the review team’s feedback and our extensive
+work, the paper is significantly improved in terms of depth and breadth.
+
+Looking forward to your response.
+
+Best Regards,
+
+Danqi, Charles, Siyang, Valerie and Xiaoyan
+
+[1] We also construct a user-impact measure that captures heterogeneity
+in users’ ability to attract attention, computed as the average number
+of comments received by the user’s posts before that week. We find that
+belief transmission, return predictability, more retail-trading, and
+lower subsequent short selling are substantially stronger in the high
+user impact sample.
+
+[2] https://unctad.org/system/files/official-document/tir2025_en.pdf

@@ -1,0 +1,1633 @@
+The Rise of Reddit:
+
+How Social Media Affects Belief Formation and Price Discovery
+
+Danqi Hu, Charles M. Jones, Siyang Li, Valerie Zhang and Xiaoyan
+Zhang^(*)
+
+August 2026
+
+ABSTRACT
+
+Motivated by Pedersen (2022), we use submission-level data from Reddit
+to examine how social interactions and user influence shape belief
+formation, price discovery, and trading dynamics. We find that the
+opinions of hardheaded investors (rational or fanatic) significantly
+predict future opinions of naïve investors, especially when these
+investors have larger influence. For return predictions, social media
+tones positively and significantly predict future returns, and more so
+when agents’ influence is higher. Finally, for trading dynamics, more
+positive agent tone is associated with greater retail buying and lower
+short-selling activity, particularly when in the high-influence network.
+Short sellers may account for agent influence when deciding whether to
+ride or burst bubbles by responding to the observable attention and
+trading consequences associated with influential agents’ views. This may
+enhance their ability to predict subsequent negative returns. These
+findings highlight the importance of social interactions and user
+influence in understanding how beliefs propagate through social media
+and translate into trading and prices.
+
+Keywords: social media, belief formation, return prediction, short
+selling, retail investors.
+
+JEL codes: G11, G12, G14, G23.
+
+* Danqi Hu (email: danqi.hu@gsm.pku.edu.cn) is at Guanghua School of
+Management, Peking University. Charles M. Jones (email:
+cj88@gsb.columbia.edu) is at Columbia Business School. Siyang Li (email:
+lisy.20@pbcsf.tsinghua.edu.cn) is at the School of Accountancy at
+Central University of Finance and Economics. Valerie Zhang (email:
+valerie.zhang@haas.berkeley.edu) is at the Haas School of Business at
+the University of California, Berkeley, and Xiaoyan Zhang (Corresponding
+author, email: zhangxiaoyan@pbcsf.tsinghua.edu.cn) is at the PBC School
+of Finance at Tsinghua University. We would like to thank Lin Tan and
+Longjiang He for their excellent research assistance. The paper benefits
+from comments from Matthew Ringgenberg, Zhi Da, Marina Niessner,
+Byoung-Hyoun Hwang, seminar participants at Tsinghua University, Harvard
+Business School, Northwestern University, as well as conference
+participants at CFEA, WFA, EFA, CICF, and ABFER. Jones thanks the
+Norwegian Finance Initiative at Norges Bank for helpful funding. Zhang
+acknowledges financial support from China NSF Project 71790605.
+
+The Rise of Reddit:
+
+How Social Media Affects Belief Formation and Price Discovery
+
+August 2026
+
+ABSTRACT
+
+Motivated by Pedersen (2022), we use submission-level data from Reddit
+to examine how social interactions and user influence shape belief
+formation, price discovery, and trading dynamics. We find that the
+opinions of hardheaded investors (rational or fanatic) significantly
+predict future opinions of naïve investors, especially when these
+investors have larger influence. For return predictions, social media
+tones positively and significantly predict future returns, and more so
+when agents’ influence is higher. Finally, for trading dynamics, more
+positive agent tone is associated with greater retail buying and lower
+short-selling activity, particularly when in the high-influence network.
+Short sellers may account for agent influence when deciding whether to
+ride or burst bubbles by responding to the observable attention and
+trading consequences associated with influential agents’ views. This may
+enhance their ability to predict subsequent negative returns. These
+findings highlight the importance of social interactions and user
+influence in understanding how beliefs propagate through social media
+and translate into trading and prices.
+
+Keywords: social media, belief formation, return prediction, short
+selling, retail investors.
+
+JEL codes: G11, G12, G14, G23.
+
+1. Introduction
+
+GameStop Corp. is an American video game retailer. Over a short period
+from January 4, 2021, to January 29, 2021, its closing share price
+rockets from $17.25 to $325.00, an increase of almost 18-fold. This
+enormous upswing in price forms a powerful short squeeze, directly
+leading to the failures of some short-selling institutions, such as
+Melvin Capital, and threatens the liquidity of many institutions who
+have leveraged short positions on GameStop. The extremely high share
+price of GameStop does not last long. Two weeks later, the share price
+plummets to $40.59. This enormous volatility of the GameStop share price
+attracts substantial attention, and most investors connect the dramatic
+ups and downs in share prices to retail investors gathering and
+investing together, and to a discussion hub, the “WallStreetBets” forum,
+on the social media platform Reddit, where retail investors share
+opinions on stocks. Many regulators and investors are wondering: can
+social media significantly affect how beliefs and prices are formed and
+how different types of investors behave?
+
+A useful organizing framework for our analysis is Pedersen (2022), who
+develops a model of belief formation, trading, and price dynamics in
+social networks. The model distinguishes among rational, fanatic, and
+naïve investors who interact through a network and highlights three
+mechanisms particularly relevant to our empirical setting. First, social
+interactions can generate belief spillovers: the views of rational and
+fanatic investors can shape those of naïve investors, with stronger
+transmission when investors are more influential in the network. Second,
+investors’ views can affect subsequent price dynamics, and these effects
+may be stronger when influential investors drive the discussion. In some
+cases, social media views can drive prices away from the rational price,
+leading to potential price bubbles. Third, investors adjust their
+trading in response to beliefs expressed through the network and the
+resulting price dynamics. Rational investors, in particular, may either
+trade against mispricing or temporarily accommodate it, depending on the
+relative costs and benefits. As a result, the persistence and magnitude
+of price deviations depend on the composition of investor types and
+their relative influence in the network. These mechanisms provide the
+conceptual motivation for our empirical analysis of belief transmission,
+return predictability, and trading dynamics on social media.
+
+Drawing on the conceptual foundation in Pedersen (2022), we begin our
+empirical investigation by collecting data from the social media
+platform Reddit from January 2020 through December 2025. Agent
+classification is inherently challenging because these agent types are
+defined by latent beliefs and reasoning patterns rather than directly
+observable characteristics or simple linguistic cues. Therefore, we use
+GPT-5, a large language model (LLM), which can capture rich contextual
+information and identify the underlying reasoning expressed in different
+language. We ask LLM to classify Reddit users into rational, fanatic,
+and naïve types based on the conceptual definitions in Pedersen (2022).
+With our empirical categorization, about 3% of Reddit users are
+identified as rational, 6% are fanatics, and 91% are naïve.
+
+To account for the complex dynamics among agents’ beliefs, returns, and
+trading from different market participants, we choose panel vector
+auto-regression (PVAR) as our main empirical method, which is designed
+to capture dynamics and interactions among different variables. In
+addition, PVAR allows us to infer which variable may be important to the
+future outcomes of another variable through Granger-causal relations,
+and to quantify the responses of the variables to innovations in other
+variables using impulse response functions.
+
+We first examine how social networks affect belief formation and price
+movements. Using textual analysis, we measure each investor’s opinion by
+her tone. The results show that rational and fanatic views significantly
+and positively predict future naïve agent views, which supports
+Pedersen’s prediction on network belief spillover. One key variable for
+the social network structure is an agent’s influence, which captures how
+much attention each investor attracts from others in the network. In the
+case of Reddit, we measure different agents’ influence by the sum of the
+number of direct commenters these agents receive. We further document
+that the predictive power of rational and fanatic agents’ views on
+future naïve investors’ views is stronger in the network where these
+agents have higher influence. For price movements, we directly use
+investors’ tones to predict future returns. We find that higher
+rational, fanatic and naïve tones are associated with higher future
+returns. More interestingly, the predictive power of rational, fanatic,
+and naïve tones on future returns is stronger when these agents have
+higher influence.
+
+Next, we investigate how other important market participants, such as
+retail investors and short-sellers, trade in the presence of social
+media activities. Retail investors are generally viewed as less
+sophisticated than institutional investors. They tend to follow social
+media trends and have played a unique role in the GameStop episode. Our
+empirical results show that Reddit tones significantly predict future
+retail trading and the predictive power is even stronger for networks
+with higher influence. In contrast, short sellers are generally believed
+to be informed and rational, and our results show that the predictive
+relation between Reddit tones for future shorting flows is complicated
+and intriguing. When agents’ influence is higher, shorting flows
+significantly decrease in response to positive rational, fanatic and
+naïve tones. By contrast, when agents’ influence is lower, short
+sellers’ trading is not related to Reddit tones. This result indicates
+that short sellers, to some extent, are deterred by Reddit tones when
+Reddit agents are more influential, but when influence is low, short
+sellers might not feel threatened by agents’ positive views.
+
+We further look into short sellers’ negative predictive power for future
+returns for these cases. We find that the negative predictive power of
+shorting flows is stronger in the subsample of stocks with higher agent
+influence. That is to say, when agents are more influential on Reddit,
+short sellers become even more informative and predict even lower future
+returns. Combined with earlier results showing that short sellers may
+generally shy away from short selling when social media tones are higher
+(riding the bubble) in the high influence network, when they do choose
+to short (bursting the bubble), their shorting flows are more
+informative about future negative returns.
+
+We further extend our analysis to examine how social-media dynamics vary
+with changes in the information environment, including technological
+progress and the emergence of competing platforms. First, given that the
+most significantly technological progress over our sample period is
+generative AI, we focus on the public release of ChatGPT. We find that
+the informational content of social-media posts declines following the
+emergence of generative AI, suggesting that advances in
+content-production technologies can alter the market implications of
+online communication. Second, we study the emergence of competing
+platforms using relative activity on StockTwits, X, and Seeking Alpha.
+Greater platform competition is associated with a weaker role for Reddit
+in belief transmission and subsequent market outcomes, consistent with
+investor attention becoming more fragmented across platforms. Together,
+these extensions show that social-media dynamics evolve with the
+information environment, including how content is produced, and the
+platform competition environment.
+
+Our study naturally connects to three strands of literature: social
+media, retail investors and short sellers. First, a large literature
+shows that social-media activity and sentiment are associated with stock
+returns, trading volume, and volatility (Tumarkin and Whitelaw, 2001;
+Antweiler and Frank, 2004; Das and Chen, 2007; Chen et al., 2014; Bartov
+et al., 2018). More recent work examines how information and beliefs
+propagate through social networks. Cookson and Niessner (2020) highlight
+the role of information-based disagreement, while Cookson, Engelberg,
+and Mullins (2023) document selective exposure and echo chambers.
+Focusing on newer social-media environments, Bradley et al. (2024) show
+that the informativeness of WallStreetBets posts varies over time, and
+Cookson et al. (2024) show that investor sentiment differs substantially
+across social-media platforms, reflecting differences in their users and
+platform design.
+
+For retail investors, while early studies emphasize behavioral biases
+and uninformed retail trading (Barber and Odean, 2008; Barber, Odean,
+and Zhu, 2009), other studies show that retail trading can predict
+future stock returns (Kaniel et al., 2008; Kelley and Tetlock, 2013;
+Fong, Gallagher, and Lee, 2014; Boehmer et al., 2021). More recent work
+documents the growing importance and heterogeneity of retail investors,
+particularly during the COVID-19 pandemic and the rise of
+commission-free trading platforms (Ozik, Sadka, and Shen, 2021; Welch,
+2022; Eaton et al., 2022; Barber et al., 2022, 2024).
+
+There is also a vast literature on short sellers. Theory and empirical
+evidence generally suggest that short sellers are relatively informed
+and contribute to price discovery (Diamond and Verrecchia, 1987; Desai
+et al., 2002; Asquith et al., 2005; Boehmer et al., 2008; Engelberg,
+Reed, and Ringgenberg, 2012; Boehmer and Wu, 2013). More recently, Allen
+et al. (2025) connect short-selling constraints, retail trading, and
+social-media activity during the 2021 short squeezes.
+
+Compared to the large volume of previous literature on social media,
+retail investors, and short sellers, our paper makes several distinct
+contributions to the field. First, we identify distinct agent types in
+the social network by mapping the theoretical definitions in Pedersen
+(2022) to observed posting behavior using a large language model. This
+classification provides a useful foundation for future empirical
+research on heterogeneous investor types in social networks. Second,
+inspired by the guiding framework in Pedersen (2022), we thoroughly
+examine the joint dynamics of investor beliefs, price formation, and
+trading behaviors of retail investors and short sellers in the social
+network. This analysis provides a comprehensive view of how social media
+interactions relate to beliefs, trading, and market outcomes. Third, we
+document several novel empirical patterns concerning the role of user
+influence. In particular, we show that the predictive relations between
+social media tone and subsequent beliefs, returns, and trading behavior
+are substantially stronger when the originating users are more
+influential. We also show that short sellers respond differently to
+social media tone depending on user influence, providing new evidence on
+how sophisticated investors react to beliefs expressed in social
+networks. Finally, we examine how the role of social media evolves with
+changes in the information environment, highlighting the importance of
+how content is produced, and the platform competition environment.
+
+2. Conceptual Framework and Empirical Implications
+
+Pedersen (2022) provides a comprehensive theoretical foundation for
+understanding how social interactions shape investor beliefs, trading,
+and asset prices. We briefly summarize the features of the model most
+relevant to our setting and draw on its underlying economic mechanisms
+to motivate and organize our empirical analysis. We refer readers to
+Pedersen (2022) for the model’s formal assumptions and derivations.
+
+2.1 Assumptions and Model Setup
+
+Pedersen (2022) makes two assumptions about assets and signals in the
+economy. First, there is one asset with a supply of shares s. The
+asset’s fundamental value is v + u(t), where u(t) is a publicly observed
+random walk that has an innovation of constant variance σ_(u)², and v is
+an unobserved random variable that investors try to learn about. Second,
+the economy has N investors who communicate with each other. At time 0,
+each investor i is endowed with a signal about the value v, i.e.
+x_(i)(0) = v_(i). All signals collectively reflect the true value of v,
+$v = \sum_{i = 1}^{N}{k_{i}v_{i}}$, where individual investors’ weights,
+k_(i), sum up to one, or $\sum_{i = 1}^{N}k_{i} = 1$. The objective of
+the model is to form the dynamics of belief formation, price discovery,
+and trading behaviors before the value is revealed.
+
+Pedersen assumes an exogenous social network with different types of
+agents interacting with each other. There are three types of investors:
+rational, fanatic and naïve. Rational investors learn from everybody in
+the first round, gaining information on v and maintaining their opinions
+in later rounds. Fanatic investors learn only from themselves, and do
+not change their opinions. Both rational and fanatic investors do not
+change their views after the first round, so these two types of agents
+are labeled as “hardheaded”. Naïve investors constantly learn from
+investors they follow, and update their views accordingly. At each time
+t, everyone states their current views, collected in the N × 1 vector
+x(t) = (x₁(t), …, x_(N)(t)).
+
+Investors’ belief update is modeled as: x(t + 1) = Ax(t) (a VAR setup),
+where the N × N weighting matrix A has each i-th row summing up to one,
+or $\sum_{j}^{}A_{ij} = 1$. In other words, the social network is
+characterized by matrix A, which captures how agent i’s view is
+influenced by other investors. Suppose we use subscript “h” to denote
+hardheaded agents (i.e., rational and fanatic agents), and subscript “n”
+to denote naïve agents. Then A_(nh) is the matrix that defines how naïve
+agents listen to hardheaded agents, and A_(nn) is the matrix that
+defines how naïve agents listen to each other.[1]
+
+In this network, if one agent is influential, depending on her type, she
+can affect others through two channels: thought leadership and
+influencer value. Thought leadership measures how much one agent’s view
+attracts other’s attention. For instance, rational and fanatic agents
+can affect naïve agents through thought leadership. Influencer value
+measures how much attention naïve agents attract from other naïve
+agents. That is, naïve agents do not have thought leadership since their
+views are affected by others, but the connectedness among naïve agents
+themselves, measured by influencer value, also affects the information
+dynamics in the network. Notice that thought leadership and influencer
+value both capture how influential each agent is in the social network.
+
+2.2 Belief Formation Dynamics
+
+In the model’s equilibrium, every naïve agent’s view is a convex
+combination of views of rational and fanatic agents (Proposition 1 of
+Pedersen, 2022):
+
+x_(n)(t) → (I − A_(nn))⁻¹A_(nh)x_(h), (1)
+
+This proposition indicates that the long-run views of naïve investors
+reflect the views of rational and fanatic investors, weighted by their
+relative influences in the network. Motivated by this mechanism, we
+examine two related empirical implications:
+
+H1: Naïve investors’ views can be predicted by views from rational and
+fanatic investors.
+
+H2: The more influence rational and fanatic agents have, the stronger
+the predictive power of their views on the views of naïve agents.
+
+2.3 Price Formation Dynamics
+
+As agents trade following their beliefs after learning in the social
+network, equilibrium asset price for period t is determined as follows
+(Proposition 4 of Pedersen 2022):
+
+$p(t) = p_{r}(t) + p_{n}(t) = p_{r}(t) + function(a,b,{\overline{x}}_{n}(t),{\overline{x}}_{f}(t),x_{r})$.
+(2)
+
+The equilibrium price p(t) has two components, the rational price
+p_(r)(t), formed in the special case where all wealth is in the hands of
+rational investors, and the network price, p_(n)(t), which is a function
+of the relative wealth of naïve investors (parameter a), the relative
+wealth of fanatic investors (parameter b), the average view among naïve
+investors ${\overline{x}}_{n}(t)$, the average view among fanatic
+investors ${\overline{x}}_{f}(t)$ and the rational view x_(r). In
+Proposition 5, Pedersen defines the long-term equilibrium price as a
+function of agent views, which is positively affected by agent
+influence. In other words, the contribution of agent j to long term
+price is higher if she has higher influence. Motivated by Propositions 4
+and 5, we examine two related empirical implications:
+
+H3: Agent views from the social media network predict future stock
+returns.
+
+H4: Agents with higher influence have stronger predictive power on stock
+returns.
+
+2.4 Trading Dynamics
+
+In Propositions 7 and 8, Pedersen (2022) discusses trading behaviors of
+various investors. Investors’ demand for shares shifts as they observe
+the expected network price, p_(n)(t), change. For instance, if investors
+anticipate that social media views drive up the price, causing it to be
+much higher than the true value of the stock, they optimize their
+trading behaviors by weighing the benefits and costs of riding a
+potential positive bubble. If prices remain high for the holding horizon
+of the investors, and the benefits of riding the bubble outweigh the
+benefits of bursting the bubble, the investors might choose to ride the
+bubble, or at least not to burst the bubble, and vice versa.
+
+Here we choose to examine the trading behaviors of two important groups
+of investors: retail investors and short sellers. Retail investors are
+generally viewed as less sophisticated, who might follow the social
+media tone; while short sellers are generally believed to be informed
+and rational, who may ride or burst the bubbles depending on the
+expected short-term and long-term price dynamics discussed above. With
+the increasing importance of social media and its significant influences
+on investors’ views and prices, we examine the following empirical
+implications motivated by Propositions 7 and 8:
+
+H5: Social media views predict future retail flows, and views from more
+influential agents have stronger predictive power on retail flows.
+
+H6: Whether short sellers ride or burst social-media-induced bubbles
+depends on the costs and benefits of doing so.
+
+3. Data and Empirical Method
+
+3.1 Reddit data
+
+Reddit is a social media platform with 100,000+ communities, or
+“subreddits”, each of which focuses on a different topic.[2] In this
+article, we focus on one forum on Reddit, “WallStreetBets”, on which
+participants discuss the trading of stocks and equity options. As of
+August 2025, the subreddit has a total of 20 million subscribers, making
+it one of the largest social media forums for financial news and trading
+strategies.
+
+Previous literature examines several major social media platforms,
+including X (formerly Twitter), StockTwits, Seeking Alpha, and Reddit’s
+WallStreetBets.[3] We choose to focus on Reddit’s “WallStreetBets”
+because it has the following two distinctive features. First, unlike X,
+StockTwits, or Seeking Alpha, users on Reddit can view all posts on the
+front page without needing to subscribe to or follow individual
+accounts. This unrestricted access enhances the spread of posts, making
+Reddit an ideal platform for studying the dissemination of investor
+opinions. Second, comments on X or StockTwits can be accessed
+independently of the original post, whereas comments on Reddit can only
+be viewed through the original post. This thread-based structure enables
+investors to engage in focused discussions, further allowing them to
+influence one another. That is, these features may make inexperienced
+new investors more susceptible to being influenced by opinions shared on
+the forum.[4]
+
+We collect all submissions and comments on this subreddit between
+January 1, 2020, and December 31, 2025. Each submission, created by
+Reddit users, has its own web page with comments displayed beneath it.
+We assign each submission or comment to specific companies using tickers
+and collect unique Reddit IDs to identify authorship. We exclude bot
+accounts and moderators from our sample since their posting behaviors
+differ from those of typical users. Altogether, we have 12,128,249
+agent*stock*day observations from Reddit data.
+
+Classifying investors into the rational, fanatic, and naïve types in
+Pedersen (2022) is challenging because investor types are defined by
+latent beliefs and reasoning patterns that are not directly observable
+and must be inferred from a large amount of heterogeneous textual
+information in users’ posting histories. A reliable classification
+therefore requires jointly interpreting the context, sentiment dynamics,
+and economic reasoning embedded in users’ posts rather than relying on a
+small set of observable keywords or predefined rules. Large language
+models (LLMs) are well suited to this setting because they can capture
+rich contextual information and identify the underlying reasoning
+expressed in different language. We specifically employ GPT-5 given its
+strong ability to interpret complex economic text and infer underlying
+reasoning, as demonstrated by the growing use of GPT-based models in
+economics and finance (Lopez-Lira and Tang, 2026; Alsan and Neberai,
+2026; Fedyk et al., 2026).
+
+We first provide the LLM with the full characterization of rational,
+fanatic, and naïve agents developed in the model section of Pedersen
+(2022). We then supply the model with the complete posting history of
+each Reddit user and ask it to classify the user by applying these
+theoretical definitions to the content of the user’s posts. For each
+user, the model reports the assigned type, a confidence score, and the
+rationale for the classification, which is categorized into three
+dimensions: sentiment-based reasoning, information-based reasoning, and
+consideration of other investors’ opinions. Because observed posting
+behavior is substantially more complex than the stylized environment of
+the theoretical model, the boundaries between agent types may be
+inherently ambiguous. We therefore augment the theoretical definitions
+with additional classification rules designed to sharpen the
+distinctions across types and improve consistency in borderline
+cases.[5]
+
+According to the results of classification, 2.96% of agents are
+rational, 5.86% are fanatics, and 91.18% are naïve investors, indicating
+that most Reddit users on r/wallstreetbets behave like naïve investors.
+To validate our measure, we look at specific individuals who are known
+to be fanatics. Pedersen (2022) uses Keith Gill as an example of a
+fanatic for his unwavering belief in GameStop. We confirm that Keith
+Gill is classified as a fanatic during our sample period, supporting our
+measurement approach. As an additional validation, we examine the
+reasoning categories reported by the LLM. The distribution of these
+rationales closely accords with the theoretical characterization of each
+investor type: 98% of fanatic classifications are based on sentiment,
+whereas 100% of rational classifications are based on information.
+
+We measure each agent’s beliefs using the tone of their submissions and
+comments. Specifically, we use the LLM to classify the tone of each post
+as positive, negative, or neutral. We assign a tone score
+(PostTone_(imd)) of 1 to positive posts, −1 to negative posts, and 0 to
+neutral posts for firm i on day d, for each submission/comment m.
+$_{}\frac{_{}_{}}{_{}}$ The post tone ranges between -1 and 1, and
+higher tone indicates more positive views. For firm-level tone across
+agent types, we average across all submissions/comments (M_(ikd)) of an
+agent k for all agents (K_(ild)) within each agent type l for the stock
+i on day d:
+
+$Agent{Tone}_{ild} = \frac{1}{\sum_{k = 1}^{K_{ild}}M_{ikd}}\sum_{k = 1}^{K_{ild}}{(\sum_{m = 1}^{M_{ikd}}{{PostTone}_{imd}).}}$
+(3)
+
+Since not every firm has social media posts every day, we average agent
+tones across all days of a week t and compute agent-type*stock*week
+level variables.[6] Following this method, we compute FanaticTone_(it),
+RationalTone_(it), and NaiveTone_(it) for stock i on week t.
+
+The importance of an agent in the social network is measured by her
+influence, defined by how much attention the agent attracts from other
+users.[7] We define social networks for every firm-week pair in our
+sample. The social network for firm i on week t includes all Reddit
+users discussing firm i during week t. User k is connected to user j if
+k captures j’s attention. Since we do not have data on who views k’s
+submissions or comments, we use the number of users who comment on k’s
+posts as a proxy for how many users pay attention to k, which is also
+the influence measure of agent k. A higher value of the influence
+variable means the agent has more direct commenters and thus attracts
+more people’s attention.[8]
+
+To compute agent-type*stock*week level influence measures, we sum across
+the number of commenters of all agents (K_(ilt)) belonging to an agent
+group l for every stock i on week t as
+${NCommenter}_{ilt} = \sum_{k = 1}^{K_{ilt}}{NCommenter}_{ikt}$. We
+normalize this variable to compute our influence measure in two steps.
+First, we compute the natural logarithm of one plus the raw measure, to
+address the skewness in its distribution. Second, we transform the
+logged number to a domain of [0,1] for ease of interpretation. That is,
+for an agent group l for every stock i on week t, influence is
+calculated as,
+
+${Influence}_{ilt} = \frac{log(1 + {NCommenter}_{ilt}) - \min_{i}{\{ log(1 + {NCommenter}_{ilt})\}}}{\max_{i}{\{ log(1 + {NCommenter}_{ilt})\}} - \min_{i}{\{ log(1 + {NCommenter}_{ilt})\}}}\$.
+(4)
+
+A higher value of this measure indicates that this agent type for a firm
+receives more attention from all agent types, thereby exerting higher
+influence in the social network. We note that this measure may capture
+investor attention as well as social influence, since follow-up comments
+reflect subsequent engagement but do not necessarily imply direct
+influence by the original poster. We also acknowledge that this measure
+may capture transient engagement driven by prevailing market conditions.
+For cross-sectional comparisons, we split our sample firms each week
+into high-influence and low-influence networks. Firms are classified as
+high-influence if their overall influence (total number of commenters)
+is above the 90th percentile of all firms for that week; others are
+classified as low-influence.
+
+Table 1 Panel A presents summary statistics on social media activity.
+The average tones for rational, fanatic, and naïve agents are 0.0230,
+0.0130, and 0.0691, respectively, indicating that naïve agents have the
+most positive tones, while fanatic investors have the least. The average
+influence values for rational, fanatic, and naïve agents are 0.0203,
+0.0102, and 0.0402, respectively, with naïve agents having the highest
+influence, possibly due to their larger numbers. Tone measures have low
+correlations, around 0.1, suggesting that different agent groups have
+different views. Influence variables have high correlations, mostly
+above 0.60, indicating substantial co-movement in the influence of
+different investor groups.
+
+To provide a heuristic understanding of the social media measures, we
+plot their time series in Figure 1. Panel A presents the weekly average
+post tone for each agent group. Fanatic agents generally exhibit the
+most positive and volatile tone, whereas rational agents display
+relatively stable tone, with naïve tone lying between the two. Tone
+rises noticeably around early 2021 across all three groups, followed by
+a gradual decline through 2022–2023 and some recovery thereafter. Panel
+B presents the weekly average number of commenters per user for each
+agent group. The number of commenters attracted by users’ posts is
+elevated in 2020–2021 and subsequently declines across all three groups,
+with fanatic agents generally attracting more commenters and exhibiting
+greater variation in later years. Overall, the figure reveals
+substantial common variation across agent groups, while fanatic agents
+tend to exhibit both more positive tone and greater user engagement.
+
+We also examine whether the classification captures economically
+meaningful investor types. Specifically, we test the relation between
+agent tone and firm fundamentals such as earnings surprises. Our
+expectation is that rational investors can positively predict firm
+fundamentals while others cannot. We measure earnings surprises using
+the market-adjusted cumulative abnormal return (CAR) over the window
+[-1,1] around the earnings announcement. Rational, fanatic, and naïve
+tone are calculated as the average tone over the period between the
+previous and current earnings announcements. We estimate the panel
+regression and the coefficients on rational tone, fanatic tone, and
+naive tone are 0.006 (t-stat=2.12), -0.002 (t-stat=-0.80) and -0.006
+(t-stat=-2.60), respectively. The results show that only rational tone
+positively predicts future earnings surprises, suggesting that users
+classified as rational are more likely to express views that are aligned
+with subsequent firm fundamentals, consistent with the theoretical
+definition.[9]
+
+3.2 Data for returns, retail flows, and shorting flows
+
+Stock data are obtained from CRSP. We retain only common stocks (CRSP
+share code equal to 10 or 11) listed on NYSE, NYSE MKT, or NASDAQ. We
+cross-match the CRSP data with Reddit data using ticker symbols. To
+ensure sufficient Reddit discussion, we limit the sample to firms with
+submissions or comments in at least 10 weeks during the sample period.
+We identify retail investors using sub-penny price improvements in FINRA
+trade data following Barber et al. (2023), and calculate the daily
+retail trading for stock i on day d as
+$\frac{{TotalRetailBuyVolume}_{id} - {TotalRetailSellVolume}_{id}}{{TotalRetailBuyVolume}_{id} + {TotalRetailSellVolume}_{id}}$.
+For short sellers, we define their activity, following Boehmer et al.
+(2022), using the days-to-cover ratio (DTCR) as the total number of
+shares on loan from IHS Markit scaled by the daily trading volume,
+$\frac{{QuantityOnLoan}_{id}}{{TradingVolume}_{id}}$. We divide DTCR by
+100 to make its scale comparable to the other variables. We calculate
+the weekly average of daily returns, daily retail trading, and daily
+shorting flows. In total, our sample has 710,378 stock*week
+observations.
+
+3.3 Empirical method
+
+In Pedersen’s model, agents’ views both predict and are predicted by
+other agents’ views; agents’ beliefs are predicted by stock prices and
+at the same time, have predictive power on prices; and investors’
+trading behaviors are also interdependent with agents’ beliefs and stock
+returns. To estimate the dynamic interactions among agent tones, stock
+prices, and investors’ trading behaviors, we follow Hendershott et al.
+(2015) and Hollifield et al. (2017) and adopt the panel vector
+autoregressions (PVAR) approach.[10] Compared to alternative empirical
+methods, such as Fama-MacBeth regression and panel regression, PVAR,
+with its matrix setup, is more consistent with the setup in Pedersen’s
+theory and better at capturing intricate interactions and dynamics for
+multiple moving components within a system simultaneously.
+
+To be specific, we specify the PVAR system as follows,
+
+$y_{i,t} = \sum_{l = 1}^{L}{A_{l}y_{i,t - l}} + \gamma_{t} + \alpha_{i} + \varepsilon_{i,t}$.
+(5)
+
+Here y_(i, t) is the vector of dependent variables. Given Pedersen’s
+framework, we set
+y_(i, t) = (RationalTone_(i, t), FanaticTone_(i, t), NaiveTone_(i, t), Return_(i, t), RetailFlow_(i, t), ShortFlow_(i, t))^(′).
+Matrix A_(l) is a coefficient matrix for lag l, and l = 1, …, L, is lag
+length. Since the dependent variables may be related to certain firm
+characteristics and time periods, we include γ_(t) as time fixed
+effects, and α_(i) as firm fixed effects. We estimate the coefficients
+in (5) using the generalized method of moments (GMM), and the standard
+errors are double clustered by firm and date.[11]
+
+The PVAR estimation provides three rich sets of statistics to facilitate
+the interpretation of the results. The first set includes the estimates
+of the A_(l) matrix, which shed light on the predictive patterns among
+various variables and the parameters’ statistical significance. The
+second set contains Granger causality tests, which examine whether the
+past values of one variable provide statistically significant
+information about the future values of another variable. For example,
+let y(m) be the m-th element of vector y, and let A_(l)(m, n) be the
+element in the m-th row and n-th column of matrix A_(l), then variable
+y(n) is considered to Granger cause variable y(m), if the elements
+A₁(m, n),  A₂(m, n), …,  A_(L)(m, n) are jointly significant according
+to a Wald test. The third set is the impulse response functions (IRF)
+associated with PVAR, which describe how a dependent variable responds
+to a one-time shock from one independent variable. The IRFs illustrate
+the economic magnitude of the relation between variables. Specifically,
+let y_(i, t − 1)(n) be the n-th element of vector y_(i, t − 1) (the
+independent variable), the impulse response of variable y_(t + k)(m)
+(the dependent variable) measures how it responds to a one standard
+deviation change in y_(i, t − 1)(n), during week t+k. We choose k = 1,
+…,10 to capture the dynamics over 10 weeks. We generate the 5%
+confidence bounds for the IRFs using Monte-Carlo simulations with 1000
+draws.
+
+Previous literature points out two potential concerns regarding the PVAR
+approach. The first is that the estimation results of PVAR may be
+sensitive to the choice of lag length. To cope with this concern, we
+first compute the optimal length of lag using the Bayesian information
+criterion (BIC), and find the optimal lag length is 1. The second
+concern with PVAR is that it only allows linear relations in the system
+and cannot capture nonlinear relation among variables. To overcome this
+restriction in our case, we conduct subsample analyses by splitting the
+sample into different groups to allow flexible nonlinear relations among
+variables for different subgroups. Overall, the above two concerns
+regarding the PVAR do not significantly affect our results.
+
+4.  Empirical Results
+
+4.1 Social Network Dynamics and Belief Formation
+
+In this section, we examine how different agents’ opinions propagate
+through the social network and how these agents form their beliefs, as
+specified in H1 and H2 in Section 2. To characterize belief spillovers
+across agent groups, the PVAR analysis examines whether innovations in
+the aggregate beliefs of one group predict subsequent changes in the
+beliefs of other groups, after accounting for the persistence of each
+group’s own beliefs and other variables in the system. If H1 is true
+that naïve investors’ views are predicted by rational and fanatic
+investors’ views, we expect the coefficients linking current naïve views
+and past rational and fanatic views to be statistically significant.
+
+Table 2 Panel A presents the first 3 rows of the matrix A₁ in Pedersen
+(2022), which capture the dynamics of views among three groups of
+investors for the whole sample. All nine coefficients are positive and
+significant, suggesting that past tones, no matter whether they are from
+rational, fanatic or naïve agents, are all positively associated with
+future tones. We conduct the Granger causality tests and report the
+p-values at the bottom of the table. The p-values for all past tones
+Granger causing current tones are 0.0%, which indicates significant
+Granger-causal relations. To examine H1, we direct our discussion to
+column III, which describes how naïve tone in week t is related to
+rational and fanatic tone in week t-1. The coefficients on RationalTone
+(t-1) and FanaticTone (t-1) are 0.0258 (t-stat=6.87) and 0.0335
+(t-stat=7.17), implying that both rational and fanatic tones are
+important for forecasting naïve tone, which supports H1.
+
+To heuristically understand how different agents’ tones within a dynamic
+system interact with each other, we plot the IRFs in Figure 2. The IRFs
+show the next 10-week reaction of each response variable corresponding
+to a one standard deviation shock to each impulse variable. Panels A and
+B present the response of shocks to rational tone and fanatic tone on
+naïve tone for the next 10 weeks. For a one standard deviation shock to
+rational tone or fanatic tone, the naïve tone increases by about 0.5%
+for the first week. Given that the mean of the naïve tone is 0.069 from
+Table 1, this effect is economically meaningful. The response of naïve
+tone to rational and fanatic tone shocks gradually dies out after about
+3 weeks.
+
+Hypothesis H2 predicts that the greater the influence of a group of
+agents, the more likely they are to predict the tones of the other
+agents. To test this hypothesis, we estimate specification (5) for two
+subsamples, the high influence group and the low influence group,
+separately, as described in Section 3.1. If H2 is true, then past
+rational and fanatic views should have stronger predictive power on
+future naïve views in the high influence group than in the low influence
+group.
+
+We report the estimation results for the high influence group in Panel B
+of Table 2. Compared to the coefficients in Panel A, the coefficients in
+Panel B are all positive and significant, with substantially larger
+magnitudes, suggesting that the interaction among tones are more
+pronounced in the high influence sample. For instance, in column III,
+the coefficients on RationalTone (t-1) and FanaticTone (t-1) in Panel B
+are 0.2467 (t-stat=11.11) and 0.2335 (t-stat=9.03) for the high
+influence subsample.
+
+The estimation results for the low influence group are reported in Panel
+C of Table 2. In contrast, most coefficients become negative in Panel C,
+and the magnitudes are generally smaller than those in Panels A and B,
+implying that the interaction among tones is weaker for the low
+influence sample. For instance, again for column III, the coefficients
+on RationalTone (t-1) and FanaticTone (t-1) are -0.004 (t-stat=-0.08)
+and -0.0018 (t-stat=-0.24). This pattern indicates substantially weaker
+belief transmission across agent groups when social influence is
+limited.
+
+The drastic differences between high and low influence samples are
+vividly plotted in Figure 2 Panels C-D and Panels E-F. For the high
+influence subsample in Panel C, the reaction of naïve tone in response
+to a one standard deviation shock to rational tone is a 9.61% increase
+for the following week, and it remains significant for the next 8 weeks.
+However, in the low influence subsample in Panel E, the response of
+naïve tone to the same rational tone shock on day 1 is insignificant.
+Similar patterns can be observed for fanatic tone in Panels D and F.
+Overall, these patterns suggest that rational tone and fanatic tone have
+stronger predictive power on naïve tone when agents in the social
+network have higher influence, which is consistent with H2.
+
+To summarize, we document empirical support for H1 and H2, regarding
+belief formation in a social network. The result is closely aligned with
+the belief-formation mechanism in Pedersen (2022), in which naïve
+investors update their beliefs by learning from other investors through
+the social network, so that views with greater social influence exert a
+stronger effect on subsequent beliefs. When such influence is weak, this
+transmission mechanism is attenuated. Overall, the results capture how
+changes in beliefs expressed by one agent group are systematically
+followed by changes in beliefs expressed by other, distinct groups and
+we interpret these patterns as group-level belief spillovers.
+
+4.2 Social Media Views and Price Discovery
+
+In this section, we test H3 and H4 and examine whether and how the
+beliefs of different agents, along with their influences, predict
+next-week stock returns in the dynamic system. If H3 is true, social
+media views predict future returns, and the coefficients linking current
+returns to past agent views are expected to be significant.
+
+Table 3 reports the PVAR coefficients connecting past agent views and
+current returns. For the whole sample results in column I, the
+coefficients on RationalTone (t-1), FanaticTone (t-1) and NaïveTone
+(t-1) are 0.0012 (t-stat=2.53), 0.0018 (t-stat=2.80) and 0.0012
+(t-stat=3.94), respectively, suggesting that past agent tones contain
+predictive information about next-week returns. Also, the Granger
+Causality tests at the bottom of the table show that rational tone,
+fanatic tone and naïve tone Granger cause future returns with p-values
+of less than 5%. That is, rational, fanatic and naïve tones predict
+future returns with statistical significance, which supports H3. In
+Panels A to C of Figure 3, we present the corresponding IRFs, showing
+the response of shocks to rational, fanatic, and naïve tones on returns
+for the next 10 weeks. For economic magnitude, a one standard deviation
+shock to rational, fanatic tone or naïve tone is associated with a 2~3
+bp increase in the daily average return over the following week.
+
+Prior literature suggests that investor attention and sentiment can
+generate short-run price pressure. Da, Engelberg, and Gao (2011) show
+that heightened retail investor attention is followed by higher stock
+prices over the subsequent two weeks, while Chen et al. (2014) and
+Cookson et al. (2024) document that social media sentiment predicts
+future stock returns. These findings provide a natural interpretation
+for the strong short-run return predictability of naïve tone in our
+setting. Because naïve investors are more likely to react to salient
+opinions and prevailing sentiment, their tone may capture shifts in
+market-wide attention and sentiment that attract retail trading and
+temporarily move prices. Thus, the predictive power of naïve tone may
+operate through an attention- and sentiment-driven channel documented in
+the existing literature.
+
+Hypothesis H4 predicts that the interaction among agents’ tones and
+returns is stronger in networks with higher influence. We report the
+parameter estimates for the high influence sample and low influence
+sample in columns II and III of Table 3. For the high influence
+subsample in column II, the coefficients on RationalTone (t-1),
+FanaticTone (t-1), and NaïveTone (t-1) are 0.0120 (t-stat=8.18), 0.0119
+(t-stat=7.20), and 0.0199 (t-stat=9.60), all much larger and more
+significant than those in Panel A. For Granger causal relations,
+rational tone, fanatic tone, and naïve tone all positively Granger cause
+next-week returns in the high influence subsample with p-values of less
+than 1%. Interestingly, for the low influence subsample in column III,
+the coefficients on RationalTone (t-1), FanaticTone (t-1), NaïveTone
+(t-1) are insignificant, which is in sharp contrast with the positive
+and significant coefficients in column II. These results show that
+agents’ tones positively predict future stock returns only when the
+agents exert high influence in the network, suggesting that influence is
+a key determinant of the relation between agent tones and stock returns.
+
+Panels D-F and G-I of Figure 3 report the responses of returns to shocks
+in different tone variables for the high and low influence groups,
+respectively. For the high influence subsample in Panels D-F, a one
+standard deviation shock to rational, fanatic, naïve tone is associated
+with a higher daily average return of 47, 52, 57 bps for the following
+week, respectively, and the effects remain significant for the next 6
+weeks. In contrast, for the low influence group in Panels G-I, the shock
+to rational tone or fanatic tone is associated with only minor effects.
+
+To summarize, we find supportive evidence for hypotheses H3 and H4.
+Agent tones significantly predict future price movements. More
+importantly, agents’ tones in a high-influence network are more
+predictive of future returns than in a low-influence network.
+
+3.  Social Network and Trading Dynamics of Retail investors
+
+H5 states that social media views predict retail trading, and views from
+more influential agents have stronger predictive power on retail flows.
+If retail investors follow social media tones to trade, the coefficients
+linking current retail flows to past agent views are expected to be
+positive and significant.
+
+We report the coefficients linking past social media tones and future
+retail trading in Table 4 Panel A. From the whole sample estimates in
+column I, the coefficients on RationalTone (t-1), FanaticTone (t-1), and
+NaïveTone (t-1) are 0.0142 (t-stat=6.80), 0.0195 (t-stat=6.24), and
+0.0087 (t-stat=6.48), suggesting that retail investors are more bullish
+when agent tones are higher. Rational, fanatic and naïve tones also
+Granger cause retail flows with p-values of less than 1%, supporting the
+first part of H5. The IRFs in Figure 4 Panels A-C show that a one
+standard deviation shock to rational, fanatic, naïve tone is associated
+with a 0.25%, 0.32%, 0.22% increase in retail flows for the next week,
+respectively, with the effect gradually dying out after 2 weeks. Prior
+studies show that sentiment expressed on online message boards is
+related to subsequent trading activity (Antweiler and Frank, 2004; Das
+and Chen, 2007). More directly, Cookson et al. (2024) document that more
+positive social-media sentiment is associated with greater net retail
+buying. These findings suggest that naïve tone may contain incremental
+predictive information for retail trading because it more directly
+captures the sentiment and opinions to which retail investors respond.
+Moreover, Reddit users and retail investors are likely to overlap, as
+some investors may both express their views on Reddit and trade on those
+views. Thus, the relation between social-media tone and retail flow may
+partly reflect the behavior of the same underlying investors.
+
+For the second part of H5, if influence is important in affecting the
+predictive power of agent tones on retail order flows, we expect a
+stronger predictive relation between past agent views and future retail
+flows in the high influence group. Column II in Table 4 shows that the
+coefficient on RationalTone (t-1), FanaticTone (t-1), and NaïveTone
+(t-1) are 0.0220 (t-stat=8.25), 0.0192 (t-stat=6.66), and 0.0316
+(t-stat=8.66) for the high influence group, which are much higher than
+the coefficients for the low influence sample in column III, which
+supports H5.
+
+Figure 4 Panels D-F and G-I show the IRFs for the high and low influence
+subsamples, respectively, to further compare the economic magnitudes. In
+the high influence subsample, a one standard deviation shock to
+rational, fanatic, naïve tone is associated with a 0.86%, 0.84%, 0.91%
+increase in retail flows for the next week, respectively, with the
+effect lasting for more than 6 weeks. In the low influence subsample,
+the same shock results in only a 0.1%~0.2% increase for retail flows,
+lasting just 2 weeks. These results suggest that agent tones have
+stronger predictive power for future retail flows in high influence
+networks. When agents exert influence, their positive views lead to more
+bullish retail trading. Overall, this supports our hypothesis that agent
+tones have stronger predictive power for retail flows in more
+influential networks.
+
+Given prior findings that marketable retail flows significantly and
+positively predict future stock returns, how does the predictive power
+of retail flows change with social media activity? To answer this
+question, we examine how past retail flows predict future returns. Table
+4 Panel B shows that the coefficient on RetailFlow (t-1) is 0.0016
+(t-stat=5.27), and the Granger Causality test shows that retail flows
+Granger cause future returns with a p-value of less than 1%. For
+economic magnitude, Figure 4 Panel J shows that a one standard deviation
+shock to retail flows is associated with a 2 bps increase in the daily
+average return for next week, lasting for 1 week. These results show
+that retail flows positively predict future returns, even after we
+include social media variables in the dynamic system, suggesting that
+retail flows contain incremental predictive information about future
+price movements beyond that captured by social media tones.
+
+More interestingly, how does the return predictability of retail flows
+change for firms with different level of influence in the network.
+Columns II-III of Table 4 Panel B show that the coefficient on
+RetailFlow (t-1) is 0.0184 (t-stat=3.75) for the high influence
+subsample, which is substantially higher than the coefficient of 0.0013
+(t-stat=4.73) for the low influence subsample. Both Granger causality
+tests are significant with p-values of less than 1%. Figure 4 Panels K-L
+show the IRFs for the high and low influence subsample to further
+compare the economic magnitude. For the high influence subsample in
+Panel K, a one standard deviation shock to retail flows is associated
+with a 19 bp increase in the daily average return for week 1, with the
+effect fading after 6 weeks. Meanwhile, for the low influence subsample
+in Panel L, the same shock is associated with a 2 bp increase for the
+next week, which becomes insignificant by week 2. Overall, these results
+indicate that retail flows have stronger predictive power for future
+returns for firms in high influence networks.
+
+We acknowledge that retail flow should not be interpreted as a direct
+proxy for naïve investors’ trading. On the one hand, our retail-flow
+measure captures market-wide retail trading and does not identify
+whether a particular trade is initiated by a Reddit user. Thus, retail
+flow can originate from investors outside social-media platforms. On the
+other hand, rational, fanatic, and naïve are belief types among Reddit
+users rather than classifications of retail versus institutional
+investors, and users of all three types may trade through retail
+channels. Aggregate retail flow may therefore reflect trading by all
+three Reddit agent types. Consistent with this interpretation, previous
+literature shows that retail trading can contain both behavioral demand
+and information (Barber, Odean, and Zhu, 2009; Kelley and Tetlock, 2013;
+Boehmer et al., 2021). This does not imply that Reddit tone is merely
+noise, because the two measures intentionally capture different
+populations. We also acknowledge that retail flow may include informed
+retail trading. Indeed, Kelley and Tetlock (2013) show that some retail
+orders contain information about subsequent fundamentals and returns.
+
+4.4 Social Network and Trading Dynamics of Short Sellers
+
+Short-sellers are generally considered to be more sophisticated than
+retail investors. H6 states that the relation between short-selling and
+social media might be more complicated, which might depend on the costs
+and benefits of short-selling. Meanwhile, these costs and benefits are
+likely correlated with agent influence. Therefore, if short sellers
+understand the social network’s effect on prices and trade accordingly,
+the relation between agent views and future shorting flows may differ
+across networks with high and low influence.
+
+In Table 5 Panel A, we present the coefficients of past tone variables
+predicting future shorting flows. The whole sample result in column I
+shows that the coefficients on agent tones are insignificant, implying
+that social media tones do not predict future shorting flows. The
+Granger causality p-values at the bottom and the corresponding IRFs
+(Figure 5 Panels A-C) provide similar inferences.
+
+Regarding whether the dynamics between agents’ tones and shorting flows
+vary with agent influence, we report the results in column II and III of
+Table 5 Panel A. For high influence subsample in column II, the
+coefficients on RationalTone (t-1), FanaticTone (t-1) and NaïveTone
+(t-1) are -0.0170 (t-stat=-4.98), -0.0162 (t-stat=-5.16) and -0.0280
+(t-stat=-5.02), suggesting that short sellers significantly reduce their
+shorting activities in response to positive rational, fanatic or naïve
+tones. The corresponding p-values for the Granger causality tests are
+both lower than 1%. In contrast, for the low influence subsample in
+column III, most coefficients are insignificant.
+
+From Figure 5 Panel D-F, the response of a one standard deviation shock
+to rational, fanatic, and naïve tone is a decrease of 0.66%, 0.71%, and
+0.81% in shorting flows for the next week in the high influence sample,
+respectively, with the effect staying significant over the next 5 weeks.
+In contrast, Figure 5 Panel G-I shows that for the low influence
+subsample, the responses of a one standard deviation shock in agent
+tones on shorting flows are all insignificant.
+
+In summary, we find that the relation between agent tone and subsequent
+short selling varies substantially with agent influence. This pattern is
+consistent with the literature on short-selling risk and short squeezes.
+Short sellers face substantial risks when prices move against their
+positions, and greater short-selling risk is associated with less
+short-selling activity (Engelberg, Reed, and Ringgenberg, 2018). More
+directly, Atmaz (2024) shows that persistent demand from retail or noise
+traders can raise stock prices and shorting fees while inducing short
+sellers to reduce their positions, a mechanism motivated by the GameStop
+short squeeze. In our setting, agent tone significantly predicts higher
+subsequent returns only when agent influence is high. Short sellers may
+therefore anticipate more persistent price pressure and refrain from
+trading aggressively against optimistic beliefs when these beliefs are
+expressed by influential agents. When agent influence is low, by
+contrast, tone has weaker implications for subsequent prices, reducing
+such concerns and leaving short sellers more willing to maintain their
+positions. Overall, these results suggest that stronger social influence
+can raise the risks of trading against sentiment-driven demand and
+thereby limit the corrective role of short sellers, supporting H6.
+
+Previous research finds that shorting flows negatively predict future
+stock returns (Boehmer, Jones, and Zhang, 2008). Given the current
+results showing that higher Reddit tones deter shorting flows in the
+network with high influence, how does the predictive power of shorting
+flows change with social media activity? We first present the
+coefficient in the column I of Table 5 Panel B, when we use short flows
+to predict future returns for the whole sample. The coefficient on
+ShortFlow (t-1) is negative but insignificant. We are more interested in
+understanding how the return predictability of shorting flows changes
+with agent influence in the network. For the high influence subsample in
+column II of Table 5 Panel B, the coefficient on ShortFlow (t-1) is
+-0.0424 (t-stat=-6.84), and shorting flows Granger causes future returns
+with a p-value of less than 1%. In contrast, the coefficients are
+insignificant for the low influence subsample in column III.
+
+To better compare the economic magnitudes, the corresponding IRFs are
+provided in Figure 5 Panel K-L. For the high influence subsample, a one
+standard deviation shock of shorting flows is associated with a 28 bp
+decrease in the daily average return for the following week. While for
+the low influence subsample, the same shock is associated with little
+response in returns. The results show that shorting flows are connected
+to a much larger decrease in future returns in the more influential
+network. This is quite intriguing, because earlier results suggest that
+short sellers on average shy away from shorting when they worry that
+more positive social media tones lead to higher returns and short
+squeeze risk, when agent influence is high. This particular pattern
+between shorting flows and future returns suggests that short sellers
+probably carefully consider the costs and benefits of shorting under
+heightened social media activity, and they only short if they are
+convinced that the benefits outweigh the costs, and hence stronger
+predictive power of shorts for future returns.
+
+4.5 Long-horizon Returns
+
+Our main analysis using PVAR thus far focuses primarily on short-run
+dynamics among investor beliefs, trading, and returns. We next examine
+whether the return predictability associated with agent tone persists or
+reverses over longer horizons. To provide a more intuitive view of these
+dynamics, we sort stocks each week into quintile portfolios based
+separately on rational, fanatic, and naïve tone and track their
+performance over the subsequent 52 weeks. According to Proposition 4 of
+Pedersen (2022), which shows that the network component of prices
+depends on naïve and fanatic beliefs relative to the rational belief, we
+use rational tone as the benchmark and subtract it from fanatic and
+naïve tone when constructing the corresponding sorting variables. We
+then calculate the cumulative return of the high-minus-low (5–1)
+portfolio for each agent type, allowing us to trace whether the initial
+return effect persists, dissipates, or eventually reverses over time.
+
+Figure 6 shows distinct long-horizon return patterns across agent types.
+The high-minus-low portfolio based on rational tone exhibits a steadily
+increasing cumulative return over the subsequent 52 weeks, reaching
+approximately 4% by the end of the horizon. In contrast, the cumulative
+return spread for fanatic tone remains close to zero at 0.7%, whereas
+the spread for naïve tone eventually reverses and falls to -1.6%.
+Combined with the short-run positive return predictability documented
+earlier, this pattern suggests that the price effects associated with
+naïve beliefs are largely transitory and are eventually corrected over
+longer horizons. The price effects associated with fanatic beliefs
+dissipate more slowly, consistent with the persistence of fanatic views.
+By contrast, the persistent return continuation following rational tone
+is more consistent with the gradual incorporation of information into
+prices.
+
+5.  Alternative Measures
+
+In this section, we investigate several alternative measures. First, to
+alleviate the concern that contemporaneous stock-specific events may
+affect our influence measure, we examine three alternative measures of
+influence in Section 5.1-5.3. We expect that the main results should be
+robust across alternative measures of influence, with stronger belief
+transmission, return predictability, and trading dynamics in high
+influence sample. Second, we examine heterogeneity across users by
+distinguishing celebrity users from other Reddit users in Section 5.4.
+
+5.1 Lagged Cross-stock Average Number of Commenters
+
+First, we compute the lagged cross-stock average number of commenters.
+For each user k, stock i, and week t, we calculate the user’s average
+number of commenters in all prior weeks and on all stocks other than i.
+
+${AvgNCommenters}_{i,k,t} = \frac{\sum_{\tau < t}^{}{\sum_{j \neq i}^{}{NCommenters}_{j,k,\tau}}}{N_{j \neq i,\ \ k,\tau < t}}\$,
+(6)
+
+where NCommenters_(j, k, τ) is the number of commenters for user k,
+stock j, week τ, and N_(j ≠ i,  k, τ < t) is the number of firm-week
+observations. Because the measure excludes both the current week and the
+focal stock, it is not mechanically affected by current sentiment or
+attention surrounding stock. Firms are divided into two subsamples based
+on whether the sum of agents’ lagged cross-stock average number of
+commenters is above the 90th percentile of all firms for that week. We
+then estimate the PVAR separately for two subsamples.
+
+Table 6 reports results that are consistent with our earlier findings.
+In the high influence sample, rational and fanatic tone strongly predict
+subsequent naïve tone, with coefficients of 0.2587 (t-stat=11.24) and
+0.2467 (t-stat=9.17), respectively, compared with −0.0046 (t-stat=-0.97)
+and −0.0211 (t-stat=-2.63) in the low influence sample. All three agent
+tones also positively predict subsequent returns when influence is high,
+whereas none is significant when influence is low. Agent tone
+significantly predicts subsequent retail trading in both samples.
+Finally, all three tones predict lower subsequent short-selling flow in
+the high influence sample, while these relations are largely absent in
+the low influence sample. Overall, our main findings remain robust when
+we use the lagged cross-stock average number of commenters as an
+alternative measure of user influence, suggesting that contemporaneous
+news is unlikely to drive our results.
+
+5.2 Pre-period Centrality
+
+Second, we measure each user’s network influence using PageRank (Page et
+al. 1999). A higher PageRank indicates a more central network position
+and a greater ability to attract attention from other users. This
+measure closely follows Pedersen (2022), who explicitly relates
+influence to PageRank, noting that “a person becomes influential by
+having the ear of influential people. This eigenvector property is also
+the idea behind Google’s PageRank.” Thus, PageRank provides a natural
+empirical measure of the network influence emphasized in the theoretical
+framework. To mitigate the influence of contemporaneous firm-specific
+events on PageRank, we measure each user’s network centrality using the
+user’s average PageRank across stocks over prior periods:
+
+$_{}\sum_{}^{_{}}_{}$
+
+${Centrality}_{ikt} = \frac{1}{N_{k,\tau}}\sum_{\tau < t}^{}{\frac{1}{J_{k,\tau}}\sum_{i \in J_{k,\tau}}^{}{Page}{Rank}_{ik\tau}}\frac{_{}\underset{}{}{_{}}}{\underset{}{}{_{}}\underset{}{}{_{}}}\$,
+(7)
+
+where PageRank_(ikτ) is PageRank score of user k for stock i on week τ,
+J_(k, τ) is the set of stocks associated with user k on week τ, with
+J_(k, τ) denoting the number of stocks, and N_(k, τ) is the number of
+prior weeks. To test whether this measure is different from investor
+attention, we examine the relation between centrality and attention.
+Following Antweiler and Frank (2004) and Cookson et al. (2024), we use
+the log-transformed volume of social-media discussion to capture
+investor attention and construct attention as
+log (1 + number of posts_(i, t)) for stock i on week t. The correlation
+of attention and centrality is 0.25, suggesting that our centrality
+measure capture distinct dimensions of social network beyond investor
+attention. Firms are divided into two subsamples based on whether the
+sum of agents’ pre-period centrality is above the 90th percentile of all
+firms for that week. We then estimate the PVAR separately for two
+subsamples.
+
+Table 7 shows patterns consistent with our main findings when user
+influence is measured by network centrality. Rational and fanatic tone
+strongly predict subsequent naïve tone in the high-centrality sample,
+with coefficients on RationalTone(t-1) and FanaticTone(t-1) of 0.2350
+(t-stat=11.39) and 0.2221 (t-stat=9.21), respectively. In contrast,
+these effects are insignificant in the low-centrality sample, with
+coefficients on RationalTone(t-1) and FanaticTone(t-1) of -0.0050
+(t-stat=-1.04) and -0.0151 (t-stat=-1.86). Moreover, all three types of
+tone predict higher returns only in the high-centrality sample. Turning
+to trading dynamics, agent tones predict greater retail trading in both
+subsamples, and predict lower subsequent short-selling flow only in the
+high-centrality sample. Overall, these results suggest that our main
+findings are robust to measuring user influence using network centrality
+and further highlight the importance of users’ structural position in
+shaping belief transmission, return predictability, and trading
+dynamics.
+
+5.3 Persistent Versus Temporary Component of Social Influence
+
+Third, we decompose the influence measure into a persistent user
+component and a stock-week-specific residual:
+
+${NCommenters}_{i,k,t} = {a + b}_{k} + \varepsilon_{i,k,t}\$, (8)
+
+The user component b_(k) is the user’s average number of commenters
+minus the overall mean and captures persistent user-level influence,
+whereas ε_(i, k, t) captures transitory variation in influence that may
+reflect contemporaneous firm-specific news. We then aggregate the two
+components separately to the firm-week level. For each component, Firms
+are divided into two subsamples based on whether the component is above
+the 90th percentile of all firms for that week and we estimate the PVAR
+separately for two subsamples.
+
+The results are presented in Table 8. Panel A shows that belief
+transmission is substantially stronger when influence is high. For
+example, the coefficients on RationalTone(t-1) and FanaticTone(t-1) for
+subsequent naïve tone are 0.6401 (t-stat=11.85) and 0.8909
+(t-stat=11.16) in the high-fixed-effect sample, compared with −0.0065
+(t-stat=-1.61) and −0.0126 (t-stat=-2.39) in the low-fixed-effect
+sample; the corresponding coefficients are 0.5046 (t-stat=9.10) and
+0.7846 (t-stat=8.58) in the high-residual sample, versus 0.0134
+(t-stat=3.48) and 0.0163 (t-stat=3.49) in the low-residual sample. Panel
+B shows a similar pattern for returns. Return predictability is
+substantially stronger when either the user fixed-effect component or
+the residual component is high. Panel C shows that tone predicts retail
+trading across all subsamples, with generally stronger associations in
+the high-user-fixed-effect and high-residual samples. Panel D shows that
+the negative relation between tone and subsequent short selling is
+concentrated in the high-user-fixed-effect sample and is largely absent
+in other samples. Overall, the results based on the user fixed-effect
+component suggest that our findings are unlikely to be driven solely by
+transitory firm-specific information shocks, while the residual-based
+results indicate that the effects are further amplified during periods
+of unusually high user engagement.
+
+5.4 Celebrity Users
+
+Social media platforms often feature a small number of well-known
+posters whose content attracts disproportionate attention. Do the
+beliefs expressed by these prominent users have the same impact as those
+expressed by ordinary users, or do they play a disproportionate role in
+shaping subsequent market outcomes? To capture this heterogeneity, we
+separate Reddit users into celebrity users and others. As discussed in
+Section 5.2, PageRank captures a user’s centrality in the interaction
+network, thus we use it to identify the most prominent participants on
+the platform. Specifically, we define celebrity users as those whose
+average PageRank ranks above the weekly 90th percentile. We then
+separately construct rational, fanatic, and naïve tone measures for
+celebrity users and all other users. We re-estimate the PVAR system with
+the separation of celebrity and other uses, and report the results in
+Table 9. If network prominence amplifies the transmission and market
+impact of expressed beliefs, we expect celebrity-user tone to exhibit
+stronger predictive relations with subsequent market outcomes.
+
+The results suggest that the distinctive influence of celebrity users is
+most pronounced in returns and retail trading. A one-standard-deviation
+increase in celebrity rational, fanatic, and naïve tone predicts
+increases of 2 bps, 6 bps, and 3 bps in subsequent returns, compared
+with 1 bp, 2 bps, and 2 bps for other users. This implies that
+celebrity-user tone has stronger effects on market outcomes. The
+difference is even more pronounced for retail trading, where the
+corresponding effects are 0.19%, 0.66%, and 0.27% for celebrity
+rational, fanatic, and naïve users, compared with 0.16%, 0.24%, and
+0.15% for other users. These patterns suggest that network prominence
+primarily strengthens the extent to which expressed beliefs translate
+into subsequent prices and retail trading, especially for fanatic
+investors. One possible explanation is that more prominent users attract
+greater investor attention, which may amplify the salience of
+sentiment-driven fanatic views and make them more likely to trigger
+retail trading and be reflected in prices.[12]
+
+6.  Extensions
+
+_(()₍₎)₍₎₍₎₍₎₍₎₍₎_(()_(()_(()₍₎)))(₍₎₍₎₍₎₍₎₍₎₍₎_(()_(()₍₎)))6.1
+Technological Progress
+
+Technological advances can fundamentally reshape the information
+environment by changing how information is produced, disseminated, and
+processed by investors. As reported by United Nations Conference Trade
+and Development in 2025, there are several technological advances, such
+as AI, the Internet of things (IoT), big data, and blockchain over our
+sample period. In particular, AI represents a salient technological
+shift: by late 2024, 45% of U.S. adults had used generative AI (Bick,
+Blandin, and Deming, 2026). Moreover, by reducing writing time by 40%,
+AI substantially lowers content-production costs, makes it especially
+relevant for social media platforms (Noy and Zhang, 2023). We therefore
+examine whether the predictive role of social-media communication
+changes with the emergence of generative AI. To capture this
+technological shift, we use November 30, 2022, the date of ChatGPT’s
+public release as a cutoff, and separately estimate the PVAR before and
+after this cutoff. We expect tone to become less predictive of returns
+after ChatGPT, as lower content-production costs may increase
+low-informativeness posts, while retail investors continue to respond to
+tone and short sellers trade against the resulting sentiment-driven
+demand. Figure 7 shows gradual changes in user composition, with the
+share of rational investors declining and the fanatic share increasing
+toward the end of the sample. Figure 1 also shows that average number of
+commenters for fanatic agents increases and dominates in the
+post-ChatGPT period.
+
+In Table 10, we find significant differences before and after release of
+ChatGPT for price discovery and short flows. For belief formation,
+rational and fanatic tone continue to predict subsequent naïve tone in
+both periods. For price discovery, agent tones predict future returns
+only before ChatGPT. For example, the coefficient on RationalTone (t-1)
+declines from 0.0014 (t-stat=4.48) in the pre-ChatGPT period to 0.0009
+(t-stat=1.02) in the post-ChatGPT period. Fanatic tone and naïve tone
+exhibit similar patterns. One possible explanation is that the lower
+cost of content production after ChatGPT increases the supply of less
+informative posts, thereby diluting the price-relevant information
+contained in agent tone. For trading dynamics, agent tones continue to
+positively predict retail flow in both periods, while their relation
+with short flow switches from negative before ChatGPT to positive
+afterward. For example, the coefficient on RationalTone (t-1) changes
+from -0.0260 (t-stat=-3.17) in the pre-ChatGPT period to 0.0190
+(t-stat=2.80) in the post-ChatGPT period. Similar changes are observed
+for fanatic tone and naïve tone. Intuitively, as the informational value
+of social-media content for asset prices weakens after ChatGPT, more
+sophisticated investors increasingly trade against the sentiment
+conveyed by online discussions. This interpretation is consistent with
+evidence that AI-generated content can amplify emotion contagion
+(Hirshleifer et al., 2026), reduce informativeness (Bradshaw et al.,
+2026), and facilitate misinformation (Emett et al., 2024).
+
+6.2 The Emergence of Competing Platforms
+
+Social-media platforms compete for investors’ limited attention, and the
+growing prominence of alternative platforms can reallocate where
+investors seek, produce, and exchange investment-related information. As
+competing platforms become more active, does Reddit become less
+influential in the transmission of investor beliefs? To capture this
+variation, we use the scaled monthly message series (maximum equals 100)
+reported by Cookson et al. (2024) for StockTwits, X, and Seeking Alpha.
+Because the public data series are only available up to 2023, this
+analysis is restricted to the period from 2020 to 2023. Figure 8 plots
+these series and shows substantial shifts in platform activity over
+time, with StockTwits declining after 2021, X becoming more active in
+2023, and Seeking Alpha remaining relatively stable. We construct
+relative competing-platform activity as the sum of the scaled message
+measures for StockTwits, X, and Seeking Alpha divided by the
+corresponding sum for these three platforms and Reddit. We define
+periods of competing-platform emergence as periods in which this measure
+exceeds its 90th percentile. To map the monthly measure to our weekly
+PVAR setting, we assign each week the value from the preceding month. We
+then re-estimate the PVAR separately for emergence and other periods. If
+competing platforms divert investor attention away from Reddit, we
+expect the predictive relations between Reddit user tone and subsequent
+beliefs, returns, and trading to be weaker during emergence periods.
+
+Table 11 shows that the predictive relations of Reddit tone are
+substantially weaker during periods when competing platforms are more
+prominent. In the emergence periods, rational and fanatic tone exhibit
+little evidence of predicting subsequent naïve tone. The coefficients on
+RationalTone(t-1) and FanaticTone(t-1) are 0.0186 (t-stat=1.47) and
+0.0221 (t-stat=1.73), respectively. This attenuation also extends to
+subsequent return and trading dynamics, with the weakening particularly
+pronounced for fanatic tone, suggesting that the market influence of
+fanatic beliefs depends more heavily on concentrated investor attention
+and interaction within Reddit. In contrast, during other periods, agent
+tones significantly predict subsequent naïve tone, returns, and retail
+trading and are strongly negatively related to future short selling.
+Overall, these results indicate that greater activity on competing
+platforms fragments investor attention across social media venues,
+thereby weakening the role of Reddit beliefs in subsequent belief
+formation and market outcomes.
+
+7.  $_{}{\sum_{}^{_{}}{_{}}}$ Conclusion
+
+The volatile price movement of GameStop in January 2021, potentially
+driven by social media activity and retail trading, generates
+substantial interest in the capital market in understanding how social
+media affects information formation, price discovery and trading
+dynamics. Drawing on the theoretical insights in Pedersen (2022), we use
+data from Reddit to systematically examine how social network
+interactions relate to belief formation, asset prices, and trading
+behavior.
+
+First, for belief formation, we find that opinions of rational and
+fanatic agents positively and significantly predict future opinions of
+naïve investors, especially in a network with higher agent influences.
+Second, for return predictions, more positive tones from social media
+significantly predict higher future returns, and more so when agents’
+influences are higher, demonstrating the importance of social media in
+the capital market. Finally, for trading dynamics, higher naïve tones
+generally increase retail flows. More interestingly, whether short
+sellers short more or less against bullish social media tones (i.e.,
+burst or ride the bubble) depends on agent influence in the social
+network. When agents are highly influential, short sellers shy away from
+more bullish tones, as these tones lead to more positive returns in the
+future and thus higher short squeeze risks; while networks with low
+influence agents, short sellers seem to not feel threatened by more
+bullish social media tones. More interestingly, short sellers’ negative
+return predictive power is stronger in the social network with high
+influence. This finding is consistent with the idea that sophisticated
+investors may ride or burst the bubble, depending on the balance between
+costs and benefits.
+
+REFERENCES
+
+Allen, F., M. Haas, E. Nowak, M. Pirovano, and A. Tengulov. 2025.
+Squeezing shorts through social media platforms. Management Science,
+forthcoming.
+
+Alsan, M., and Y. Neberai. 2026. Why doesn’t the United States have
+national health insurance? The political role of the American Medical
+Association. Quarterly Journal of Economics 141: 2147-2204.
+
+Anderson, T. G., T. Bollerslev, F. X. Diebold, and H. Ebens. 2001. The
+distribution of realized stock return volatility. Journal of Financial
+Economics 61(1): 43-76.
+
+Antweiler, W., and M. Frank. 2004. Is all that talk just noise? The
+information content of internet stock message boards. Journal of Finance
+59: 1259-1294.
+
+Asquith, P., P. Pathak, and J. R. Ritter. 2005. Short interest,
+institutional ownership, and stock returns. Journal of Financial
+Economics 78: 243-276.
+
+Barber, B. M., X. Huang, T. Odean, and C. Schwarz. 2022. Attention
+induced trading and returns: Evidence from Robinhood users. Journal of
+Finance 77(6): 3141-3190.
+
+Barber, B. M., S. Lin, and T. Odean. 2024. Resolving a paradox: Retail
+trades positively predict returns but are not profitable. Journal of
+Financial and Quantitative Analysis 59: 2547-2581.
+
+Barber, B. M., and T. Odean. 2008. All that glitters: The effect of
+attention and news on the buying behavior of individual and
+institutional investors. Review of Financial Studies 21(2): 785-818.
+
+Barber, B. M., X. Huang, P. Jorion, T. Odean, and C. Schwarz. 2024. A
+(sub)penny for your thoughts: Tracking retail investor activity in TAQ.
+Journal of Finance 79: 2403-2427.
+
+Barber, B. M., T. Odean, and N. Zhu. 2009. Do retail traders move
+markets? Review of Financial Studies 22(1): 151-186.
+
+Bartov, E., L. Faurel, and P. Mohanram. 2018. Can Twitter help predict
+firm-level earnings and stock returns? The Accounting Review 93(3):
+25-57.
+
+Betzer, A. and J. P. Harries. 2021. If he’s still in, I’m still in! How
+Reddit posts affect Gamestop retail trading. Working paper.
+
+Bianchi, F., R. Gómez-Cram, T. Kind, and H. Kung. 2023. Threats to
+central bank independence: High-frequency identification with Twitter.
+Journal of Monetary Economics 135: 37–54.
+
+Bianchi, F., R. Gómez-Cram, and H. Kung. 2024. Using social media to
+identify the effects of congressional viewpoints on asset prices. Review
+of Financial Studies 37(7): 2244–2272.
+
+Bick, A., A. Blandin, and D. J. Deming. 2026. The rapid adoption of
+generative AI. Management Science, forthcoming.
+
+Blume, M. E., and R. F. Stambaugh. 1983. Biases in computed returns: An
+application to the size effect. Journal of Financial Economics 12(3):
+387-404.
+
+Boehmer, E., Z. R. Huszar, and B. D. Jordan. 2010. The good news in
+short interest. Journal of Financial Economics 96(1): 80-97.
+
+Boehmer, E., Z. R. Huszar, Y. Wang, X. Zhang, and X. Zhang. 2022. Can
+Shorts Predict Returns? A Global Perspective. Review of Financial
+Studies 35(5): 2428–2463.
+
+Boehmer, E., C. M. Jones, and X. Zhang. 2008. Which shorts are informed?
+Journal of Finance 63: 491-527.
+
+Boehmer, E., C. M. Jones, X. Zhang, and X. Zhang. 2021. Tracking retail
+investor activity. Journal of Finance 76(5): 2249-2305.
+
+Boehmer, E., and J. Wu. 2013. Short selling and the price discovery
+process. Review of Financial Studies 26: 287-322.
+
+Box, T., R. Davis, R. Evans, and A. Lynch. 2021. Intraday arbitrage
+between ETFs and their underlying portfolios. Journal of Financial
+Economics 141: 1078-1095.
+
+Bradley, D., J. Hanousek, R. Jame, and Z. Xiao. 2024. Place Your Bets?
+The Value of Investment Research on Reddit’s Wallstreetbets. Review of
+Financial Studies 37(5): 1409–1459.
+
+Bradshaw, M. T., C. Ma, B. P. Yost, and Y. Zou. 2026. Generative AI use
+by capital market information intermediaries: Evidence from Seeking
+Alpha. Journal of Accounting Research 64(3): 1233-1286.
+
+Chen, H., P. De, Y. Hu, and B. Hwang. 2014. Wisdom of crowds: The value
+of stock opinions transmitted through social media. Review of Financial
+Studies 27: 1367-1403.
+
+Cookson, J. A., J. E. Engelberg, and W. Mullins. 2023. Echo
+Chambers. Review of Financial Studies 36(2): 450–500.
+
+Cookson, J. A., R. Lu, W. Mullins, and M. Niessner. 2024. The social
+signal. Journal of Financial Economics 158: 304-405.
+
+Cookson, J. A., W. Mullins, and M. Niessner. 2024. Social Media and
+Finance. Oxford Research Encyclopedia of Economics and Finance.
+
+Cookson, J. A., and M. Niessner. 2020. Why don't we agree? Evidence from
+a social network of investors. Journal of Finance 75(1): 173-228.
+
+Da, Z., J. Engelberg, and P. Gal. 2011. In search of attention. Journal
+of Finance 66(5): 1461-1499.
+
+Das, S., and M. Chen. 2007. Yahoo! For Amazon: sentiment extraction from
+small talk on the web. Management Science 53: 1375-1388.
+
+Desai, H., K. Ramesh, S. R. Thiagarajan, B. V. Balachandra. 2002. An
+investigation of the information role of short interest in the Nasdaq
+market. Journal of Finance 57(5): 2263-2287.
+
+Diamond, D. W., and R. E. Verrecchia. 1987. Constraints on short-selling
+and asset price adjustment to private information. Journal of Financial
+Economics 18: 277-311.
+
+Diangson, B. and N. Jung. 2021. Bet if on Reddit: The effects of Reddit
+chatter on highly shorted stocks. Working paper.
+
+Eaton, G., T. C. Green, B. Roseman, and Y. Wu. 2022. Retail trader
+sophistication and stock market quality: Evidence from brokerage
+outages. Journal of Financial Economics 146: 502-528.
+
+Emett, S. A., M. Eulerich, J. S. Pickerd, and D. A. Wood. 2024. Short
+and synthetically distort: Investor reactions to deepfake financial
+news. SSRN Working Paper No. 4869830.
+
+Engelberg, J., A. V. Reed, and M. Ringgenberg. 2012. How are shorts
+informed? Short sellers, news, and information processing. Journal of
+Financial Economics 105: 260-278.
+
+Farrell, M., T.C. Green, R. Jame, S. Markov. 2022. The democratization
+of investment research and the informativeness of retail investor
+trading. Journal of Financial Economics 145 (2): 616–641.
+
+Fedyk, A., A. Kakhbod, P. Li, and U. Malmendier. 2026. AI and perception
+biases in investments: An experimental study. Journal of Financial
+Economics, forthcoming.
+
+Fong. K. Y. L., D. R. Gallagher, and A. D. Lee. 2014. Individual
+investors and broker types. Journal of Financial and Quantitative
+Analysis 49(2): 431-451.
+
+Heimer, R.Z., 2016. Peer pressure: Social interaction and the
+disposition effect. The Review of Financial Studies 29(11): 3177-3209.
+
+Hendershott, T., D. Livdan, and N. Schürhoff. 2015. Are institutions
+informed about news? Journal of Financial Economics 117: 249-287.
+
+Hilscher, J., Pollet, J.M. and Wilson, M., 2015. Are credit default
+swaps a sideshow? Evidence that information flows from equity to CDS
+markets. Journal of Financial and Quantitative Analysis 50(3):
+pp.543-567.
+
+Hirshleifer, D., L. Peng, Q. Wang, W. Zhang, and X. Zhang. 2026. AI,
+opinion ecosystems, and finance. NBER Working Paper No. 34807.
+
+Hollifield, B., Neklyudov, A. and Spatt, C., 2017. Bid-ask spreads,
+trading networks, and the pricing of securitizations. The Review of
+Financial Studies 30(9): 3048-3085.
+
+Holtz-Eakin, D., W. Newey, and H. S. Rosen. 1988. Estimating Vector
+Autoregressions with Panel Data. Econometrica 56(6): 1371–1395.
+
+Kaniel, R., G. Saar, and S. Titman. 2008. Individual investor trading
+and stock returns. Journal of Finance 63(1): 273-310.
+
+Kelley, E. and P. Tetlock. 2013. How wise are crowds? Insights from
+retail orders and stock returns. Journal of Finance 68(3): 1229-1265.
+
+Lee, J., Naranjo, A. and Velioglu, G., 2018. When do CDS spreads lead?
+Rating events, private entities, and firm-specific information flows.
+Journal of Financial Economics 130(3): 556-578.
+
+Long, C., B. M. Lucey, and L. Yarovaya. 2021. ‘I just like the stock’
+versus ‘fear and loathing on main street’: The role of Reddit sentiment
+in the GameStop short squeeze. Working paper.
+
+Lopez-Lira, A., and Y. Tang. 2026. Can ChatGPT forecast stock price
+movements? Return predictability and large language models. Journal of
+Financial Economics 184: 104335.
+
+Loughran, T. and B. McDonald. 2011. When is a liability not a liability?
+Textual analysis, dictionaries, and 10-Ks. Journal of Finance
+66:135-165.
+
+Lyosca, S., E. Baumohl, and T. Vyrost. 2021. YOLO trading: Riding with
+the herd during the GameStop episode. Working paper.
+
+Nickell, S., 1981. Biases in dynamic models with fixed effects.
+Econometrica 49(6): 1417-1426.
+
+Noy, S., and W. Zhang. 2023. Experimental evidence on the productivity
+effects of generative artificial intelligence. Science 381(6654):
+187-192.
+
+Ozik, G., R. Sadka, and S. Shen. 2021. Flattening the illiquidity curve:
+Retail trading during the COVID-19 lockdown. Journal of Financial and
+Quantitative Analysis 56(7): 2356-2388.
+
+Page, L., S. Brin, R. M., and T. Winograd. The PageRank citation
+ranking: Brining order to the web. 1999. Technical Report, Stanford
+University, Stanford.
+
+Pedersen, L. H. 2022. Game On: Social Networks and Markets. Journal of
+Financial Economics 146: 1097-1119.
+
+Slezak, S.L. 1994. A theory of the dynamics of security returns around
+market closures. Journal of Finance 49:1163-1211.
+
+Strych, J., and F. Reschke. 2022. Emojis and stock returns. Working
+Paper.
+
+Tumarkin, R., and R. Whitelaw. 2001. News or noise? Internet message
+board activity and stock prices. Financial Analysts Journal 57: 41–51.
+
+Vasileiou, E., E. Bartzou, and P. Tzanakis. 2022. Explaining GameStop
+short squeeze using intraday data and google searches. Journal of
+Prediction Markets 16(3): 67-79.
+
+Welch, I. 2022. The wisdom of the Robinhood crowd. Journal of Finance
+77: 1489-1527.
+
+[1] To highlight the social network effect on belief formation, price
+discovery and trading behaviors, Pedersen (2022) abstracts away certain
+aspects of real-world data. For example, the model assumes that the
+realization of the value of the firm does not change, nor do investors
+receive new information. We relax many of these model assumptions based
+on our data observations to design empirical proxies that better align
+with Pedersen’s theoretical predictions.
+
+[2] These communities, which we refer to as “forums”, attract more than
+52 million daily active users, and more than 50 billion monthly views.
+These numbers clearly show that Reddit receives substantial attention
+and is an influential social media platform.
+
+[3] For example, Bianchi et al. (2023) and Bianchi et al. (2024) use
+Twitter; Cookson and Niessner (2020) and Cookson et al. (2023) use
+stocktwits; Chen et al. (2014) and Farrell et al. (2022) use Seeking
+Alpha; and Bradley et al. (2024) use Reddit. Other social media
+platforms, such as Yahoo! Finance and myForexBook, have also been
+studied in previous literature, including Antweiler and Frank (2004),
+Das and Chen (2007), and Heimer (2016).
+
+[4] Contemporaneous Reddit papers include Betzer and Harries (2021),
+Diangson and Jung (2021), Long, Lucey, and Yarovaya (2021), Bradley et
+al. (2024), Lyocsa, Baumohl and Vyrost (2022), Vasileiou, Bartzou, and
+Tzanakis (2022), Strych and Reschke (2022).
+
+[5] The complete classification prompt is provided in the Appendix A.
+
+[6] As Cookson et al. (2024) note, social media is an abundant but noisy
+source of data on retail investors. Averaging the tone on a weekly basis
+helps filter out this noise, allowing for more precise estimates of
+social media tone.
+
+[7] As mentioned earlier, Pedersen’s model mathematically defines two
+types of influence, thought leadership and influencer value. For
+parsimony in empirical estimation, we do not separately estimate thought
+leadership and influencer value.
+
+[8]
+
+[9] The results are reported in the Appendix B.
+
+[10] Lee et al. (2018) and Stefano, Corradin and Maddaloni (2020) also
+adopt PVAR to capture financial variable dynamics.
+
+[11] More details about the estimation are provided in Appendix B.
+
+[12] We also construct a user-impact measure that captures heterogeneity
+in users’ ability to attract attention, computed as the average number
+of comments received by the user’s posts before that week. We find that
+belief transmission, return predictability, more retail-trading, and
+lower subsequent short selling are substantially stronger in the high
+user impact sample.

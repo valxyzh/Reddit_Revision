@@ -1,0 +1,157 @@
+Appendix A. Classification Prompt
+
+This appendix presents the full prompt used in our agent classification
+procedure:
+
+“You have a deep understanding of the language of social media and
+financial markets. You task is to analyze the following posts from
+agents on a social media platform and classify the agents into different
+types according to the posts.
+
+Here is Pedersen (2022)’s model:
+
+The economy has N investors who communicate with each other and trade an
+asset in discrete time indexed by t = 0, 1, 2, …, as described in this
+section.
+
+Asset and signals.
+
+The asset has a supply of shares given by s. Its fundamental value is
+given by v + u(t) ∈ ℝ, where u(t) is a publicly observed random walk and
+v is an unobserved random variable that investors try to learn about.
+The random walk has innovations with constant variance given by
+σ_(u)² = Var(u(t) − u(t − 1)). We can think of u(t) as the value of
+assets in place (e.g., GameStop’s retail stores) and v as the value of a
+new uncertain investment opportunity (e.g., GameStop’s opportunity to
+sell games online). At time 0, each person i starts with a signal about
+the value v given by the random variable x_(i)(0) = v_(i). This signal
+gives each agent a useful, but incomplete, piece of information about v.
+Collectively, all agents have full information about v, which is modeled
+via the relation $v = \sum_{i = 1}^{N}\kappa_{i}v_{i}$, where the known
+weights sum to one, $\sum_{i = 1}^{N}\kappa_{i} = 1$. Each weight,
+κ_(i), is a measure of the importance of agent i’s signal; for example,
+if all agents receive signals of the same importance, then the weights
+are equal, $\kappa_{i} = \frac{1}{N}$. In any event, agents have an
+incentive to communicate with others to learn about v. The unobserved
+value, v, is revealed each time period with probability π and remains
+unknown with probability 1 − π. Said differently, v is revealed at the
+random time τ, with a geometric distribution. When v is revealed, the
+price equals its total value, v + u(τ). For example, the firm could be
+acquired or liquidated for v + u(τ), or the firm could continue with
+investors knowing the fundamental value v + u(t) when t ≥ τ. The
+objective of the model is to understand how beliefs, trading, and prices
+evolve before the value is revealed.
+
+Naive and rational learning in a social network.
+
+People communicate with each other as follows. At each time t, everyone
+states their current views, collected in the vector
+x(t) = (x₁(t), …, x_(N)(t))^(′), to everyone who listens. The economy
+consists of people with two methods of paying attention, “rational
+learners” and boundedly-rational ones denoted as “naive” for brevity.
+Each naive learner i selectively follows a subset of people that he
+views as most informative or most entertaining. Further, he uses the
+same method for updating each round. Specifically, he uses the row
+vector A_(i) ∈ ℝ_( ≥ 0)^(1 × N) to make the update, such that his view
+in the next time period becomes x_(i)(t + 1) = A_(i)x(t) where the
+weights add up to one, $\sum_{j}^{}A_{ij} = 1$. The network is therefore
+characterized by A, which is called the adjacency matrix (or weight
+matrix) in the DeGroot (1974) model. The i’th row, A_(i), can have many
+zeros, representing all the people that i does not “follow”. The
+non-zero elements represent the list of people that i “follows” and the
+amount of attention paid to each of them. Similarly, the i’th column
+contains the list of i’s “followers”. DeMarzo et al. (2003) show that
+the first-round updating can be seen as rational Bayesian updating given
+that an agent only listens to the people with non-zero weights. Hence,
+the naivety of this investor comes from his selective listening and from
+the fact that the agent keeps using the same method of updating, which
+can be justified based on imperfect recall (Molavi et al., 2018). In
+particular, the naive agent does not take into account that the same
+information may be received many times, which DeMarzo et al. (2003)
+denote as “persuasion bias”. Naive agents who only listen to themselves
+A_(jj) = 1 are denoted as fanatics, and they play a special role in my
+analysis. In the literature that follows the standard DeGroot model,
+everyone is naive, but I also consider rational learners to capture the
+effects of sophisticated investors. A rational learner i listens to
+everyone in the first round of communication (as this is the rational
+way to listen with unbounded attention). Based on hearing everyone’s
+views, the rational learner updates her view to x_(i)(1) = x_(r), where
+the rational view x_(r) is given by:
+x_(r) = E(ν ∣ x₁(0), …, x_(N)(0)) = (κ₁, …, κ_(N))x(0) = v. Naturally,
+the rational view uses the information contained in all signals, and
+here the weighted average of all signals in fact reveals v for
+simplicity. Further, the rational person never changes her view about v
+after the first round since no new information arrives,
+x_(i)(t) = x_(i) = x_(r) for all t ≥ 1. In other words, a rational agent
+i can also be seen as updating her views using the adjacency matrix, but
+she initially uses the row κ^(′) and thereafter she uses A_(i) = e_(i),
+where e_(i) = (0, …, 0, 1, 0, …, 0) is the i’th unit vector.
+
+Here are all the posts from one agent: {“id”:, “date”:, “content”:}...
+
+Classify the agent into fanatic, rational, or naive investor according
+to Pedersen (2022) (1=fanatic, 2=rational, 3=naive) and give a
+confidence score between 0 and 1 for your classification. Additional
+rules: If there is not enough evidence for fanatic or rational, classify
+as naive. Prefer rational when concrete evidence, mechanisms,
+comparisons, or trade-off reasoning are used repeatedly, even if
+updating is implicit. Prefer fanatic only when repeated fixation and
+repeated dismissal of opposing evidence are both very clear and
+persistent and the belief is driven mainly by the author's own prior
+rather than by others' views. Prefer naive for meme- or crowd-driven
+behavior unless there is clear evidence that the conviction is primarily
+anchored in the author's own prior belief rather than group
+reinforcement. Explain the reason in one short and concise sentence.
+Classify the reason as sentiment-based, information-based, or
+considering others' opinions (1=sentiment, 2=information, 3=considering
+others' opinions). Classify the tone of each post (1=positive,
+0=neutral, 2=negative). Output in JSON format:
+{{"type":,"confidence":,"reason":,"reason_type":,"posts":[{{"id":,"tone":}},...]}}.”
+
+Specifically, we provide a representative example of reasoning for a
+rational investor: “The agent consistently applies detailed fundamental,
+balance-sheet, and market-structure analysis, explains mechanisms (short
+interest, stock dividends, HFT, valuation, expectations)...” The
+corresponding Reddit post of this agent on Encore Wire Corporation
+supports this classification: “...Prior to 2020, this was a stagnant (no
+growth), 7% to 8% EBITDA margin business. Suddenly, the insanity of
+COVID-19 hits and this no-growth, low margin business suddenly ~triples
+its revenue and its 7-8% EBITDA margin explodes to >30%.”
+
+Appendix B. Agent Tone and Earning Surprise
+
+In this appendix, we present results on agent tone and earnings
+surprise. Our sample period is Jan 2, 2020 to Dec 31, 2025, and our
+sample firms are common stocks listed on NYSE, NYSE MKT, or Nasdaq. We
+measure earnings surprise using the market-adjusted cumulative abnormal
+return (CAR) over the window [-1,1] around the earnings announcement.
+Rational, fanatic, and naïve tone are calculated as the average tone
+over the period between the previous and current earnings announcements.
+We estimate panel regressions with year-quarter fixed effects. Standard
+errors are clustered on date and firm. T-statistics are reported in
+brackets. Levels of significance are denoted by * (10%), ** (5%), and
+*** (1%).
+
+  -----------------------------------------------------------------------
+                                                I
+  --------------------- -------------------------------------------------
+                                           CAR [-1,1]
+
+      RationalTone                           0.006**
+
+                                             [2.12]
+
+       FanaticTone                           -0.002
+
+                                             [-0.80]
+
+        NaïveTone                           -0.006**
+
+                                             [-2.60]
+
+     Year-Quarter FE                           YES
+
+      Observations                            94195
+
+        R-squared                             0.004
+  -----------------------------------------------------------------------

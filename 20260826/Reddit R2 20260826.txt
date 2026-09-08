@@ -1,0 +1,649 @@
+Response to R2
+
+We are very grateful for your insightful comments, which have
+significantly improved our paper. Following the Editor’s guidance and
+your suggestions, the revision focuses on three major changes:
+
+1. Following the Editor’s and both reviewers’ suggestion, we downplay
+the paper’s positioning as a direct empirical test of Pedersen (2022).
+Instead, we now use Pedersen (2022) primarily as a conceptual framework
+for motivating the key empirical questions concerning belief
+transmission, price discovery, and trading responses on social media.
+Accordingly, we revise the paper in abstract, Section 1, Section 2, and
+Section 7. This revised positioning allows the paper to place greater
+emphasis on the empirical findings documented in the data.
+
+2. The editor and both reviewers have concerns regarding our investor
+classification method, and the subsequent empirical results. Following
+these comments, we significantly revise the classification procedure in
+Section 3.1 by using a large language model that incorporates users’
+broader posting histories and richer semantic context. This new
+classification enables us to better distinguish investor types and
+yields more consistent empirical patterns. In this updated version,
+Section 4.1 provides more and significant cross-group belief spillovers.
+We revisit the return predictability in Section 4.2 and find that
+rational tone significantly predicts future returns, with predictive
+power comparable to naïve tone. For momentum-reversal patterns, we
+examine long-horizon returns in Section 4.5 and present returns
+associated with rational tone continue to accumulate, whereas those
+associated with naïve tone eventually reverse. Multiple alternative
+explanations are examined in Section 5, and our main findings remain
+robust.
+
+3. Editor suggests us to broaden the paper’s scope, and examine how
+technological progress and emergence of competing platforms affect our
+results. To have enough observations to address these issues, especially
+the technological progress, we extend our sample period from 2020–2023
+to 2020–2025. Given that the most significantly technological progress
+over our sample period is generative AI, we focus on the public release
+of ChatGPT in Section 6.1, and present intriguing results that the
+informational content of social-media posts declines after the
+introduction of gen-AI. For the emergence of competing platforms, our
+results in Section 6.2 suggest that greater platform competition
+fragments investor attention, thereby weakening Reddit’s role in belief
+transmission and its influence on subsequent market outcomes. Together,
+these extensions show that social-media dynamics evolve with the
+information environment, including how content is produced, and the
+platform competition environment.
+
+Below, we present our detailed responses to your comments. For your
+convenience, your original comments are in italics, and our responses
+are in normal font.
+
+The authors scrape roughly ten million WallStreetBets posts (2020-23)
+and:
+
+1. Assign users to “rational,” “fanatic,” or “naïve” buckets based on
+posting frequency and tone.
+
+2. Define influence as log-replies received per user–stock–week.
+
+3. Estimate weekly panel VARs with tone, retail-flow (Barber et al.,
+2024), short-flow, and returns.
+
+Key findings:
+
+1. Hard-headed (so-called “rational”) tone Granger-causes naïve tone,
+especially in high-influence subsamples.
+
+2. Fanatic and naïve tone—not rational tone—predict one-week returns;
+the drift lasts at least ten weeks with no reversal.
+
+3. Naïve tone raises retail flow; short sellers back off after bullish
+high-influence tone. Controlling for tone, retail flows still predict
+positive returns, while short flows predict negative returns.
+
+The paper is grounded in a clear theoretical framework, aiming to map
+Pedersen’s (2022) closed-form predictions to data, thereby offering
+potential contributions beyond descriptive analysis. It is also timely,
+employing a novel message-level Reddit dataset to connect Pedersen’s
+network model to belief-price-trading dynamics—a relatively unexplored
+empirical dimension. The empirical analysis is broad, addressing belief
+spillovers, return predictability, and heterogeneous trading responses
+within a unified VAR framework. However, several conceptual and
+identification challenges remain, particularly concerning the empirical
+alignment with Pedersen’s theoretical model, which must be addressed to
+strengthen the paper’s contribution.
+
+Response: Thank you very much for your thoughtful summary and valuable
+feedback on our paper.
+
+Main comments:
+
+As Pedersen noted, his primary contribution lies in modeling return and
+belief dynamics by incorporating both rational agents and fanatics
+(stubborn agents). A secondary contribution is the formalization of
+social influence. However, a notable disconnect remains between the
+theoretical key elements and the empirical results. Before proceeding, I
+summarize the key theoretical elements of the model, as outlined in
+Table 1 of Pedersen (2022):
+
+A: Investors receive news, fanatics focus on one element
+
+B: Short-term investors bet on network spillovers
+
+C: Opinions spread through the network
+
+D: Influencers follow a fanatic
+
+E: Rational traders exert corrective influence and bet on reversal
+
+F: Fundamentals are revealed or fanatics gradually learn from rational
+traders
+
+C1 Mapping between empirical and theoretical rational and fanatic agents
+
+Pedersen’s model features rational agents who possess value-relevant
+information and ultimately anchor prices, generating momentum followed
+by reversal. Rational agents have a large influence on prices both
+directly through trading and indirectly via belief transmission.
+Fanatics, though initially optimistic due to displacement, are not
+entirely stubborn; they eventually update their beliefs, causing the
+bubble to unwind.
+
+In the manuscript, both rational and fanatic agents are proxied by
+Reddit users exhibiting a stable tone, distinguished by whether their
+posts employ a manually curated dictionary of value-relevant terms. The
+empirical results suggest that this proxy does not capture the distinct
+theoretical attributes of the agent types in Pedersen’s model.
+
+In fact, counterintuitively, Naïve tone is the strongest return
+predictor. In Pedersen’s model, rational investors’ belief is eventually
+reflected in price either because they change other investors’ view
+through social network influence or fundamentals are revealed. However,
+the current empirical setup of the paper cannot match with this aspect
+of the theory. The authors may provide some validation by, for example,
+examining whether the return predictability of rational investors
+becomes stronger at even longer horizons or fanatic and naïve tones
+predicts return reversals. Another validation is to check whether
+rational tone is the best predictor of firm fundamentals such as
+earnings surprises than the other two types of tones, as these two types
+of investors are more likely to ignore fundamentals.
+
+Table 3 and Figure 3 reveal that rational tone fails to predict returns,
+contrary to the model’s implication that rational beliefs should
+forecast long-term returns and fundamentals. Fanatic and Naïve tones,
+however, strongly predict returns without evident reversals over 10
+weeks. Even in the high-influence subsample, the predictive power of
+rational tone is several times weaker than that of Fanatic or Naïve
+tones. Paradoxically, Naïve tone is the strongest predictor. This
+disconnect suggests that the empirical proxies do not reflect the
+theory’s mechanism whereby rational beliefs shape prices through social
+network or eventual fundamental revelation. The authors could improve
+empirical alignment by testing whether rational tone better predicts
+long-horizon returns or fundamental outcomes (e.g., earnings surprises),
+which the other tones presumably neglect.
+
+The only empirically validated indicator of informed trading is
+short-selling flow, which strongly predicts returns (Table 5, Figure 5),
+yet it is treated as a peripheral measure. Rational tone shows no
+significant relation to short flow, and the latter’s predictive power
+remains after controlling for tone via the PVAR system (where rational
+tone itself cannot predict returns). This orthogonality implies that the
+rational tone proxy does not capture the beliefs of truly informed
+traders.
+
+Finally, the theory’s core mechanism—social amplification of
+belief-to-return effects—is untested for rational investors. Table 5
+shows no relationship between short flow and rational tone across
+influence levels. Since short flow continues to predict returns
+independent of rational tone, the data fail to capture social spillovers
+from rational to other investor types, leaving the central network
+mechanism empirically unaddressed.
+
+Response: Thank you very much for your comment.
+
+We summarize your concerns into the following five groups: 1) rational
+and fanatic agents are defined as “exhibiting a stable tone” and do not
+“capture the distinct theoretical attributes of the agent types in
+Pedersen’s model”; 2) naïve tone “is the strongest return predictor”; 3)
+“rational tone fails to predict returns”; 4) rational tone “shows no
+significant relation to short flow”; and 5) there is “no relationship
+between short flow and rational tone across influence levels”. Moreover,
+there are three suggestions in your comment: 1) examine “whether the
+return predictability of rational investors becomes stronger at even
+longer horizons”; 2) test whether “fanatic and naïve tones predicts
+return reversals”; and 3) check “whether rational tone is the best
+predictor of firm fundamentals”. Below we provide response to all your
+concerns and suggestions one by one.
+
+First, for your concern about that our proxy for rational and fanatic
+agents “does not capture the distinct theoretical attributes of the
+agent types in Pedersen’s model”, we substantially revise our
+classification procedure in Section 3.1 on pages 11-12:
+
+  “Classifying investors into the rational, fanatic, and naïve types in
+  Pedersen (2022) is challenging because investor types are defined by
+  latent beliefs and reasoning patterns that are not directly observable
+  and must be inferred from a large amount of heterogeneous textual
+  information in users’ posting histories. A reliable classification
+  therefore requires jointly interpreting the context, sentiment
+  dynamics, and economic reasoning embedded in users’ posts rather than
+  relying on a small set of observable keywords or predefined rules.
+  Large language models (LLMs) are well suited to this setting because
+  they can capture rich contextual information and identify the
+  underlying reasoning expressed in different language. We specifically
+  employ GPT-5 given its strong ability to interpret complex economic
+  text and infer underlying reasoning, as demonstrated by the growing
+  use of GPT-based models in economics and finance (Lopez-Lira and Tang,
+  2026; Alsan and Neberai, 2026; Fedyk et al., 2026)
+
+  We first provide the LLM with the full characterization of rational,
+  fanatic, and naïve agents developed in the model section of Pedersen
+  (2022). We then supply the model with the complete posting history of
+  each Reddit user and ask it to classify the user by applying these
+  theoretical definitions to the content of the user’s posts. For each
+  user, the model reports the assigned type, a confidence score, and the
+  rationale for the classification, which is categorized into three
+  dimensions: sentiment-based reasoning, information-based reasoning,
+  and consideration of other investors’ opinions. Because observed
+  posting behavior is substantially more complex than the stylized
+  environment of the theoretical model, the boundaries between agent
+  types may be inherently ambiguous. We therefore augment the
+  theoretical definitions with additional classification rules designed
+  to sharpen the distinctions across types and improve consistency in
+  borderline cases.[1]”
+
+Then we update our empirical results based on the new classification.
+For the second and third concern, regarding “Naïve tone is the strongest
+return predictor” and “rational tone fails to predict returns”, our
+updated results in Section 4.2 on page 21 present a more consistent
+pattern: rational tone significantly predicts future returns, with
+predictive power comparable to that of naïve tone.
+
+  “Table 3 reports the PVAR coefficients connecting past agent views and
+  current returns. For the whole sample results in column I, the
+  coefficients on RationalTone (t-1), FanaticTone (t-1) and NaiveTone
+  (t-1) are 0.0012 (t-stat=2.53), 0.0018 (t-stat=2.80) and 0.0012
+  (t-stat=3.94), respectively, suggesting that past agent tones contain
+  predictive information about next-week returns. Also, the Granger
+  Causality tests at the bottom of the table show that rational tone,
+  fanatic tone and naïve tone Granger cause future returns with a
+  p-value of 1.10%, 0.50% and 0.00%, respectively. That is, rational,
+  fanatic and naïve tones predict future returns with statistical
+  significance, which supports H3. In Panels A to C of Figure 3, we
+  present the corresponding IRFs, showing the response of shocks to
+  rational, fanatic, and naïve tones on returns for the next 10 weeks.
+  For economic magnitude, a one standard deviation shock to rational,
+  fanatic tone or naïve tone is associated with a 2~3 bp increase in the
+  daily average return over the following week.”
+
+For the fourth concern on “rational tone shows no significant relation
+to short flow”, and the fifth concern on “no relationship between short
+flow and rational tone across influence levels”, our updated results in
+Section 4.4 on pages 27-28 show that rational tone significantly
+predicts lower subsequent short flow in the high-influence subsample.
+
+  “Regarding whether the dynamics between agents’ tones and shorting
+  flows vary with agent influence, we report the results in column II
+  and III of Table 5 Panel A. For high influence subsample in column II,
+  the coefficients on RationalTone (t-1), FanaticTone (t-1) and
+  NaïveTone (t-1) are -0.0170 (t-stat=-4.98), -0.0162 (t-stat=-5.16) and
+  -0.0280 (t-stat=-5.02), suggesting that short sellers significantly
+  reduce their shorting activities in response to positive rational,
+  fanatic or naïve tones. The corresponding p-values for the Granger
+  causality tests are both lower than 1%. In contrast, for the low
+  influence subsample in column III, most coefficients are
+  insignificant...
+
+  In summary, we find that the relation between agent tone and
+  subsequent short selling varies substantially with agent influence.
+  This pattern is consistent with the literature on short-selling risk
+  and short squeezes. Short sellers face substantial risks when prices
+  move against their positions, and greater short-selling risk is
+  associated with less short-selling activity (Engelberg, Reed, and
+  Ringgenberg, 2018). More directly, Atmaz (2024) shows that persistent
+  demand from retail or noise traders can raise stock prices and
+  shorting fees while inducing short sellers to reduce their positions,
+  a mechanism motivated by the GameStop short squeeze. In our setting,
+  agent tone significantly predicts higher subsequent returns only when
+  agent influence is high. Short sellers may therefore anticipate more
+  persistent price pressure and refrain from trading aggressively
+  against optimistic beliefs when these beliefs are expressed by
+  influential agents. When agent influence is low, by contrast, tone has
+  weaker implications for subsequent prices, reducing such concerns and
+  leaving short sellers more willing to maintain their positions.
+  Overall, these results suggest that stronger social influence can
+  raise the risks of trading against sentiment-driven demand and thereby
+  limit the corrective role of short sellers, supporting H6.”
+
+We next provide additional evidence to clarify the economic mechanism
+underlying our findings by incorporating your suggestions. First, for
+“whether the return predictability of rational investors becomes
+stronger at even longer horizons”, we provide evidence in Section 4.5 on
+pages 29-30:
+
+  “Figure 6 shows distinct long-horizon return patterns across agent
+  types. The high-minus-low portfolio based on rational tone exhibits a
+  steadily increasing cumulative return over the subsequent 52 weeks,
+  reaching approximately 4% by the end of the horizon...the persistent
+  return continuation following rational tone is more consistent with
+  the gradual incorporation of information into prices.”
+
+Second, we examine whether “fanatic and naïve tones predicts return
+reversals” in Section 4.5 on pages 29-30:
+
+  “In contrast, the cumulative return spread for fanatic tone remains
+  close to zero at 0.7%, whereas the spread for naïve tone eventually
+  reverses and falls to -1.6%. Combined with the short-run positive
+  return predictability documented earlier, this pattern suggests that
+  the price effects associated with naïve beliefs are largely transitory
+  and are eventually corrected over longer horizons. The price effects
+  associated with fanatic beliefs dissipate more slowly, consistent with
+  the persistence of fanatic views.”
+
+Finally, for “whether rational tone is the best predictor of firm
+fundamentals”, the discussion is provided in Section 3.1 on page 15:
+
+  “We also examine whether the classification captures economically
+  meaningful investor types. Specifically, we test the relation between
+  agent tone and firm fundamentals such as earnings surprises. Our
+  expectation is that rational investors can positively predict firm
+  fundamentals while others cannot. We measure earnings surprises using
+  the market-adjusted cumulative abnormal return (CAR) over the window
+  [-1,1] around the earnings announcement. Rational, fanatic, and naïve
+  tone are calculated as the average tone over the period between the
+  previous and current earnings announcements. We estimate the panel
+  regression and the coefficients on rational tone, fanatic tone, and
+  naive tone are 0.006 (t-stat=2.12), -0.002 (t-stat=-0.80) and -0.006
+  (t-stat=-2.60), respectively. The results show that only rational tone
+  positively predicts future earnings surprises, suggesting that users
+  classified as rational are more likely to express views that are
+  aligned with subsequent firm fundamentals, consistent with the
+  theoretical definition.[2]”
+
+C2 Endogenous stock-time influence measure
+
+Pedersen’s model posits influence as a fixed agent-level trait derived
+from a static attention network—exogenous to asset characteristics or
+prevailing sentiment. By contrast, the empirical proxy used in the
+manuscript defines influence at the user × stock × week level, based on
+the number of replies a user receives. This operationalization conflates
+personal influence with transient engagement, increasing the concerns of
+reverse causality: price movements and prevailing sentiment may drive
+post content and replies, not vice versa.
+
+For instance, a user posting bullish content on TSLA during an earnings
+week with positive sentiment may receive numerous replies—not due to
+inherent influence, but because the message resonates with an already
+bullish crowd. The algorithm then classifies the user as high-influence
+for TSLA in that week. Subsequent regressions relating “high-influence
+tone” to next-week returns or retail flows may capture spurious effects
+stemming from a common latent driver—market-wide bullishness.
+
+Pedersen’s model treats influence as exogenous and agent-specific,
+derived from a fixed attention network. It's not a function of the
+asset’s characteristics or current sentiment, which avoids this kind of
+reverse causality. The current approach, while pragmatic for multi-asset
+data, introduces endogeneity such as stock popularity, recent returns,
+echo chamber dynamics, and tone alignment, etc.
+
+To address this, the authors could isolate exogenous components of
+influence. For example, they could use lagged cross-stock average
+influence (e.g., a user’s historical influence on unrelated tickers) or
+instrument with pre-period network centrality based on historical reply
+patterns. Another option is to decompose influence into fixed and
+residual components:
+
+Influence 𝑖,𝑘,𝑡=𝛼𝑖+𝜀𝑖,𝑘,𝑡
+
+Where: 𝛼𝑖 is the user fixed effect (person-level influence), and 𝜀𝑖,𝑘,𝑡
+is the residual, capturing stock-time-specific deviations in attention.
+The authors could then separately test whether persistent (exogenous)
+influence or temporary (potentially endogenous) attention spikes predict
+future outcomes. This decomposition would better align the empirical
+analysis with the model’s assumptions and help distinguish between
+genuine influence and reactive engagement.
+
+Response: Thank you very much for your constructive comments.
+
+We understand that you are concerned our influence measure may capture
+“transient engagement” and we summarize your suggestions into following
+three groups: 1) use “lagged cross-stock average influence”; 2)
+construct “pre-period network centrality”; 3) decompose “influence into
+fixed and residual components”.
+
+We address your comments in two steps. First, we acknowledge your
+concern about endogeneity in Section 3.1 on page 15:
+
+  “We also acknowledge that this measure may capture transient
+  engagement driven by prevailing market conditions.”
+
+Second, we follow the three suggestions in your comment and construct
+these measures in Section 5 on pages 30-33:
+
+  “First, to alleviate the concern that contemporaneous stock-specific
+  events may affect our influence measure, we examine three alternative
+  measures of influence in Section 5.1-5.3. We expect that the main
+  results should be robust across alternative measures of influence,
+  with stronger belief transmission, return predictability, and trading
+  dynamics in high influence sample.”
+
+The discussion for “lagged cross-stock average influence” is in Section
+5.1 on pages 30-31:
+
+  “For each user k, stock i, and week t, we calculate the user’s average
+  number of commentors in all prior weeks and on all stocks other than
+  i.
+
+  ${AvgNCommenters}_{i,k,t} = \frac{\sum_{\tau < t}^{}{\sum_{j \neq i}^{}{NCommenters}_{j,k,\tau}}}{N_{j \neq i,\ \ k,\tau < t}}\$,
+  (6)
+
+  where NCommentors_(j, k, τ) is the number of commentors for user k,
+  stock j, week τ, and N_(j ≠ i,  k, τ < t) is the number of firm-week
+  observations. Because the measure excludes both the current week and
+  the focal stock, it is not mechanically affected by current sentiment
+  or attention surrounding stock...Overall, our main findings remain
+  robust when we use the lagged cross-stock average number of commenters
+  as an alternative measure of user influence, suggesting that
+  contemporaneous news is unlikely to drive our results.”
+
+For “pre-period network centrality”, the discussion is in Section 5.2 on
+pages 31-32:
+
+  “Second, we measure each user’s network centrality using the user’s
+  average PageRank across all stocks over all prior periods:
+
+  ${Centrality}_{ikt} = \frac{1}{N_{k,\tau}}\sum_{\tau < t}^{}{\frac{1}{J_{k,\tau}}\sum_{i \in \mathcal{J}_{k,\tau}}^{}{Page}{Rank}_{ik\tau}}\$,
+  (7)
+
+  where PageRank_(ikτ) is PageRank score of user k for stock i on week
+  τ, 𝒥_(k, τ) is the set of stocks associated with user k on week τ,
+  with J_(k, τ) denoting the number of stocks, and N_(k, τ) is the
+  number of prior weeks...Overall, these results suggest that our main
+  findings are robust to measuring user influence using network
+  centrality and further highlight the importance of users’ structural
+  position in shaping belief transmission, return predictability, and
+  trading dynamics.”
+
+The discussion for decomposing “influence into fixed and residual
+components” is in Section 5.3 on pages 32-33:
+
+  “Third, we decompose the measure into a persistent user component and
+  a stock-week-specific residual:
+
+  ${NCommenters}_{i,k,t} = {a + b}_{k} + \varepsilon_{i,k,t}\$, (8)
+
+  The user component b_(k) is the user’s average number of commenters
+  minus the overall mean and captures persistent user-level influence,
+  whereas ε_(i, k, t) captures transitory variation in influence that
+  may reflect contemporaneous firm-specific news or events... Overall,
+  the results based on the user fixed-effect component suggest that our
+  findings are unlikely to be driven solely by transitory firm-specific
+  information shocks, while the residual-based results indicate that the
+  effects are further amplified during periods of unusually high user
+  engagement.”
+
+C3 Naïve investors
+
+Several empirical findings regarding naïve investors appear inconsistent
+with Pedersen’s theoretical framework. His model posits that both
+rational and fanatic investor beliefs propagate through social networks
+to influence naïve investors, who update their beliefs by averaging
+those of individuals they “follow” within a fixed social-attention
+matrix. However, Table 4 and Figure 4 reveal negligible and
+statistically insignificant effects of either belief type on future
+retail flows across all horizons. This empirical null result challenges
+the model’s central premise—that naïve trading is driven by the weighted
+opinions of rational and fanatical investors—and undermines the validity
+of using retail flow as a proxy for naïve trading.
+
+Furthermore, the mechanism that the paper intends to test—social media
+tone → retail flow → price impact—also lacks empirical support. The
+effect of tone-induced flow on returns is quantitatively small. In the
+high-influence subsample, a one standard deviation increase in naïve
+tone leads to a 0.4% increase in retail flow the following week (Figure
+3), or approximately 0.023 standard deviations given a retail flow SD of
+0.1774 (Table 1). Yet, Figure 4 indicates that retail flows
+independently predict returns, with a one SD retail flow shock yielding
+a 10 bps increase in daily returns during week 1. Conversely, Figure 3
+shows that a one SD shock to naïve tone corresponds to a 20 bps increase
+in returns. This implies that the vast majority of the return effect of
+naïve tone is not related to total retail flow.
+
+These patterns suggest either (i) retail flow reflects trading by
+informed agents unaffiliated with Reddit, or (ii) the retail flow
+measure misclassifies the activity of naïve investors. In both cases,
+the hypothesized causal chain from tone to retail trading to price
+impact is not well supported.
+
+This weak empirical link invites alternative interpretations: (i) Reddit
+tone may be largely noise, reflecting the behavior of a marginal subset
+of retail investors, (so tone ≠ retail flow), or (ii) the retail-flow
+proxy is picking up a broader set of informed trades (internalisers,
+small institutions) who are not influenced by Reddit. Either scenario
+casts doubt on the identification strategy and the purported
+belief-trade-price transmission mechanism.
+
+To further evaluate the model, the authors could test for Granger
+causality between tone and flow. If flow Granger-causes tone more than
+the reverse, the mechanism runs opposite to what the model assumes.
+
+Response: Thank you very much for this important comment.
+
+Your comment raises four important concerns: 1) “retail flow reflects
+trading by informed agents unaffiliated with Reddit”; 2) “retail flow
+measure misclassifies the activity of naïve investors”; 3) “Reddit tone
+may be largely noise”; and 4) “retail-flow proxy is picking up a broader
+set of informed trades”. You also suggest testing for “Granger causality
+between tone and flow”.
+
+We address your comments in three steps. First, we acknowledge your
+concern in Section 4.3 on page 26:
+
+  “We acknowledge that retail flow should not be interpreted as a direct
+  proxy for naïve investors’ trading.”
+
+Second, we explain the relation between retail flow and social media
+users to address four concerns raised in your comment. Below we provide
+detailed discussion one by one.
+
+The discussion for “retail flow reflects trading by informed agents
+unaffiliated with Reddit” is in Section 4.3 on page 26:
+
+  “Our retail-flow measure captures market-wide retail trading and does
+  not identify whether a particular trade is initiated by a Reddit user.
+  Thus, retail flow can originate from investors outside social-media
+  platforms. ”
+
+For “retail flow measure misclassifies the activity of naïve investors”,
+we discuss this concern in Section 4.3 on page 26:
+
+  “Rational, fanatic, and naïve are belief types among Reddit users
+  rather than classifications of retail versus institutional investors,
+  and users of all three types may trade through retail channels.
+  Aggregate retail flow may therefore reflect trading by all three
+  Reddit agent types.”
+
+We then connect to previous literature on retail flow and discuss the
+concern about “Reddit tone may be largely noise” and “retail-flow proxy
+is picking up a broader set of informed trades” in Section 4.3 on page
+26:
+
+  “Consistent with this interpretation, previous literature shows that
+  retail trading can contain both behavioral demand and information
+  (Barber, Odean, and Zhu, 2009; Kelley and Tetlock, 2013; Boehmer et
+  al., 2021). This does not imply that Reddit tone is merely noise,
+  because the two measures intentionally capture different populations.
+  We also acknowledge that retail flow may include informed retail
+  trading. Indeed, Kelley and Tetlock (2013) show that some retail
+  orders contain information about subsequent fundamentals and returns.”
+
+Finally, we test for “Granger causality between tone and flow” following
+your suggestion. Retail flow significantly Granger-causes subsequent
+naïve tone (χ²=47.716, p=0.000), while naïve tone also significantly
+Granger-causes subsequent retail flow (χ²=42.001, p=0.000); both
+relations are significant at conventional levels. These results do not
+support a purely reversed mechanism. Instead, they indicate a
+bidirectional predictive relation in which social-media beliefs are
+associated with subsequent retail trading, while market-wide retail
+activity also feeds back into subsequent social-media beliefs.
+
+C4 Absence of momentum-reversal pattern
+
+Figures 3–5 display persistent price drifts following shocks to
+fanatic/naïve tone or retail flows, without evidence of mean reversion.
+This contradicts Pedersen’s model, which predicts reversal once rational
+investors reassert influence. The absence of such correction undermines
+the theoretical foundation the paper tries to empirically test.
+
+Moreover, Panels E and F of Figure 4 reveal that short flow responds
+significantly to naïve and fanatic tone shocks in the short term by
+avoiding to correct the potential mispricing. There is no evidence that
+short sellers exert any detectable corrective influence at longer
+horizons. Similarly, no evidence is presented that the tone of
+Reddit-designated “rational” users contributes to return reversals at
+any point.
+
+Hence the paper does not demonstrate the time-series dynamics central to
+Pedersen’s framework. The authors could strengthen their test by
+estimating a full VAR system that includes: fanatic/naïve tone → retail
+flow → price drift → short flow → reversal.
+
+Response: Thank you very much for your insightful comment.
+
+Your comment raises two concerns: 1) for return predictability, there is
+no “evidence of mean reversion”; 2) “there is no evidence that short
+sellers exert any detectable corrective influence at longer horizons”
+and rational users “contributes to return reversals”.
+
+First, to address your concern about reversal, we form portfolios based
+on weekly agent-tone signals and track their performance over holding
+periods of up to 52 weeks. The detailed discussion is in Section 4.5 on
+pages 29-30:
+
+  “To provide a more intuitive view of these dynamics, we sort stocks
+  each week into quintile portfolios based separately on rational,
+  fanatic, and naïve tone and track their performance over the
+  subsequent 52 weeks. According to Proposition 4 of Pedersen (2022),
+  which shows that the network component of prices depends on naïve and
+  fanatic beliefs relative to the rational belief, we use rational tone
+  as the benchmark and subtract it from fanatic and naïve tone when
+  constructing the corresponding sorting variables. We then calculate
+  the cumulative return of the high-minus-low (5–1) portfolio for each
+  agent type, allowing us to trace whether the initial return effect
+  persists, dissipates, or eventually reverses over time.
+
+  Figure 6 shows distinct long-horizon return patterns across agent
+  types. The high-minus-low portfolio based on rational tone exhibits a
+  steadily increasing cumulative return over the subsequent 52 weeks,
+  reaching approximately 4% by the end of the horizon. In contrast, the
+  cumulative return spread for fanatic tone remains close to zero at
+  0.7%, whereas the spread for naïve tone eventually reverses and falls
+  to -1.6%. Combined with the short-run positive return predictability
+  documented earlier, this pattern suggests that the price effects
+  associated with naïve beliefs are largely transitory and are
+  eventually corrected over longer horizons. The price effects
+  associated with fanatic beliefs dissipate more slowly, consistent with
+  the persistence of fanatic views. By contrast, the persistent return
+  continuation following rational tone is more consistent with the
+  gradual incorporation of information into prices.”
+
+Second, we acknowledge in Section 4.5 on page 29 that our weekly PVAR
+primarily captures short-run dynamics:
+
+  “Our main analysis using PVAR thus far focuses primarily on short-run
+  dynamics among investor beliefs, returns, and trading.”
+
+Overall, while the dataset is novel and the research question timely,
+the current empirical implementation falls short of providing a
+convincing test—or even a coherent illustration— of Pedersen’s
+mechanism. Notably, the role of rational investors appears poorly
+captured in the main specifications. Improving measurement, for instance
+by treating influence as a fixed effect or instrumenting for it,
+addressing the issues of how naïve tones and retail flows interact with
+prices and other investors’ belief or trading, and explicitly modeling
+the momentum-reversal dynamics tied to belief updating and trading
+activity, would help bridge the gap between theory and empirics.
+Addressing these limitations would significantly enhance the paper’s
+contribution.
+
+Response: Thank you again for your insightful comments. Following your
+suggestions, we substantially revise the paper by adopting a new
+investor-classification method, developing new measures, and updating
+the empirical analyses. These revisions significantly strengthen both
+the empirical design and the overall contribution of the paper.
+
+[1] The complete classification prompt is provided in the Appendix A.
+
+[2] The results are reported in the Appendix B.

@@ -1,0 +1,507 @@
+Response to R1
+
+We are very grateful for your insightful comments, which have
+significantly improved our paper. Following the Editor’s guidance and
+your suggestions, the revision focuses on three major changes:
+
+1. Following the Editor’s and both reviewers’ suggestion, we downplay
+the paper’s positioning as a direct empirical test of Pedersen (2022).
+Instead, we now use Pedersen (2022) primarily as a conceptual framework
+for motivating the key empirical questions concerning belief
+transmission, price discovery, and trading responses on social media.
+Accordingly, we revise the paper in abstract, Section 1, Section 2, and
+Section 7. This revised positioning allows the paper to place greater
+emphasis on the empirical findings documented in the data.
+
+2. The editor and both reviewers have concerns regarding our investor
+classification method, and the subsequent empirical results. Following
+these comments, we significantly revise the classification procedure in
+Section 3.1 by using a large language model that incorporates users’
+broader posting histories and richer semantic context. This new
+classification enables us to better distinguish investor types and
+yields more consistent empirical patterns. In this updated version,
+Section 4.1 provides more and significant cross-group belief spillovers.
+We revisit the return predictability in Section 4.2 and find that
+rational tone significantly predicts future returns, with predictive
+power comparable to naïve tone. For momentum-reversal patterns, we
+examine long-horizon returns in Section 4.5 and present returns
+associated with rational tone continue to accumulate, whereas those
+associated with naïve tone eventually reverse. Multiple alternative
+explanations are examined in Section 5, and our main findings remain
+robust.
+
+3. Editor suggests us to broaden the paper’s scope, and examine how
+technological progress and emergence of competing platforms affect our
+results. To have enough observations to address these issues, especially
+the technological progress, we extend our sample period from 2020–2023
+to 2020–2025. Given that the most significantly technological progress
+over our sample period is generative AI, we focus on the public release
+of ChatGPT in Section 6.1, and present intriguing results that the
+informational content of social-media posts declines after the
+introduction of gen-AI. For the emergence of competing platforms, our
+results in Section 6.2 suggest that greater platform competition
+fragments investor attention, thereby weakening Reddit’s role in belief
+transmission and its influence on subsequent market outcomes. Together,
+these extensions show that social-media dynamics evolve with the
+information environment, including how content is produced, and the
+platform competition environment.
+
+Below, we present our detailed responses to your comments. For your
+convenience, your original comments are in italics, and our responses
+are in normal font.
+
+Summary: This paper aims to explore how social media affects belief
+formation, price discovery, and trading dynamics by drawing on the
+theoretical framework of Pedersen (2022). The authors employ a PVAR
+approach to document a strong predictive pattern: the aggregate tones
+from rational and fanatic investors predict the future aggregate tones
+of naïve investors. Based on this, they conclude that there is a belief
+spillover from rational and fanatic investors to naïve ones.
+Additionally, they show that social media tone significantly predicts
+future returns (with a positive sign), as well as future retail order
+flows and shorting activities. A constructed variable called “Influence”
+strongly moderates this predictive pattern. The paper addresses a trendy
+topic and tackles intriguing questions that attract market attention.
+While this has the potential to be an interesting and exciting paper,
+the evidence presented so far does not fully support the conclusions
+drawn. I outline my comments in the remainder of this report.
+
+Response: Thank you very much for your thoughtful summary and valuable
+feedback on our paper.
+
+Main Comments:
+
+Comment 1: PVAR is insufficient to document a belief spillover pattern
+
+On the efforts of documenting belief spillover in the context of social
+platforms, this paper primarily relies on the PVAR (Panel Vector
+Autoregression) framework. Specifically, at each time point t, the
+authors average the views of different categories of investors about a
+specific company, resulting in three time series for each company. The
+claimed belief spillover is reflected in the lead-lag predictive
+patterns among these three aggregate-level time series. However, this
+strategy overlooks a key feature emphasized in the Pedersen model, which
+almost certainly plays a role on social platforms: the impact of social
+interactions on belief spillovers.
+
+Without properly considering the role of social interactions, this
+testing approach struggles to distinguish alternative explanations,
+especially given how each investor category is defined. For example,
+rational, fanatic, or naïve investors are defined on a rolling basis
+based on their posted views. A rational investor in the current period
+would plausibly switch to a naïve or fanatic investor in the next period
+due to changes in their posts. Given this dynamic reshuffling of the
+investor pool and the transitions between categories, the PVAR results
+may simply reflect the persistence or autocorrelation of individual
+investors’ beliefs rather than genuine belief spillovers from rational
+to naïve groups. This alternative explanation is plausible under the
+PVAR framework but diverges from both the article’s intended narrative
+and the original intent of the Pedersen model.
+
+Response: Thank you very much for this important comment.
+
+Because our classification of investors is the base of all empirical
+designs, we start by addressing your concern about investors “are
+defined on a rolling basis”. Here we directly adopt a powerful large
+language model (LLM)-based classification approach, as mentioned in our
+second major change. Our detailed discussion is in Section 3.1 on pages
+11-12.
+
+  “Classifying investors into the rational, fanatic, and naïve types in
+  Pedersen (2022) is challenging because investor types are defined by
+  latent beliefs and reasoning patterns that are not directly observable
+  and must be inferred from a large amount of heterogeneous textual
+  information in users’ posting histories. A reliable classification
+  therefore requires jointly interpreting the context, sentiment
+  dynamics, and economic reasoning embedded in users’ posts rather than
+  relying on a small set of observable keywords or predefined rules.
+  Large language models (LLMs) are well suited to this setting because
+  they can capture rich contextual information and identify the
+  underlying reasoning expressed in different language. We specifically
+  employ GPT-5 given its strong ability to interpret complex economic
+  text and infer underlying reasoning, as demonstrated by the growing
+  use of GPT-based models in economics and finance (Lopez-Lira and Tang,
+  2026; Alsan and Neberai, 2026; Fedyk et al., 2026).
+
+  We first provide the LLM with the full characterization of rational,
+  fanatic, and naïve agents developed in the model section of Pedersen
+  (2022). We then supply the model with the complete posting history of
+  each Reddit user and ask it to classify the user by applying these
+  theoretical definitions to the content of the user’s posts. For each
+  user, the model reports the assigned type, a confidence score, and the
+  rationale for the classification, which is categorized into three
+  dimensions: sentiment-based reasoning, information-based reasoning,
+  and consideration of other investors’ opinions. Because observed
+  posting behavior is substantially more complex than the stylized
+  environment of the theoretical model, the boundaries between agent
+  types may be inherently ambiguous. We therefore augment the
+  theoretical definitions with additional classification rules designed
+  to sharpen the distinctions across types and improve consistency in
+  borderline cases.[1]”
+
+We apologize for previous version’s confusing writing on belief
+spillover. In this revision, we incorporate your concern regarding PVAR
+methodology in Section 4.1 on pages 18-21:
+
+  “To characterize belief spillovers across agent groups, the PVAR
+  analysis examines whether innovations in the aggregate beliefs of one
+  group predict subsequent changes in the beliefs of other groups, after
+  accounting for the persistence of each group’s own beliefs and other
+  variables in the system. If H1 is true that naïve investors’ views are
+  predicted by rational and fanatic investors’ views, we expect the
+  coefficients linking current naïve views and past rational and fanatic
+  views to be statistically significant... Overall, the results capture
+  how changes in beliefs expressed by one agent group are systematically
+  followed by changes in beliefs expressed by other, distinct groups and
+  we interpret these patterns as group-level belief spillovers.”
+
+Comment 2: Issues with the categorizations of investors
+
+The paper proposes to classify investors into three categories based on
+the view dynamics of their posts. For instance, when identifying
+rational and fanatic investors, it requires that at least 75% of their
+posts maintain a stable tone with minimal fluctuations. Further
+distinctions between fanatics and rational investors are made based on
+whether their posts include terms like "YOLO" or reference fundamental
+analysis.
+
+At first glance, this classification method appears to align with
+Pedersen's characterization of rational, fanatic, and naïve investors.
+However, it overlooks key elements. One major concern is that this paper
+defines rational investors solely based on view dynamics, without
+considering how these dynamics align with the firm's fundamentals.[2] In
+reality, whether an investor is naïve should not only depend on what her
+view dynamics look like. Instead, it should also depend on how her view
+dynamics align with the firm's fundamental dynamics. Consider two
+identical view dynamics for two distinct firms. Depending on how
+accurately the view path reflects the firm's fundamental dynamics, one
+view path could be fully rational while the other might not be. This
+paper, however, fails to address this nuance.
+
+Another notable concern with the user classification approach lies in
+its definition of rational investors, which refers to users with
+stubborn views that are rarely adjusted in response to changes in a
+company’s fundamentals. While this may reflect some features of the
+model in Pedersen, empirically, such users are unlikely to be
+particularly sophisticated or influential investors. In contrast, the
+article defines naïve investors as those who demonstrate greater
+flexibility in adjusting their views, responding more promptly to new
+information or external changes—behavior that could indicate a higher
+level of sophistication. This approach to classification diverges from
+the traditional definitions of rational and naïve investors in classical
+asset pricing theory. While not entirely incorrect, it requires deeper
+discussion and validation.
+
+Response: Thank you very much for this constructive comment.
+
+First, to address your concern regarding “user classification approach”,
+we revise our classification substantially using the LLM, which is the
+second major change in this revision. We provide detailed response in
+comment 1. Please refer to the discussion on the previous page.
+
+To make sure our classification of investors is related to
+“fundamentals”, we take two steps. First, we provide the LLM with the
+full characterization of rational, fanatic, and naïve agents developed
+in the model section of Pedersen (2022) as part of the classification
+prompt. Then we ask LLM to classify agents and provide the reasoning
+accordingly, as discussed in Appendix A:
+
+  “This appendix presents the full prompt used in our agent
+  classification procedure: ‘...Here are all the posts from one
+  agent...Classify the agent into fanatic, rational, or naive investor
+  according to Pedersen (2022)...Explain the reason in one short and
+  concise sentence...’ Specifically, we provide a representative example
+  of reasoning for a rational investor: ‘The agent consistently applies
+  detailed fundamental, balance-sheet, and market-structure analysis,
+  explains mechanisms (short interest, stock dividends, HFT, valuation,
+  expectations)...’ The corresponding Reddit post of this agent on
+  Encore Wire Corporation supports this classification: ‘...Prior to
+  2020, this was a stagnant (no growth), 7% to 8% EBITDA margin
+  business. Suddenly, the insanity of COVID-19 hits and this no-growth,
+  low margin business suddenly ~triples its revenue and its 7-8% EBITDA
+  margin explodes to >30%.’”
+
+Second, following the other referee’s comment, we also provide indirect
+evidence using earnings announcement data in Section 3.1 on page 15:
+
+  “We also examine whether the classification captures economically
+  meaningful investor types. Specifically, we test the relation between
+  agent tone and firm fundamentals such as earnings surprises. Our
+  expectation is that rational investors can positively predict firm
+  fundamentals while others cannot. We measure earnings surprises using
+  the market-adjusted cumulative abnormal return (CAR) over the window
+  [-1,1] around the earnings announcement. Rational, fanatic, and naïve
+  tone are calculated as the average tone over the period between the
+  previous and current earnings announcements. We estimate the panel
+  regression and the coefficients on rational tone, fanatic tone, and
+  naive tone are 0.006 (t-stat=2.12), -0.002 (t-stat=-0.80) and -0.006
+  (t-stat=-2.60), respectively. The results show that only rational tone
+  positively predicts future earnings surprises, suggesting that users
+  classified as rational are more likely to express views that are
+  aligned with subsequent firm fundamentals, consistent with the
+  theoretical definition.[3]”
+
+Comment 3: What’s being transmitted: information or noise?
+
+The authors may need to more clearly demonstrate which investors are
+learning from whom, what exactly they are learning, and whether the
+views being transmitted is truly informative. For instance, the paper
+argues that rational investors influence naïve investors, resulting in
+belief spillover. If this spillover primarily involves information, then
+rational investors should, at the very least, exhibit predictive power
+comparable to that of naïve investors in forecasting future returns.
+However, as shown in columns (1) to (3) of Table 3, rational investors
+are no better than naïve investors at predicting future return dynamics.
+This finding appears to contradict the "information transmission"
+narrative. But if the spillover is not about transmitting information,
+then how could the tone of naïve investors positively predict future
+return? More importantly, where does the incremental predictive power of
+the tone of naïve investors come from? How are they acquiring this novel
+information?
+
+Moreover, the fact that rational investors are worse at predicting
+future return dynamics also contradicts the implications from Pedersen
+(2022), where they derive in proposition 4 that the long-term prices
+would depend on views from thought leaderships, as rational views and
+fanatic views would dominate. These inconsistencies remain unresolved
+and highlight the need for further investigation and clarification.
+
+Response: Thank you very much for your insightful comment.
+
+Your comment raises three important issues: (1) “rational investors are
+no better than naïve investors at predicting future return dynamics”;
+(2) “whether the views being transmitted is truly informative”; (3)
+“where does the incremental predictive power of the tone of naïve
+investors come from?”
+
+For the first issue, with our new classification, the updated results
+present a more internally consistent pattern: rational investors exhibit
+return-predictive power comparable to that of naïve investors. The
+updated return-prediction results are presented in Table 3 and the
+corresponding discussion is in Section 4.2 on page 21:
+
+  “Table 3 reports the PVAR coefficients connecting past agent views and
+  current returns. For the whole sample results in column I, the
+  coefficients on RationalTone (t-1), FanaticTone (t-1) and NaïveTone
+  (t-1) are 0.0012 (t-stat=2.53), 0.0018 (t-stat=2.80) and 0.0012
+  (t-stat=3.94), respectively, suggesting that past agent tones contain
+  predictive information about next-week returns. Also, the Granger
+  Causality tests at the bottom of the table show that rational tone,
+  fanatic tone and naïve tone Granger cause future returns with p-values
+  of less than 5%. That is, rational, fanatic and naïve tones predict
+  future returns with statistical significance, which supports H3. In
+  Panels A to C of Figure 3, we present the corresponding IRFs, showing
+  the response of shocks to rational, fanatic, and naïve tones on
+  returns for the next 10 weeks. For economic magnitude, a one standard
+  deviation shock to rational, fanatic tone or naïve tone is associated
+  with a 2~3 bp increase in the daily average return over the following
+  week.”
+
+For the second issue, we examine whether rational views contain relevant
+information about firm fundamentals. The detailed discussions are
+provided in Section 3.1 on page 15:
+
+  “We also examine whether the classification captures economically
+  meaningful investor types. Specifically, we test the relation between
+  agent tone and firm fundamentals such as earnings surprises. Our
+  expectation is that rational investors can positively predict firm
+  fundamentals while others cannot. We measure earnings surprises using
+  the market-adjusted cumulative abnormal return (CAR) over the window
+  [-1,1] around the earnings announcement. Rational, fanatic, and naïve
+  tone are calculated as the average tone over the period between the
+  previous and current earnings announcements. We estimate the panel
+  regression and the coefficients on rational tone, fanatic tone, and
+  naive tone are 0.006 (t-stat=2.12), -0.002 (t-stat=-0.80) and -0.006
+  (t-stat=-2.60), respectively. The results show that only rational tone
+  positively predicts future earnings surprises, suggesting that users
+  classified as rational are more likely to express views that are
+  aligned with subsequent firm fundamentals, consistent with the
+  theoretical definition.[4]”
+
+For the third issue, we clarify why naïve tone can exhibit strong return
+predictability in Section 4.2 on page 22.
+
+  “Prior literature suggests that investor attention and sentiment can
+  generate short-run price pressure. Da, Engelberg, and Gao (2011) show
+  that heightened retail investor attention is followed by higher stock
+  prices over the subsequent two weeks, while Chen et al. (2014) and
+  Cookson et al. (2024) document that social media sentiment predicts
+  future stock returns. These findings provide a natural interpretation
+  for the strong short-run return predictability of naïve tone in our
+  setting. Because naïve investors are more likely to react to salient
+  opinions and prevailing sentiment, their tone may capture shifts in
+  market-wide attention and sentiment that attract retail trading and
+  temporarily move prices. Thus, the predictive power of naïve tone may
+  operate through an attention- and sentiment-driven channel documented
+  in the existing literature.”
+
+Comment 4: Investor influence or investor attention?
+
+In the paper, the Influence variable is defined as the number of
+follow-up comments on posts made by a specific group of investors on a
+specific firm on day t. While the authors argue that this variable
+reflects social influence, but this claim requires further validation.
+This variable primarily captures the intensity of investors’ subsequent
+participation and does not immediately indicate whether these follow-up
+commenters are genuinely “influenced” by the original posters.
+
+Alternatively, this variable might instead serve as a general proxy for
+investor attention, which may or may not directly relate to the
+underlying structure of the social network. If it’s merely a proxy for
+investor attention, what is the new implications here? To more
+effectively test the implications of the Pedersen model and gain broader
+insights, it is essential to further investigate these alternative
+interpretations.
+
+Response: Thank you very much for this helpful comment.
+
+First, we acknowledge your concern in the paper in Section 3.1 on page
+15:
+
+  “We note that this measure may capture investor attention as well as
+  social influence, since follow-up comments reflect subsequent
+  engagement but do not necessarily imply direct influence by the
+  original poster.”
+
+Second, we consider a new influence measure which captures a user’s
+centrality within the social network and examine the relation between
+the measure and investor attention, discussed in Section 5.2 on page 31:
+
+  “we measure each user’s network centrality using the user’s average
+  PageRank across stocks over prior periods:
+
+${Centrality}_{ikt} = \frac{1}{N_{k,\tau}}\sum_{\tau < t}^{}{\frac{1}{J_{k,\tau}}\sum_{i \in \mathcal{J}_{k,\tau}}^{}{Page}{Rank}_{ik\tau}}\$,
+(7)
+
+  where PageRank_(ikτ) is PageRank score of user k for stock i on week
+  τ, 𝒥_(k, τ) is the set of stocks associated with user k on week τ,
+  with J_(k, τ) denoting the number of stocks, and N_(k, τ) is the
+  number of prior weeks. To test whether this measure is different from
+  investor attention, we examine the relation between centrality and
+  attention. Following Antweiler and Frank (2004) and Cookson et al.
+  (2024), we use the log-transformed volume of social-media discussion
+  to capture investor attention and construct attention as
+  log (1 + number of posts_(i, t)) for stock i on week t. The
+  correlation of attention and centrality is 0.25, suggesting that our
+  centrality measure capture distinct dimensions of social network
+  beyond investor attention.”
+
+The empirical results based on this influence measure are presented in
+Table 7 and discussed in Section 5.2 on page 32:
+
+  “Table 7 shows patterns consistent with our main findings when user
+  influence is measured by network centrality. Rational and fanatic tone
+  strongly predict subsequent naïve tone in the high-centrality sample,
+  with coefficients on RationalTone(t-1) and FanaticTone(t-1) of 0.2350
+  (t-stat=11.39) and 0.2221 (t-stat=9.21), respectively. In contrast,
+  these effects are insignificant in the low-centrality sample, with
+  coefficients on RationalTone(t-1) and FanaticTone(t-1) of -0.0050
+  (t-stat=-1.04) and -0.0151 (t-stat=-1.86). Moreover, all three types
+  of tone predict higher returns only in the high-centrality sample.
+  Turning to trading dynamics, agent tones predict greater retail
+  trading in both subsamples, and predict lower subsequent short-selling
+  flow only in the high-centrality sample. Overall, these results
+  suggest that our main findings are robust to measuring user influence
+  using network centrality and further highlight the importance of
+  users’ structural position in shaping belief transmission, return
+  predictability, and trading dynamics.”
+
+Comment 5: Why do rational investors not predict trading flows?
+
+This paper fails to provide a compelling framework for linking investor
+views to price dynamics. For instance, Panel A of Table 4 shows that
+while the tone of naïve investors predicts trading flows, the tone of
+rational and fanatic investors does not. This is puzzling, as the tone
+of rational and fanatic investors influences naïve investors. This
+observation once again raises a question similar to the one outlined in
+Comment 3: Where does the incremental predictive power of the tone of
+naïve investors originate?
+
+Response: Thank you for this insightful comment.
+
+We understand that you are concerned about “the tone of rational and
+fanatic investors does not” predict retail trading flows. With the new
+classification, the updated results reveal a more coherent pattern: both
+rational and fanatic tone positively predict future retail flows. The
+results are reported in Table 4 and the corresponding discussion is in
+Section 4.3 on page 23:
+
+  “We report the coefficients linking past social media tones and future
+  retail trading in Table 4 Panel A. From the whole sample estimates in
+  column I, the coefficients on RationalTone (t-1), FanaticTone (t-1),
+  and NaïveTone (t-1) are 0.0142 (t-stat=6.80), 0.0195 (t-stat=6.24),
+  and 0.0087 (t-stat=6.48), suggesting that retail investors are more
+  bullish when agent tones are higher. Rational, fanatic and naïve tones
+  also Granger cause retail flows with p-values of less than 1%,
+  supporting the first part of H5. The IRFs in Figure 4 Panels A-C show
+  that a one standard deviation shock to rational, fanatic, naïve tone
+  is associated with a 0.25%, 0.32%, 0.22% increase in retail flows for
+  the next week, respectively, with the effect gradually dying out after
+  2 weeks.”
+
+Moreover, regarding “the incremental predictive power of the tone of
+naïve investors”, we add discussion in Section 4.3 on page 24:
+
+  “Prior studies show that sentiment expressed on online message boards
+  is related to subsequent trading activity (Antweiler and Frank, 2004;
+  Das and Chen, 2007). More directly, Cookson et al. (2024) document
+  that more positive social-media sentiment is associated with greater
+  net retail buying. These findings suggest that naïve tone may contain
+  incremental predictive information for retail trading because it more
+  directly captures the sentiment and opinions to which retail investors
+  respond.”
+
+Selected Other Comments:
+
+1. On page 24, the authors mention that:
+
+“The whole sample result in column I shows that the coefficients on
+agent tones are all negative and statistically significant, implying
+that social media tones do not predict future shorting flows.”
+
+I suppose this might be a typo. It should be “insignificant”.
+
+Response: Thank you for pointing out this typo. We correct it in the
+revised manuscript.
+
+2. In the paper, the authors write that:
+
+“Short sellers’ consideration of agent influence in deciding to ride or
+burst bubbles enhances their abilities to predict negative returns.”
+
+How do short sellers detect the influence of agents and respond
+accordingly? This question warrants at least some discussion. Without
+further explanation, this claim remains largely speculative.
+
+Response: Thank you for your comment.
+
+We add more discussion and tone down this statement in the abstract as
+follows:
+
+  “Short sellers may account for agent influence when deciding whether
+  to ride or burst bubbles by responding to the observable attention and
+  trading consequences associated with influential agents’ views. This
+  may enhance their ability to predict subsequent negative returns.”
+
+3. Retail investors and Reddit users likely have significant overlap. As
+a result, the conclusion that social media tone predicts retail order
+flows might be somewhat generic, as it is possible that retail investors
+are the ones creating the posts on social media.
+
+Response: Thank you for this comment.
+
+We acknowledge this relation in Section 4.3 on page 24:
+
+  “Reddit users and retail investors are likely to overlap, as some
+  investors may both express their views on Reddit and trade on those
+  views. Thus, the relation between social-media tone and retail flow
+  may partly reflect the behavior of the same underlying investors.”
+
+[1] The complete classification prompt is provided in the Appendix A.
+
+[2] In Pedersen (2022), the definition of investors also depends on how
+they update their beliefs in response to firm fundamentals.
+
+[3] The results are reported in the Appendix B.
+
+[4] The results are reported in the Appendix B.
