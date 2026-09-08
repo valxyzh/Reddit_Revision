@@ -89,6 +89,29 @@ subsample. Needs at least one sentence of acknowledgment.}
 not the high-influence subsample, so average influence is lower. A brief note
 to this effect would preempt reviewer questions.}
 
+The celebrity definition in Section~5.4 is unclear. A few specific questions:
+\begin{itemize}
+  \item \textit{Timing}: Does ``average PageRank ranks above the weekly 90th
+    percentile'' mean that celebrity status is determined week by week (a user
+    is a celebrity in week $t$ if their PageRank in week $t-1$ is above that
+    week's 90th percentile), or is it a static whole-sample label (a user is
+    a celebrity for the entire sample if their time-averaged PageRank exceeds
+    the 90th percentile of the cross-sectional distribution)? These are very
+    different and the text is ambiguous.
+  \item \textit{Tone construction}: ``Rational, fanatic, and na\"{i}ve tone for
+    celebrity users'' --- does this mean we take the subset of celebrity users
+    who are also classified as rational, and average their tone? So each
+    celebrity has a single type, and we aggregate by type across celebrities?
+    Or does each celebrity contribute to all three tone measures? This should
+    be stated clearly.
+  \item \textit{Descriptive statistics}: The table is interesting, but readers
+    will want to know more about who these celebrities are. What fraction of
+    celebrities are rational vs.\ fanatic vs.\ na\"{i}ve? Are celebrities
+    systematically more likely to be fanatics (as the large 6~bps fanatic
+    effect might suggest)? A few summary statistics or a brief description
+    would strengthen this section considerably.
+\end{itemize}
+
 %----------------------------------------------------------------------
 \section{Editor Comment 3: Technological Progress and Competing Platforms}
 %----------------------------------------------------------------------
