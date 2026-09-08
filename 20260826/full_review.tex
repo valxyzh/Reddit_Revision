@@ -13,7 +13,7 @@
 
 \titleformat{\part}[block]{\normalsize\bfseries\centering}{}{0pt}{}
 \titleformat{\section}{\normalsize\bfseries}{}{0pt}%
-  {\colorbox{sectionbg}{\parbox{\dimexpr\linewidth-2\fboxsep\relax}{\strut#1\strut}}}
+  {\colorbox{sectionbg}{\parbox{\dimexpr\textwidth-2\fboxsep\relax}{\strut#1\strut}}}
 \titleformat{\subsection}{\normalsize\bfseries}{}{0pt}{}
 \titleformat{\subsubsection}{\normalsize\bfseries}{}{0pt}{}
 \titlespacing*{\part}{0pt}{1.5ex}{1ex}
@@ -23,7 +23,7 @@
 
 \newcommand{\concern}[1]{\textbf{Concern:} #1}
 \newcommand{\ok}[1]{\textbf{OK:} #1}
-\newcommand{\openq}[1]{\textbf{Question:} #1}
+\newcommand{\openq}[1]{#1}
 
 \begin{document}
 
