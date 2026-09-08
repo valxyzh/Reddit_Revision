@@ -38,8 +38,8 @@
 }
 \makeatother
 
-\newcommand{\concern}[1]{\textbf{Concern:} #1}
-\newcommand{\ok}[1]{\textbf{OK:} #1}
+\newcommand{\concern}[1]{#1}
+\newcommand{\ok}[1]{#1}
 \newcommand{\openq}[1]{#1}
 
 \begin{document}
@@ -119,31 +119,37 @@ users) and a particularly large retail flow effect for fanatic users (0.66\%
 vs.\ 0.24\%).
 
 \subsection*{Valerie's Comments}
-\concern{Table~9 shows short-flow effects are entirely null for both celebrity
-and other users (all Granger $p$-values $>57\%$), but the text does not
-mention this. This is potentially inconsistent with the main results (Tables~5
-and~7) where tone negatively predicts short flow in the high-influence
-subsample. Needs at least one sentence of acknowledgment.}
+The paper defines celebrity users as follows (Section~5.4): \textit{``As discussed in
+Section~5.2, PageRank captures a user's centrality in the interaction network,
+thus we use it to identify the most prominent participants on the platform.
+Specifically, we define celebrity users as those whose average PageRank ranks
+above the weekly 90th percentile. We then separately construct rational,
+fanatic, and na\"{i}ve tone measures for celebrity users and all other users.''}
 
-\openq{One possible explanation: the celebrity split uses the whole sample,
-not the high-influence subsample, so average influence is lower. A brief note
-to this effect would preempt reviewer questions.}
-
-The celebrity definition in Section~5.4 is unclear. A few specific questions:
+This definition is unclear. A few specific questions:
 \begin{itemize}
   \item \textit{Timing}: Does ``average PageRank ranks above the weekly 90th
     percentile'' mean that celebrity status is determined week by week (a user
     is a celebrity in week $t$ if their PageRank in week $t-1$ is above that
     week's 90th percentile), or is it a static whole-sample label (a user is
     a celebrity for the entire sample if their time-averaged PageRank exceeds
-    the 90th percentile of the cross-sectional distribution)? These are very
-    different and the text is ambiguous.
+    the 90th percentile of the cross-sectional distribution)?
   \item \textit{Tone construction}: ``Rational, fanatic, and na\"{i}ve tone for
-    celebrity users'' --- does this mean we take the subset of celebrity users
-    who are also classified as rational, and average their tone? So each
-    celebrity has a single type, and we aggregate by type across celebrities?
-    Or does each celebrity contribute to all three tone measures? This should
-    be stated clearly.
+    celebrity users'' is ambiguous. Does it mean (a) each celebrity is assigned
+    a single type, and we average tone across celebrities of that type? Or
+    (b) each celebrity's individual posts are classified as rational, fanatic,
+    or na\"{i}ve, and we average tone separately across each post type for
+    celebrity users? These are different constructions and should be stated
+    clearly.
+  \item \textit{Short flow results in Table~9}: The text discusses returns and
+    retail trading but is silent on short flow. In the main results (Table~4),
+    tone negatively predicts short flow, especially in the high-influence
+    subsample. If celebrity-user tone does not predict short flow at all, that
+    is a notable break from the main finding and reviewers will ask about it.
+    The paper should acknowledge this explicitly and offer an explanation ---
+    e.g., that the celebrity split is not conditioned on high influence, so
+    the short-flow mechanism may not activate at average influence levels.
+
   \item \textit{Descriptive statistics}: The table is interesting, but readers
     will want to know more about who these celebrities are. What fraction of
     celebrities are rational vs.\ fanatic vs.\ na\"{i}ve? Are celebrities
