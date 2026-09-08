@@ -1,0 +1,594 @@
+\documentclass[11pt]{article}
+\usepackage[margin=1in]{geometry}
+\usepackage{booktabs}
+\usepackage{enumitem}
+\usepackage{hyperref}
+\usepackage{xcolor}
+\usepackage{mdframed}
+\usepackage{array}
+\usepackage{longtable}
+\usepackage{titlesec}
+
+\definecolor{concerncolor}{RGB}{180,0,0}
+\definecolor{okcolor}{RGB}{0,128,0}
+\definecolor{questioncolor}{RGB}{0,80,160}
+
+\newcommand{\concern}[1]{\textcolor{concerncolor}{\textbf{Concern:} #1}}
+\newcommand{\ok}[1]{\textcolor{okcolor}{\textbf{OK:} #1}}
+\newcommand{\openq}[1]{\textcolor{questioncolor}{\textbf{Open question:} #1}}
+
+\title{\textbf{Full Review: Editor and Reviewer Comments}\\
+\large The Rise of Reddit --- Management Science Resubmission}
+\date{Reviewed September 2026}
+
+\begin{document}
+\maketitle
+
+\noindent This document records a close reading of all editor and reviewer
+comments and the authors' responses, cross-checked against the revised text,
+tables, and appendices. Each comment is quoted verbatim, followed by what
+the authors claim to have done, what is actually in the documents, and an
+assessment.
+
+\medskip
+\noindent\textbf{Color coding:}
+\textcolor{concerncolor}{\textbf{Red}} = issue to address before resubmission. \quad
+\textcolor{okcolor}{\textbf{Green}} = addressed and solid. \quad
+\textcolor{questioncolor}{\textbf{Blue}} = open question for coauthors.
+
+\tableofcontents
+\newpage
+
+%======================================================================
+\part{Editor's Letter}
+%======================================================================
+
+%----------------------------------------------------------------------
+\section{Editor Comment 1: Use Pedersen (2022) as Conceptual Motivation}
+%----------------------------------------------------------------------
+
+\subsection*{The Editor's Request}
+\begin{mdframed}
+\textit{``The AE communicated to me that unless you are prepared to engage
+more deeply with the model, it may be more effective to use Pedersen (2022)
+as a conceptual motivation for empirical tests, rather than positioning the
+paper as a direct test of the model. I completely agree. I think you should
+emphasize more the empirical aspects of your study.''}
+\end{mdframed}
+
+\subsection*{What the Authors Claim to Have Done}
+Revised Abstract, Section~1, Section~2 (renamed ``Conceptual Framework and
+Empirical Implications''), and Section~7 to downplay direct-test language
+and use ``motivated by,'' ``inspired by,'' and ``drawing on'' instead.
+
+\subsection*{What Is Actually in the Text}
+
+\paragraph{What changed.}
+\begin{itemize}
+  \item Section~2 is renamed ``Conceptual Framework and Empirical
+    Implications'' --- a clear and appropriate signal.
+  \item The opening of Section~2 now reads: ``We briefly summarize the
+    features of the model most relevant to our setting and draw on its
+    underlying economic mechanisms to \textbf{motivate and organize} our
+    empirical analysis.''
+  \item The contributions paragraph in Section~1 uses ``inspired by the
+    guiding framework'' and ``motivated by Pedersen (2022)'' rather than
+    ``we test Proposition~X.''
+  \item The abstract opens with ``Motivated by Pedersen (2022)\ldots''
+\end{itemize}
+
+\paragraph{What has not changed.}
+The six empirical hypotheses (H1--H6) remain tightly pinned to specific
+propositions of Pedersen (2022):
+\begin{itemize}
+  \item H1 and H2: ``Motivated by this mechanism [Proposition~1]\ldots''
+  \item H3 and H4: ``Motivated by Propositions~4 and~5\ldots''
+  \item H5 and H6: ``motivated by Propositions~7 and~8\ldots''
+\end{itemize}
+
+\subsection*{Assessment}
+
+\concern{The hypothesis framing is still tightly coupled to specific
+propositions.} Calling something ``motivated by Proposition~4'' is
+functionally close to saying ``this is a test of Proposition~4.'' The
+language revision helps at the margin, but the one-to-one mapping between
+H1--H6 and Pedersen's propositions leaves the paper exposed to the same
+critique.
+
+\openq{Consider whether the hypotheses can be motivated more generically
+(e.g., from broad social-network intuition) with Pedersen cited as one
+formalization, rather than deriving each hypothesis from a named
+proposition.}
+
+%----------------------------------------------------------------------
+\section{Editor Comment 2: Differentiate Types of Social Media Interactions}
+%----------------------------------------------------------------------
+
+\subsection*{The Editor's Request}
+\begin{mdframed}
+\textit{``Would it be possible to differentiate the type of social media
+interactions? It makes a huge difference seeing an anonymous post versus
+seeing Trump's tweets. You would need to uncover deeper insights and more
+interesting patterns from the data to provide sufficient contribution to
+the literature.''}
+\end{mdframed}
+
+\subsection*{What the Authors Claim to Have Done}
+Introduced a celebrity vs.\ other user split in Section~5.4 and Table~9,
+defining celebrity users as those whose average PageRank exceeds the weekly
+90th percentile.
+
+\subsection*{What Is Actually in the Text and Tables}
+
+\paragraph{What works.}
+\begin{itemize}
+  \item Celebrity tone has stronger effects on returns: rational 2~bps,
+    fanatic 6~bps, na\"{i}ve 3~bps vs.\ 1~bp, 2~bps, 2~bps for other users.
+  \item Celebrity fanatic tone has a particularly large retail flow effect
+    (0.66\%) vs.\ other fanatic users (0.24\%).
+  \item The narrative is coherent: network prominence amplifies the salience
+    of fanatic views and triggers retail trading.
+\end{itemize}
+
+\paragraph{What is missing from the discussion.}
+Table~9 shows that \textbf{short-flow effects are entirely null for both
+celebrity and other users}: all Granger causality $p$-values for
+ShortFlow(t) exceed 57\% (celebrity: 68.6\%, 63.6\%, 57.8\%; other:
+98.7\%, 74.3\%, 5.4\%). The text does not mention this at all. This is
+notable because the main results (Tables~5 and~7) show a strong negative
+relation between tone and short flow in the high-influence subsample.
+
+\concern{The null short-flow result for celebrity users is unreported and
+potentially inconsistent with the main findings. Leaving it unacknowledged
+may invite reviewer questions.}
+
+\openq{One possible explanation: the celebrity split uses the whole sample
+(not the high-influence subsample), so average influence is lower, which
+could explain the null. A brief note to this effect would preempt the
+question.}
+
+%----------------------------------------------------------------------
+\section{Editor Comment 3: Technological Progress and Competing Platforms}
+%----------------------------------------------------------------------
+
+\subsection*{The Editor's Request}
+\begin{mdframed}
+\textit{``Can you relate the discussion to technological progress? Would
+the emergence of competing platforms affect the results?''}
+\end{mdframed}
+
+\subsection*{What the Authors Claim to Have Done}
+Section~6.1 (Table~10): ChatGPT release (November~30, 2022) as cutoff.
+Section~6.2 (Table~11): Relative activity on StockTwits, X, and Seeking
+Alpha defines platform-emergence periods (2020--2023).
+
+\subsection*{What Is Actually in the Text and Tables}
+
+\subsubsection*{Technological Progress (Section~6.1 / Table~10)}
+
+\ok{The core finding is clean: agent tones predict returns only pre-ChatGPT.
+RationalTone coefficient on Return(t) falls from $0.0014^{***}$ ($t=4.48$)
+to $0.0009$ ($t=1.02$, insignificant) post-ChatGPT. The explanation is
+economically intuitive and well-grounded.}
+
+\paragraph{A striking result worth highlighting more.}
+Table~10 Panel~B shows a sign flip in the short-flow relation around ChatGPT:
+
+\begin{center}
+\begin{tabular}{lcc}
+\toprule
+ & Pre-ChatGPT & Post-ChatGPT \\
+\midrule
+RationalTone $\to$ ShortFlow & $-0.0260^{***}$ [$-3.17$] & $+0.0190^{***}$ [$+2.80$] \\
+FanaticTone $\to$ ShortFlow  & $-0.0343^{***}$ [$-2.58$] & $+0.0216^{***}$ [$+2.60$] \\
+Na\"{i}veTone $\to$ ShortFlow & $-0.0258^{***}$ [$-5.19$] & $+0.0088^{**}$ [$+2.52$] \\
+\bottomrule
+\end{tabular}
+\end{center}
+
+Pre-ChatGPT, short sellers back off from bullish tone. Post-ChatGPT, they
+trade \textit{against} social-media sentiment. All six coefficients are
+significant. The text's explanation is plausible and internally consistent.
+
+\ok{This sign flip is one of the more striking results in the paper.
+Consider elevating it in the abstract or introduction.}
+
+\subsubsection*{Competing Platforms (Section~6.2 / Table~11)}
+
+\ok{Belief transmission and return predictability weaken cleanly during
+platform-emergence periods. The contrast with other periods is strong.}
+
+\paragraph{Potential inconsistency.}
+Section~6.2 states attenuation ``extends to subsequent trading dynamics.''
+However, in Table~11 Panel~A (emergence periods):
+
+\begin{center}
+\begin{tabular}{lcc}
+\toprule
+ & Emergence periods & Other periods \\
+\midrule
+RationalTone $\to$ RetailFlow & $0.0115^{**}$ [$2.16$], $p=3.1\%$ & $0.0176^{***}$ [$6.93$] \\
+FanaticTone $\to$ RetailFlow  & $0.0008$ [$0.15$], $p=87.7\%$ & $0.0228^{***}$ [$6.01$] \\
+Na\"{i}veTone $\to$ RetailFlow & $0.0077^{**}$ [$2.10$], $p=3.6\%$ & $0.0098^{***}$ [$5.98$] \\
+\bottomrule
+\end{tabular}
+\end{center}
+
+Rational and na\"{i}ve tone still significantly predict retail flow during
+emergence periods. The claim of broad attenuation is only partially supported.
+
+\concern{The text overstates the attenuation in retail trading. This should
+be qualified: ``the weakening is most pronounced for fanatic tone, while
+rational and na\"{i}ve tone retain some predictive power for retail
+trading.'' A careful reviewer may flag the discrepancy.}
+
+\newpage
+%======================================================================
+\part{Reviewer 1}
+%======================================================================
+
+%----------------------------------------------------------------------
+\section{R1 Comment 1: PVAR Insufficient to Document Belief Spillover}
+%----------------------------------------------------------------------
+
+\subsection*{The Reviewer's Comment}
+\begin{mdframed}
+\textit{``This strategy overlooks a key feature\ldots the impact of social
+interactions on belief spillovers. Without properly considering the role of
+social interactions, this testing approach struggles to distinguish
+alternative explanations\ldots A rational investor in the current period
+would plausibly switch to a na\"{i}ve or fanatic investor in the next period
+due to changes in their posts. Given this dynamic reshuffling\ldots the PVAR
+results may simply reflect the persistence or autocorrelation of individual
+investors' beliefs rather than genuine belief spillovers.''}
+\end{mdframed}
+
+\subsection*{What the Authors Claim to Have Done}
+Replaced the rolling keyword-based classification with a GPT-5 LLM
+classification using each user's \textit{complete} posting history, making
+investor type a stable, history-based label rather than a period-by-period
+assignment. Section~4.1 is reframed to clarify group-level interpretation.
+
+\subsection*{What Is Actually in the Text}
+
+\ok{The LLM classification (Section~3.1) uses the full posting history of
+each user, not a rolling window. This directly addresses the
+dynamic-reshuffling concern: type is now a fixed user-level label. The
+distribution (2.96\% rational, 5.86\% fanatic, 91.18\% na\"{i}ve) and the
+Keith Gill validation are present. The Appendix~A prompt is fully
+documented.}
+
+\ok{Section~4.1 now explicitly states: ``we interpret these patterns as
+group-level belief spillovers'' and clarifies that the PVAR examines
+innovations in aggregate group beliefs, not individual transitions.}
+
+%----------------------------------------------------------------------
+\section{R1 Comment 2: Investor Classification Ignores Fundamentals}
+%----------------------------------------------------------------------
+
+\subsection*{The Reviewer's Comment}
+\begin{mdframed}
+\textit{``One major concern is that this paper defines rational investors
+solely based on view dynamics, without considering how these dynamics align
+with the firm's fundamentals\ldots whether an investor is na\"{i}ve should
+not only depend on what her view dynamics look like. Instead, it should also
+depend on how her view dynamics align with the firm's fundamental
+dynamics.''}
+\end{mdframed}
+
+\subsection*{What the Authors Claim to Have Done}
+(1) The LLM is given the full Pedersen (2022) model description (which
+grounds types in fundamental-aligned reasoning) as the classification
+prompt. (2) Earnings surprise validation in Section~3.1 and Appendix~B:
+only rational tone positively predicts earnings surprises ($t=2.12$).
+
+\subsection*{What Is Actually in the Text}
+
+\ok{Appendix~A includes the full Pedersen model description in the prompt,
+and the rational investor example (Encore Wire EBITDA analysis) shows the
+LLM is rewarding fundamental-based reasoning.}
+
+\ok{Appendix~B confirms: RationalTone $0.006^{**}$ ($t=2.12$), FanaticTone
+$-0.002$ ($t=-0.80$), Na\"{i}veTone $-0.006^{**}$ ($t=-2.60$). Only
+rational tone aligns with fundamentals, consistent with the theoretical
+definition.}
+
+%----------------------------------------------------------------------
+\section{R1 Comment 3: What Is Being Transmitted --- Information or Noise?}
+%----------------------------------------------------------------------
+
+\subsection*{The Reviewer's Comment}
+\begin{mdframed}
+\textit{``If this spillover primarily involves information, then rational
+investors should, at the very least, exhibit predictive power comparable to
+that of na\"{i}ve investors in forecasting future returns. However\ldots
+rational investors are no better than na\"{i}ve investors at predicting
+future return dynamics. This finding appears to contradict the `information
+transmission' narrative.''}
+\end{mdframed}
+
+\subsection*{What the Authors Claim to Have Done}
+With the new LLM classification, rational tone now significantly predicts
+returns with power comparable to na\"{i}ve tone (Table~3). The
+short-run predictability of na\"{i}ve tone is explained via an
+attention/sentiment channel (Section~4.2).
+
+\subsection*{What Is Actually in the Text and Tables}
+
+\ok{Table~3 whole sample: RationalTone $0.0012^{**}$ ($t=2.53$),
+FanaticTone $0.0018^{***}$ ($t=2.80$), Na\"{i}veTone $0.0012^{***}$
+($t=3.94$). All three are significant and similar in magnitude. This
+directly resolves the original concern.}
+
+\ok{Section~4.2 explains na\"{i}ve tone's predictability via attention-
+and sentiment-driven price pressure (citing Da, Engelberg, and Gao (2011);
+Chen et al.\ (2014); Cookson et al.\ (2024)). The narrative is coherent.}
+
+%----------------------------------------------------------------------
+\section{R1 Comment 4: Influence or Attention?}
+%----------------------------------------------------------------------
+
+\subsection*{The Reviewer's Comment}
+\begin{mdframed}
+\textit{``The Influence variable\ldots primarily captures the intensity of
+investors' subsequent participation and does not immediately indicate
+whether these follow-up commenters are genuinely `influenced' by the
+original posters. Alternatively, this variable might instead serve as a
+general proxy for investor attention.''}
+\end{mdframed}
+
+\subsection*{What the Authors Claim to Have Done}
+(1) Acknowledged the limitation in Section~3.1. (2) Introduced a
+PageRank-based centrality measure as an alternative in Section~5.2.
+(3) Showed correlation between centrality and attention is only 0.25.
+
+\subsection*{What Is Actually in the Text and Tables}
+
+\ok{Section~3.1 now explicitly states: ``We note that this measure may
+capture investor attention as well as social influence.'' The limitation is
+acknowledged.}
+
+\ok{Table~7 (PageRank centrality) replicates the main findings. The
+correlation of 0.25 between centrality and attention (log posts) provides
+reasonable empirical separation.}
+
+%----------------------------------------------------------------------
+\section{R1 Comment 5: Rational Investors Do Not Predict Trading Flows}
+%----------------------------------------------------------------------
+
+\subsection*{The Reviewer's Comment}
+\begin{mdframed}
+\textit{``Panel A of Table 4 shows that while the tone of na\"{i}ve
+investors predicts trading flows, the tone of rational and fanatic investors
+does not. This is puzzling, as the tone of rational and fanatic investors
+influences na\"{i}ve investors.''}
+\end{mdframed}
+
+\subsection*{What the Authors Claim to Have Done}
+With the new classification, rational and fanatic tone now both positively
+predict retail flows (Table~4).
+
+\subsection*{What Is Actually in the Text and Tables}
+
+\ok{Table~4 Panel~A whole sample: RationalTone $0.0142^{***}$ ($t=6.80$),
+FanaticTone $0.0195^{***}$ ($t=6.24$), Na\"{i}veTone $0.0087^{***}$
+($t=6.48$). All three now significant. Concern is resolved.}
+
+%----------------------------------------------------------------------
+\section{R1 Minor Comments}
+%----------------------------------------------------------------------
+
+\paragraph{Typo: ``insignificant'' vs.\ ``do not predict.''} \ok{Corrected
+in Section~4.4.}
+
+\paragraph{Short sellers ``detecting influence'' claim.} \ok{Toned down in
+abstract to: ``Short sellers may account for agent influence when deciding
+whether to ride or burst bubbles by responding to the observable attention
+and trading consequences\ldots''}
+
+\paragraph{Reddit users / retail investors overlap.} \ok{Explicitly
+acknowledged in Section~4.3.}
+
+\newpage
+%======================================================================
+\part{Reviewer 2}
+%======================================================================
+
+%----------------------------------------------------------------------
+\section{R2 Comment C1: Mapping Between Empirical and Theoretical Agents}
+%----------------------------------------------------------------------
+
+\subsection*{The Reviewer's Comment}
+\begin{mdframed}
+\textit{``In the manuscript, both rational and fanatic agents are proxied
+by Reddit users exhibiting a stable tone\ldots The empirical results suggest
+that this proxy does not capture the distinct theoretical attributes\ldots
+Na\"{i}ve tone is the strongest return predictor\ldots rational tone fails
+to predict returns\ldots The authors could improve empirical alignment by
+testing whether rational tone better predicts long-horizon returns or
+fundamental outcomes (e.g., earnings surprises).''}
+\end{mdframed}
+
+\subsection*{What the Authors Claim to Have Done}
+(1) LLM reclassification. (2) Rational tone now predicts returns comparably
+to na\"{i}ve tone. (3) Earnings surprise test (Appendix~B). (4) Long-horizon
+portfolio analysis (Section~4.5, Figure~6, 52 weeks).
+
+\subsection*{What Is Actually in the Text and Tables}
+
+\ok{Return predictability is resolved (see R1 Comment~3 above).}
+
+\ok{Earnings surprise: only rational tone is positive and significant
+(Appendix~B). Fanatic and na\"{i}ve tones are null or negative. This
+directly answers the reviewer's suggestion.}
+
+\ok{Figure~6 (Section~4.5): rational tone portfolio accumulates to $+4\%$
+over 52 weeks (consistent with gradual price discovery); na\"{i}ve tone
+reverses to $-1.6\%$ (consistent with transitory sentiment); fanatic tone
+dissipates near zero. This pattern matches the model's predictions and
+directly addresses the momentum-reversal critique.}
+
+%----------------------------------------------------------------------
+\section{R2 Comment C2: Endogenous Influence Measure}
+%----------------------------------------------------------------------
+
+\subsection*{The Reviewer's Comment}
+\begin{mdframed}
+\textit{``The empirical proxy defines influence at the user $\times$ stock
+$\times$ week level, based on the number of replies a user receives. This
+operationalization conflates personal influence with transient engagement,
+increasing the concerns of reverse causality\ldots The authors could isolate
+exogenous components of influence: lagged cross-stock average influence,
+pre-period network centrality, or decompose influence into fixed and residual
+components.''}
+\end{mdframed}
+
+\subsection*{What the Authors Claim to Have Done}
+All three suggested robustness checks implemented: (1) lagged cross-stock
+average commenters (Section~5.1, Table~6); (2) pre-period PageRank
+centrality (Section~5.2, Table~7); (3) fixed-effect decomposition
+(Section~5.3, Table~8).
+
+\subsection*{What Is Actually in the Text and Tables}
+
+\ok{Tables~6 and~7 replicate the main findings with the alternative
+measures. Belief transmission, return predictability, and short-flow
+patterns are all robust.}
+
+\ok{Table~8 Panel~D shows the negative tone--short-flow relation is
+concentrated in the high user-fixed-effect subsample, suggesting it is
+driven by persistent (exogenous) influence rather than transitory
+engagement.}
+
+\paragraph{Minor issue.}
+\concern{Table~8 Panel~B: return predictability is still statistically
+significant even in the \textit{low}-residual subsample (RationalTone
+$0.0010^{**}$, FanaticTone $0.0014^{**}$, Na\"{i}veTone $0.0010^{***}$).
+The text claims predictability is ``substantially stronger when either
+component is high'' but does not acknowledge the remaining significance in
+the low-residual group. Consider adding a qualifying sentence.}
+
+%----------------------------------------------------------------------
+\section{R2 Comment C3: Na\"{i}ve Investors and Retail Flow}
+%----------------------------------------------------------------------
+
+\subsection*{The Reviewer's Comment}
+\begin{mdframed}
+\textit{``Table 4 and Figure 4 reveal negligible and statistically
+insignificant effects of either belief type on future retail flows across
+all horizons\ldots Furthermore, the mechanism\ldots social media tone
+$\to$ retail flow $\to$ price impact --- also lacks empirical support\ldots
+The authors could test for Granger causality between tone and flow.''}
+\end{mdframed}
+
+\subsection*{What the Authors Claim to Have Done}
+(1) Acknowledged retail flow is not a direct proxy for na\"{i}ve investors'
+trading. (2) Explained the relation to prior literature. (3) Reported
+bidirectional Granger causality between tone and flow.
+
+\subsection*{What Is Actually in the Text and Tables}
+
+\ok{Section~4.3 now explicitly states: ``We acknowledge that retail flow
+should not be interpreted as a direct proxy for na\"{i}ve investors'
+trading.'' The four concerns raised by R2 are addressed one by one.}
+
+\ok{Bidirectional Granger causality is reported in the response letter:
+retail flow $\to$ na\"{i}ve tone ($\chi^2=47.72$, $p=0.000$) and na\"{i}ve
+tone $\to$ retail flow ($\chi^2=42.00$, $p=0.000$). Note: this result is
+in the \textbf{response letter only} and does not appear in the main text
+or tables.}
+
+\concern{The bidirectional Granger causality result (tone $\leftrightarrow$
+flow) is only in the response letter, not in the paper. Reviewers may ask
+to see it in a table or footnote in the manuscript itself.}
+
+%----------------------------------------------------------------------
+\section{R2 Comment C4: Absence of Momentum-Reversal Pattern}
+%----------------------------------------------------------------------
+
+\subsection*{The Reviewer's Comment}
+\begin{mdframed}
+\textit{``Figures~3--5 display persistent price drifts following shocks to
+fanatic/na\"{i}ve tone or retail flows, without evidence of mean reversion.
+This contradicts Pedersen's model, which predicts reversal once rational
+investors reassert influence.''}
+\end{mdframed}
+
+\subsection*{What the Authors Claim to Have Done}
+Section~4.5 and Figure~6: 52-week portfolio analysis sorting stocks on
+agent tone signals.
+
+\subsection*{What Is Actually in the Text and Tables}
+
+\ok{Figure~6 shows the pattern the reviewer requested: na\"{i}ve tone
+reversal ($-1.6\%$ by week~52), rational tone continuation ($+4\%$),
+fanatic tone dissipation ($+0.7\%$). This directly addresses the
+momentum-reversal critique and is one of the strongest additions in the
+revision.}
+
+\newpage
+%======================================================================
+\part{Errors and Fixes Summary}
+%======================================================================
+
+\section{Must Fix Before Resubmission}
+
+\begin{enumerate}
+
+  \item \textbf{Footnote [8] is blank.} Marker in Section~3.1 but no
+    content. Restore missing footnote text.
+
+  \item \textbf{``P.\ Gal'' $\to$ ``P.\ Gao.''} Da, Engelberg, Gao
+    (2011) reference has author name misspelled.
+
+  \item \textbf{Atmaz (2024) missing from reference list.} Cited in
+    Section~4.4 but not in references.
+
+  \item \textbf{Engelberg, Reed, and Ringgenberg (2018) missing from
+    reference list.} Cited in Section~4.4; the 2012 paper is present
+    but 2018 is a different paper.
+
+  \item \textbf{Formatting artifact in Section~6 header.} Garbled
+    characters before ``6.1 Technological Progress.''
+
+  \item \textbf{Text--table inconsistency in Section~4.1.} Text says
+    RationalTone coefficient in low-influence Panel~C is $-0.004$;
+    Table~2 shows $-0.0004$. Off by one decimal place.
+
+  \item \textbf{Table~9 note: ``other uses'' $\to$ ``other users.''}
+
+  \item \textbf{``Commentors'' $\to$ ``commenters'' in Tables~6 and~8
+    notes.}
+
+\end{enumerate}
+
+\section{Substantive Issues to Discuss with Coauthors}
+
+\begin{enumerate}
+
+  \item \textbf{Hypothesis framing still proposition-by-proposition.}
+    H1--H6 each cite a specific Pedersen proposition. Consider
+    loosening to generic social-network motivation. (Editor Comment~1)
+
+  \item \textbf{Null short-flow result for celebrity users unreported.}
+    Table~9 short-flow Granger $p$-values all $>57\%$. Needs at least
+    one sentence of acknowledgment or explanation. (Editor Comment~2)
+
+  \item \textbf{ChatGPT short-flow sign flip underemphasized.}
+    A strong, significant, and economically interesting result.
+    Consider elevating in abstract or introduction. (Editor Comment~3)
+
+  \item \textbf{Text overstates retail-flow attenuation in Table~11.}
+    Rational and na\"{i}ve tone still predict retail flow during
+    platform-emergence periods. Qualify the claim. (Editor Comment~3)
+
+  \item \textbf{Bidirectional tone--flow Granger causality in response
+    letter only.} Should appear in the paper. (R2 Comment~C3)
+
+  \item \textbf{Table~8 Panel~B: low-residual return predictability.}
+    All three tones still significant in low-residual subsample;
+    text does not acknowledge this. (R2 Comment~C2)
+
+\end{enumerate}
+
+\end{document}
