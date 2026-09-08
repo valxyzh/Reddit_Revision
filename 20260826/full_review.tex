@@ -12,8 +12,8 @@
 \definecolor{sectionbg}{RGB}{210,225,245}
 
 \titleformat{\part}[block]{\normalsize\bfseries\centering}{}{0pt}{}
-\titleformat{\section}{\normalsize\bfseries}{}{0pt}%
-  {\colorbox{sectionbg}{\parbox{\dimexpr\textwidth-2\fboxsep\relax}{\strut#1\strut}}}
+\titleformat{\section}[block]{\normalsize\bfseries}{}{0pt}%
+  {{\setlength{\fboxsep}{4pt}\colorbox{sectionbg}{\parbox{\dimexpr\textwidth-8pt\relax}{\strut#1\strut}}}}
 \titleformat{\subsection}{\normalsize\bfseries}{}{0pt}{}
 \titleformat{\subsubsection}{\normalsize\bfseries}{}{0pt}{}
 \titlespacing*{\part}{0pt}{1.5ex}{1ex}
