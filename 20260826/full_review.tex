@@ -470,6 +470,18 @@ lighter lift.}
 
 \begin{enumerate}
 
+  \item \textbf{Celebrity user definition is ambiguous in Section~5.4.}
+    The text says ``celebrity users are those whose \textit{average} PageRank
+    ranks above the \textit{weekly} 90th percentile'' --- it is unclear whether
+    celebrity status is a static, whole-sample label (user's time-averaged
+    PageRank exceeds the 90th percentile of the cross-sectional distribution)
+    or a dynamic, week-by-week label (user's PageRank in week $t$ exceeds that
+    week's 90th percentile). The two approaches have different implications:
+    the dynamic version raises the question of whether celebrity status in week
+    $t$ should be determined using week $t-1$ PageRank to avoid look-ahead
+    bias. Clarify which definition is used and, if dynamic, confirm that
+    PageRank is lagged.
+
   \item \textbf{Null short-flow result for celebrity users unreported.}
     Table~9 short-flow Granger $p$-values all $>57\%$ for both celebrity
     and other users. Needs at least one sentence of acknowledgment or
@@ -507,6 +519,29 @@ lighter lift.}
   \item \textbf{Short sellers as corrective force at long horizons not
     demonstrated.} Acknowledge gap or add short-flow-sorted portfolios.
     (R2 Comment~C4)
+
+\end{enumerate}
+
+%======================================================================
+\part{Valerie's Overall Comments}
+%======================================================================
+
+\begin{enumerate}
+
+  \item \textbf{Add an appendix with precise variable definitions.}
+    Several key constructs --- celebrity user status, PageRank computation,
+    tone aggregation, retail flow, short flow --- are currently defined
+    informally and scattered across sections. Add a dedicated appendix that
+    collects all variable definitions in one place with precise, unambiguous
+    language (e.g., clarify whether celebrity status is static or dynamic,
+    and whether PageRank is lagged).
+
+  \item \textbf{Add a timeline figure showing when each variable is measured.}
+    The paper uses tone, returns, retail flow, and short flow measured over
+    different windows relative to each week $t$. A simple diagram showing the
+    timing --- when tone is aggregated, when PageRank is computed, when
+    returns and flows are observed --- would make the identification strategy
+    much clearer and preempt look-ahead bias concerns.
 
 \end{enumerate}
 
