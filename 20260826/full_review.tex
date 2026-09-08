@@ -199,38 +199,6 @@ weaken during these periods.
 %======================================================================
 
 %----------------------------------------------------------------------
-\section{R1 Comment 1: PVAR Insufficient to Document Belief Spillover}
-%----------------------------------------------------------------------
-
-\subsection*{Request}
-\begin{mdframed}
-\textit{``This strategy overlooks a key feature\ldots the impact of social
-interactions on belief spillovers. Without properly considering the role of
-social interactions, this testing approach struggles to distinguish
-alternative explanations\ldots A rational investor in the current period
-would plausibly switch to a na\"{i}ve or fanatic investor in the next period
-due to changes in their posts. Given this dynamic reshuffling\ldots the PVAR
-results may simply reflect the persistence or autocorrelation of individual
-investors' beliefs rather than genuine belief spillovers.''}
-\end{mdframed}
-
-\subsection*{What We Did}
-Replaced the rolling keyword-based classification with a GPT-5 LLM
-classification using each user's complete posting history, making investor
-type a stable, fixed label rather than a period-by-period assignment (2.96\%
-rational, 5.86\% fanatic, 91.18\% na\"{i}ve). Section~4.1 is reframed to
-clarify that the PVAR examines group-level belief spillovers, not individual
-transitions.
-
-\subsection*{Valerie's Comments}
-\concern{The common-shocks alternative is never discussed or ruled out. Even
-with stable type labels, the cross-group PVAR pattern could arise if all
-investor types respond to the same news but rational investors react one week
-earlier than na\"{i}ve investors --- with no social learning involved. The
-high-influence concentration (Panel~B vs.\ Panel~C of Table~2) argues against
-this, but this counter-argument is never made explicitly in the text.}
-
-%----------------------------------------------------------------------
 \section{R1 Comment 2: Investor Classification Ignores Fundamentals}
 %----------------------------------------------------------------------
 
