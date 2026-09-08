@@ -216,10 +216,14 @@ rational and na\"{i}ve investors in classical asset pricing theory.''}
 \subsection*{What We Did}
 The LLM prompt includes the full Pedersen (2022) model description, and the
 rational investor example (Encore Wire EBITDA analysis) shows the LLM rewards
-fundamental-based reasoning. Earnings surprise validation (Appendix~B):
-RationalTone $0.006^{**}$ ($t=2.12$), FanaticTone $-0.002$ ($t=-0.80$),
-Na\"{i}veTone $-0.006^{**}$ ($t=-2.60$) --- only rational tone aligns with
-fundamentals.
+fundamental-based reasoning. Added an earnings surprise validation (Appendix~B): rational, fanatic, and
+na\"{i}ve tone are computed as average tone between the previous and current
+earnings announcements and regressed on CAR[-1,1] around the earnings
+announcement. Only rational tone positively and significantly predicts
+earnings surprise (RationalTone $0.006^{**}$, $t=2.12$), while fanatic tone
+is insignificant ($-0.002$, $t=-0.80$) and na\"{i}ve tone is significantly
+negative ($-0.006^{**}$, $t=-2.60$), consistent with rational investors being
+more aligned with firm fundamentals.
 
 \subsection*{Valerie's Comments}
 \concern{The conceptual critique --- that ``na\"{i}ve'' (flexible updaters)
