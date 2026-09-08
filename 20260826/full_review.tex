@@ -12,20 +12,60 @@
 \definecolor{sectionbg}{RGB}{210,225,245}
 
 \titleformat{\part}[block]{\normalsize\bfseries\centering}{}{0pt}{}
-\titleformat{\section}[block]{\normalsize\bfseries}{}{0pt}%
-  {{\setlength{\fboxsep}{4pt}\colorbox{sectionbg}{\parbox{\dimexpr\textwidth-8pt\relax}{\strut#1\strut}}}}
 \titleformat{\subsection}{\normalsize\bfseries}{}{0pt}{}
 \titleformat{\subsubsection}{\normalsize\bfseries}{}{0pt}{}
 \titlespacing*{\part}{0pt}{1.5ex}{1ex}
-\titlespacing*{\section}{0pt}{1.5ex}{0.5ex}
 \titlespacing*{\subsection}{0pt}{1ex}{0.5ex}
 \titlespacing*{\subsubsection}{0pt}{1ex}{0.3ex}
+
+% Custom \section: colored box for \section{}, plain bold for \section*{}
+\makeatletter
+\def\section{\@ifstar\section@star\section@nostar}
+\def\section@star#1{%
+  \par\vspace{1.5ex}%
+  \noindent{\normalsize\bfseries#1}\par%
+  \vspace{0.5ex}%
+  \@afterheading%
+}
+\def\section@nostar#1{%
+  \par\vspace{1.5ex}%
+  \noindent{%
+    \setlength{\fboxsep}{4pt}%
+    \colorbox{sectionbg}{\parbox{\dimexpr\textwidth-8pt\relax}{\normalsize\bfseries\strut#1\strut}}%
+  }\par%
+  \vspace{0.5ex}%
+  \@afterheading%
+}
+\makeatother
 
 \newcommand{\concern}[1]{\textbf{Concern:} #1}
 \newcommand{\ok}[1]{\textbf{OK:} #1}
 \newcommand{\openq}[1]{#1}
 
 \begin{document}
+
+%======================================================================
+\part{Valerie's Overall Comments}
+%======================================================================
+
+\begin{enumerate}
+
+  \item \textbf{Add an appendix with precise variable definitions.}
+    Several key constructs --- celebrity user status, PageRank computation,
+    tone aggregation, retail flow, short flow --- are currently defined
+    informally and scattered across sections. Add a dedicated appendix that
+    collects all variable definitions in one place with precise, unambiguous
+    language (e.g., clarify whether celebrity status is static or dynamic,
+    and whether PageRank is lagged).
+
+  \item \textbf{Add a timeline figure showing when each variable is measured.}
+    The paper uses tone, returns, retail flow, and short flow measured over
+    different windows relative to each week $t$. A simple diagram showing the
+    timing --- when tone is aggregated, when PageRank is computed, when
+    returns and flows are observed --- would make the identification strategy
+    much clearer and preempt look-ahead bias concerns.
+
+\end{enumerate}
 
 %======================================================================
 \part{Editor's Letter}
@@ -542,29 +582,6 @@ lighter lift.}
   \item \textbf{Short sellers as corrective force at long horizons not
     demonstrated.} Acknowledge gap or add short-flow-sorted portfolios.
     (R2 Comment~C4)
-
-\end{enumerate}
-
-%======================================================================
-\part{Valerie's Overall Comments}
-%======================================================================
-
-\begin{enumerate}
-
-  \item \textbf{Add an appendix with precise variable definitions.}
-    Several key constructs --- celebrity user status, PageRank computation,
-    tone aggregation, retail flow, short flow --- are currently defined
-    informally and scattered across sections. Add a dedicated appendix that
-    collects all variable definitions in one place with precise, unambiguous
-    language (e.g., clarify whether celebrity status is static or dynamic,
-    and whether PageRank is lagged).
-
-  \item \textbf{Add a timeline figure showing when each variable is measured.}
-    The paper uses tone, returns, retail flow, and short flow measured over
-    different windows relative to each week $t$. A simple diagram showing the
-    timing --- when tone is aggregated, when PageRank is computed, when
-    returns and flows are observed --- would make the identification strategy
-    much clearer and preempt look-ahead bias concerns.
 
 \end{enumerate}
 
